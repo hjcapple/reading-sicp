@@ -12,16 +12,16 @@
 
 ``` Lua
 function add(a, b)
-	return a + b 
+    return a + b 
 end 
 
 function minus(a, b)
-	return a - b
+    return a - b
 end
 
 function a_plus_abs_b(a, b)
-	local op = (b > 0) and add or minus
-	return op(a, b)
+    local op = (b > 0) and add or minus
+    return op(a, b)
 end
 
 assert(a_plus_abs_b(1, 2) == 3)
