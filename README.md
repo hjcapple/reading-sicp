@@ -6,10 +6,10 @@
 
 -----
 
-使用《计算机程序的构造和解释》[中文第二版](https://book.douban.com/subject/1148282/)。在线英文版[点这里](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html)。
+使用《计算机程序的构造和解释》[中文第二版](https://book.douban.com/subject/1148282/)。在线英文版[点这里](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html)，排版更好的英文版[点这里](http://sarabander.github.io/sicp/html/index.xhtml)。
 
 * [序和前言](./foreword/README.md)
-* 第1章 构造过程抽象
+* [第1章 构造过程抽象](./chapter_1/README.md)
 * 第2章 构造数据现象
 * 第3章 模块化、对象和状态
 * 第4章 元语言抽象
