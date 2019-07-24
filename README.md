@@ -1,0 +1,17 @@
+使用 Lua 语言替代 Scheme，翻译书中代码和习题。原因
+
+* 我更熟悉 Lua 语言。
+* Lua 和 Scheme 有点相似。实际 Lua 语言在设计时，借鉴了 Scheme 的某些特性。
+* 使用另一种语言，避免照抄书中代码。
+
+-----
+
+使用《计算机程序的构造和解释》[中文第二版](https://book.douban.com/subject/1148282/)。在线英文版[点这里](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html)。
+
+* [序和前言](./foreword/README.md)
+* 第1章 构造过程抽象
+* 第2章 构造数据现象
+* 第3章 模块化、对象和状态
+* 第4章 元语言抽象
+* 第5章 寄存器机器里的计算
+
