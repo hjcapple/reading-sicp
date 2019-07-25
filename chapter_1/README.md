@@ -4,4 +4,5 @@
 * P13 - [练习 1.2](./exercise_1_2.md)
 * P13 - [练习 1.3](./exercise_1_3.lua)
 * P13 - [练习 1.4](./exercise_1_4.md)
+* P14 - [练习 1.5](./exercise_1_5.md)
 
