@@ -8,3 +8,5 @@
 * P15 - [实例： 采用牛顿法求平方根](./newton_sqrt.lua)
 * P16 - [练习 1.6](./exercise_1_6.md)
 * P16 - [练习 1.7](./exercise_1_7.md)
+* P17 - [练习 1.8](./exercise_1_8.lua)
+
