@@ -7,4 +7,4 @@
 * P14 - [练习 1.5](./exercise_1_5.md)
 * P15 - [实例： 采用牛顿法求平方根](./newton_sqrt.lua)
 * P16 - [练习 1.6](./exercise_1_6.md)
-
+* P16 - [练习 1.7](./exercise_1_7.md)
