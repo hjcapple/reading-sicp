@@ -9,4 +9,5 @@
 * P16 - [练习 1.6](./exercise_1_6.md)
 * P16 - [练习 1.7](./exercise_1_7.md)
 * P17 - [练习 1.8](./exercise_1_8.lua)
+* P17 - [过程作为黑箱抽象](./newton_sqrt_blackbox.lua)
 
