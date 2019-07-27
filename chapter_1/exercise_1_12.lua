@@ -15,33 +15,33 @@ function pascal_row(n)
 end
 
 function pretty_print_triangle(n)
-	local last = pascal_row(n)
-	local mid_v = last[math.floor(#last / 2)]
-	local max_v_len = #tostring(mid_v)
-	local max_line_len = (max_v_len + 2) * #last
+    local last = pascal_row(n)
+    local mid_v = last[math.floor(#last / 2)]
+    local max_v_len = #tostring(mid_v)
+    local max_line_len = (max_v_len + 2) * #last
 
-	function spaces(c)
-		local str = ""
-		while c > 0 do 
-			str = str .. " "
-			c = c - 1
-		end
-		return str
-	end
+    function spaces(c)
+        local str = ""
+        while c > 0 do 
+            str = str .. " "
+            c = c - 1
+        end
+        return str
+    end
 
-	for i = 1, n do
-		local this = pascal_row(i)
-		local this_line_len = (max_v_len + 2) * #this
-		local str = spaces((max_line_len - this_line_len) / 2)
-	
-		for _, v in pairs(this) do 
-			local v_str = tostring(v)
-			str = str .. v_str
-			str = str .. spaces(max_v_len - #v_str)
-			str = str .. "  "
-		end
-		print(str)
-	end
+    for i = 1, n do
+        local this = pascal_row(i)
+        local this_line_len = (max_v_len + 2) * #this
+        local str = spaces((max_line_len - this_line_len) / 2)
+    
+        for _, v in pairs(this) do 
+            local v_str = tostring(v)
+            str = str .. v_str
+            str = str .. spaces(max_v_len - #v_str)
+            str = str .. "  "
+        end
+        print(str)
+    end
 end
 
 pretty_print_triangle(13)
