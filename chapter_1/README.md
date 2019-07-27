@@ -22,3 +22,4 @@
 * P26 - [实例：换零钱方式的统计](./count_change.lua)
 * P27 - [练习 1.11](./exercise_1_11.lua)
 * P27 - [练习 1.12](./exercise_1_12.lua)
+* P28 - [练习 1.13](./exercise_1_13.md)
