@@ -18,3 +18,6 @@
 * P21 - [1.2.1 线性的递归和迭代](./factorial.lua)
 * P23 - [练习 1.9](./exercise_1_9.md)
 * P24 - [练习 1.10](./exercise_1_10.md)
+* P24 - [1.2.2 树形递归](./fibonacci.lua)
+* P26 - [实例：换零钱方式的统计](./count_change.lua)
+
