@@ -20,4 +20,5 @@
 * P24 - [练习 1.10](./exercise_1_10.md)
 * P24 - [1.2.2 树形递归](./fibonacci.lua)
 * P26 - [实例：换零钱方式的统计](./count_change.lua)
-
+* P27 - [练习 1.11](./exercise_1_11.lua)
+* P27 - [练习 1.12](./exercise_1_12.lua)
