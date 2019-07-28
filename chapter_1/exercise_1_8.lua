@@ -1,4 +1,4 @@
--- P17 - 练习 1.8
+-- P17 - [练习 1.8]
 
 function abs(x)
     if x < 0 then 

@@ -1,4 +1,4 @@
--- P15 - 采用牛顿法求平方根
+-- P15 - [1.1.7 实例： 采用牛顿法求平方根]
 
 function average(x, y)
     return (x + y) / 2

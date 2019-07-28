@@ -1,4 +1,4 @@
--- P13 - 练习 1.3
+-- P13 - [练习 1.3]
 
 function max3(a, b, c)
     if a >= c and b >= c then 

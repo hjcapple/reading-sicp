@@ -1,4 +1,4 @@
-## P16 - 练习 1.6
+## P16 - [练习 1.6]
 
 ``` Scheme
 (define (new-if predicate then-caluse else-clause)

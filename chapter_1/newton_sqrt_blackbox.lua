@@ -1,4 +1,4 @@
--- P17 - 过程作为黑箱抽象
+-- P17 - [1.1.8 过程作为黑箱抽象]
 
 function average(x, y)
     return (x + y) / 2
