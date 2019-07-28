@@ -23,3 +23,4 @@
 * P27 - [练习 1.11](./exercise_1_11.lua)
 * P27 - [练习 1.12](./exercise_1_12.lua)
 * P28 - [练习 1.13](./exercise_1_13.md)
+* P29 - [练习 1.14](./exercise_1_14.md)
