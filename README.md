@@ -1,4 +1,6 @@
-使用 Lua 语言替代 Scheme，翻译书中代码和习题。原因
+主要使用 Lua 完成书中代码和习题。某些分析性的题目，Lua 描述起来繁琐，还是会沿用 Scheme。
+
+用 Lua 替代 Scheme 的原因:
 
 * 我更熟悉 Lua 语言。
 * Lua 和 Scheme 有点相似。实际 Lua 语言在设计时，借鉴了 Scheme 的某些特性。

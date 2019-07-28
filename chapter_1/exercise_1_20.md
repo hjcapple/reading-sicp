@@ -77,7 +77,7 @@ B2
 
 ``` Scheme
 (gcd 206 40)
-(gcd 40 (remainder 206 40))	;; 累计 1 次
+(gcd 40 (remainder 206 40)) ;; 累计 1 次
 (gcd 40 6)
 (gcd 6 (remainder 40 6))    ;; 累计 2 次
 (gcd 6 4)
