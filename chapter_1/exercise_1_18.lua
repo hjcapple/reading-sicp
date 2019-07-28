@@ -28,17 +28,8 @@ end
 
 ----------------------------------
 function unit_test()
-    function mul(b, n)
-        if n == 0 then 
-            return 0
-        else
-            return b + mul(b, n - 1)
-        end 
-    end
-
     for i = 0, 999 do
-        assert(mul(i, i) == i * i)
         assert(fast_mul(i, i) == i * i)
     end
-end 
+end
 unit_test()
