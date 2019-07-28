@@ -1,11 +1,15 @@
 -- P32 - [1.2.5 最大公约数]
 
 function gcd(a, b)
-	if b == 0 then
-		return a
-	else 
-		return gcd(b, a % b)
-	end
+    function remainder(a, b)
+        return a % b
+    end
+
+    if b == 0 then
+        return a
+    else 
+        return gcd(b, remainder(a, b))
+    end
 end
 
 ----------------------------------
