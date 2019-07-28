@@ -29,5 +29,5 @@
 * P30 - [练习 1.16](./exercise_1_16.lua)
 * P31 - [练习 1.17](./exercise_1_17.lua)
 * P31 - [练习 1.18](./exercise_1_18.lua)
-
+* P31 - [练习 1.19](./exercise_1_19.md)
 

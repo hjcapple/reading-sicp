@@ -1,0 +1,81 @@
+## P31 - [练习 1.19]
+
+这道题其实是，斐波那契的矩阵形式的变种。斐波那契的矩阵形式为：
+
+${\left[ \begin{array}{cc}1 & 1 \\1 & 0 \\\end{array} \right ]^{n}} = {\left[ \begin{array}{cc}F_{n+1} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]} = {\left[ \begin{array}{cc}F_{n-1} + F_{n} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]}$
+
+------
+
+变化 $T_{pq}$ 对于对偶 (a, b) 的作用规则为
+
+```
+a ← bq + aq + ap
+b ← bp + aq
+```
+
+其实可以写成
+
+$\left[ \begin{array}{cc}a' \\b' \end{array} \right ] = \left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]\left[ \begin{array}{cc}a \\b \end{array} \right ]=\left[ \begin{array}{cc}bq + aq + ap \\bp + aq \end{array} \right ]$
+
+这里的 $T_{pq}$，矩阵形式就为
+
+$T_{pq}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]$
+
+于是
+
+$T_{pq}^{2}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]^{2} = \left[ \begin{array}{cc}(p+q)^{2}+q^{2} & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]$
+
+将上述最右边看成是新的 $T_{p’q’}$ 变换。有
+
+$T_{p’q’}=\left[ \begin{array}{cc}p' + q' & q' \\q' & p' \\\end{array} \right ]=T_{pq}^{2}=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]$
+
+对比之后，得到结果
+
+```
+p ← pp + qq
+q ← 2pq + qq
+```
+
+------
+
+最后 Lua 代码为：
+
+``` Lua
+function fast_fib(n)
+    function even(n)
+        return n % 2 == 0
+    end
+
+    function fib_iter(a, b, p, q, count)
+        if count == 0 then 
+            return b 
+        elseif even(count) then 
+            local next_p = p * p + q * q
+            local next_q = 2 * p * q + q * q
+            return fib_iter(a, b, next_p, next_q, count / 2)
+        else
+            local next_a = b * q + a * q + a * p
+            local next_b = b * p + a * q
+            return fib_iter(next_a, next_b, p, q, count - 1) 
+        end 
+    end
+
+    return fib_iter(1, 0, 0, 1, n)
+end
+
+function unit_test()
+    function fib(n)
+        if n == 0 then 
+            return 0 
+        elseif n == 1 then 
+            return 1
+        else 
+            return fib(n - 1) + fib(n - 2)
+        end
+    end
+    for i = 0, 20 do 
+        assert(fib(i) == fast_fib(i))
+    end
+end 
+unit_test()
+```
