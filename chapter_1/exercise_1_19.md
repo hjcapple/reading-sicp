@@ -2,11 +2,11 @@
 
 这道题其实是，斐波那契的矩阵形式的变种。斐波那契的矩阵形式为：
 
-${\left[ \begin{array}{cc}1 & 1 \\1 & 0 \\\end{array} \right ]^{n}} = {\left[ \begin{array}{cc}F_{n+1} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]} = {\left[ \begin{array}{cc}F_{n-1} + F_{n} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]}$
+<img src="http://latex.codecogs.com/svg.latex?{\left[ \begin{array}{cc}1 & 1 \\1 & 0 \\\end{array} \right ]^{n}} = {\left[ \begin{array}{cc}F_{n+1} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]} = {\left[ \begin{array}{cc}F_{n-1} + F_{n} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]}" />
 
 ------
 
-变化 $T_{pq}$ 对于对偶 (a, b) 的作用规则为
+变化 <img src="http://latex.codecogs.com/svg.latex?T_{pq}" /> 对于对偶 (a, b) 的作用规则为
 
 ```
 a ← bq + aq + ap
@@ -15,19 +15,19 @@ b ← bp + aq
 
 其实可以写成
 
-$\left[ \begin{array}{cc}a' \\b' \end{array} \right ] = \left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]\left[ \begin{array}{cc}a \\b \end{array} \right ]=\left[ \begin{array}{cc}bq + aq + ap \\bp + aq \end{array} \right ]$
+<img src="http://latex.codecogs.com/svg.latex?\left[ \begin{array}{cc}a' \\b' \end{array} \right ] = \left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]\left[ \begin{array}{cc}a \\b \end{array} \right ]=\left[ \begin{array}{cc}bq + aq + ap \\bp + aq \end{array} \right ]" />
 
-这里的 $T_{pq}$，矩阵形式就为
+这里的 <img src="http://latex.codecogs.com/svg.latex?T_{pq}" />，矩阵形式就为
 
-$T_{pq}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]$
+<img src="http://latex.codecogs.com/svg.latex?T_{pq}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]" />
 
 于是
 
-$T_{pq}^{2}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]^{2} = \left[ \begin{array}{cc}(p+q)^{2}+q^{2} & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]$
+<img src="http://latex.codecogs.com/svg.latex?T_{pq}^{2}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]^{2} = \left[ \begin{array}{cc}(p+q)^{2}+q^{2} & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]" />
 
-将上述最右边看成是新的 $T_{p’q’}$ 变换。有
+将上述最右边看成是新的 <img src="http://latex.codecogs.com/svg.latex?T_{p’q’}"/> 变换。有
 
-$T_{p’q’}=\left[ \begin{array}{cc}p' + q' & q' \\q' & p' \\\end{array} \right ]=T_{pq}^{2}=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]$
+<img src="http://latex.codecogs.com/svg.latex?T_{p’q’}=\left[ \begin{array}{cc}p' + q' & q' \\q' & p' \\\end{array} \right ]=T_{pq}^{2}=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]"/>
 
 对比之后，得到结果
 
