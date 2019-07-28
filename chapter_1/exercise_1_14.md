@@ -5,7 +5,7 @@
 <img src="./exercise_1_14.svg" />
 
 ------
-上图并非手画的，而是使用 Lua 程序生成 Graphviz 绘图语言。再用 Graphviz 生成 svg 图片。Graphviz 在线工具[点这里](http://dreampuf.github.io/GraphvizOnline)。
+上图并非手画的，而是使用 Lua 程序生成 Graphviz 绘图语言。再用 Graphviz 生成 svg 图片。Graphviz 在线工具[点这里](http://dreampuf.github.io/GraphvizOnline)。将 `count_change(11)` 一行修改其它值，可以生成其它值的计算过程。
 
 Lua 程序如下：
 
@@ -31,7 +31,7 @@ function new_node(parent, val, amount, kinds_of_coins)
 end
 
 function pretty_print_dot()
-    local G = "graph G {\n"
+    local G = "digraph G {\n"
     for _, n in pairs(nodes) do 
         local str = ""
         if n.val then 
@@ -43,7 +43,7 @@ function pretty_print_dot()
     end
 
     for _, v in pairs(node_dependent_on) do 
-        local str = string.format("%s -- %s", v.parent.name, v.child.name)
+        local str = string.format("%s -> %s", v.parent.name, v.child.name)
         G = G .. "    " .. str .. "\n"
     end
 
