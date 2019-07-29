@@ -37,4 +37,4 @@
 	* P34 - [费马检查和小定理证明](./fermat_test.md)
 * P35 - [练习 1.21](./exercise_1_21.md)
 * P35 - [练习 1.22](./exercise_1_22.md)
-
+* P36 - [练习 1.23](./exercise_1_23.md)
