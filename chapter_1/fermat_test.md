@@ -10,11 +10,11 @@
 
 同余有些很好的性质。有加法原理和乘法原理。
 
-<img src="http://latex.codecogs.com/svg.latex?a+b\bmod%20n%20=%20[(a\bmod%20n)+(b\bmod%20n)]\bmod%20n"/>
+<img src="http://latex.codecogs.com/svg.latex?(a+b)\bmod%20n%20=%20[(a\bmod%20n)+(b\bmod%20n)]\bmod%20n"/>
 
 <img src="http://latex.codecogs.com/svg.latex?ab\bmod%20n%20=%20[(a\bmod%20n)(b\bmod%20n)]\bmod%20n"/>
 
-mod 运算，也可看成是时钟运算，超出一圈又会绕到原来的地方。
+mod 运算，可看成是时钟转圈，超出一圈又会绕到原来的地方。
 
 在同余的公式中，经常会出现 mod 运算，似乎很复杂。但只要将 a 看成是跟 `a mod n` 等价，公式就会很自然了。
 

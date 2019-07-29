@@ -34,4 +34,6 @@
 * P33 - [练习 1.20](./exercise_1_20.md)
 * P33 - 1.2.6 实例： 素数检测
 	* P33 - [寻找因子](./prime.lua)
-	* P34 - [费马检查](./fermat_test.md)
+	* P34 - [费马检查和小定理证明](./fermat_test.md)
+* P36 - [练习 1.21](./exercise_1_21.md)
+
