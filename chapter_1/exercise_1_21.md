@@ -1,4 +1,4 @@
-## P36 - [练习 1.21]
+## P35 - [练习 1.21]
 
 ``` Lua
 function square(x) 
