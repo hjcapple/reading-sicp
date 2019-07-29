@@ -2,9 +2,9 @@
 
 ### 同余运算
 
-以数学符号来描述，假如 <img src="http://latex.codecogs.com/svg.latex?a\bmod n == b\bmod n"/>，两者同余，记为 
+以数学符号来描述，假如 <img src="http://latex.codecogs.com/svg.latex?a\bmod%20n%20==%20b\bmod%20n"/>，两者同余，记为 
 
-<img src="http://latex.codecogs.com/svg.latex?a \equiv b\mod n"/>。
+<img src="http://latex.codecogs.com/svg.latex?a\equiv b\mod n"/>
 
 同余符号是三个横线的等号。另外数学符号 `a mod n` 是一个整体，表示 a 对 n 求模（取余数），没有像函数调用那样记成 `mod(a, n)`。
 
