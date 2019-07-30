@@ -42,7 +42,7 @@ mod 运算，可看成是时钟转圈，超出一圈又会绕到原来的地方�
 
 <img src="http://latex.codecogs.com/svg.latex?a^{n}\equiv%20a\mod%20n"/>
 
-我们通常会变换一下公式，两边除以 a，等价于
+我们通常会变换一下公式
 
 <img src="http://latex.codecogs.com/svg.latex?a^{n-1}\equiv%201\mod%20n"/>
 

@@ -42,4 +42,4 @@
 * P36 - [练习 1.25](./exercise_1_25.md)
 * P36 - [练习 1.26](./exercise_1_26.md)
 * P36 - [练习 1.27](./exercise_1_27.md)
-
+* P37 - [练习 1.28，Miller-Rabin 测试](./exercise_1_28.md)
