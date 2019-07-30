@@ -30,7 +30,7 @@
 
 `(expmod base exp m)` 里面使用 `remainder` 取余数，计算结果不会超过 m。而实现过程是递归的，出现下面运算。
 
-```
+``` Scheme
 (square (expmod base (/ exp 2) m))
 (* base (expmod base (- exp 1) m)
 ```
