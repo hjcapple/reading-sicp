@@ -61,9 +61,7 @@ P(x) 也可以不选择直线，而是选择一条二次曲线 <img src="http://
 
 所求的面积
 
-<img src="http://latex.codecogs.com/svg.latex?\begin{aligned}A &= \int_{-h}^{h}(px^{2}+qx+r)dx\\ &= \left [\frac{1}{3}px^{3}+\frac{q}{2}x^{2}+rx  \right ]_{-h}^{h} = \frac{2}{3}ph^{3}+2rh \\
-&=\frac{1}{3}h(2ph^{2}+6r)=\frac{1}{3}h(y_{a}-2y_{m}+y_{b}+6y_{m}) \\
-&=\frac{1}{3}h(y_{a}+4y_{m}+y_{b}) \end{aligned}"/>
+<img src="http://latex.codecogs.com/svg.latex?\begin{aligned}A%20&=%20\int_{-h}^{h}(px^{2}+qx+r)dx\\%20&=%20\left%20[\frac{1}{3}px^{3}+\frac{q}{2}x^{2}+rx%20%20\right%20]_{-h}^{h}%20=%20\frac{2}{3}ph^{3}+2rh%20\\%20&=\frac{1}{3}h(2ph^{2}+6r)=\frac{1}{3}h(y_{a}-2y_{m}+y_{b}+6y_{m})%20\\%20&=\frac{1}{3}h(y_{a}+4y_{m}+y_{b})%20\end{aligned}"/>
 
 这就是两个区域的面积公式。因此过 `(x0, y0)、(x1, y1)、(x2, y2)` 的三点抛物线面积为
 
