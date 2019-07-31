@@ -65,14 +65,21 @@ function pi_sum_2(a, b)
 end 
 
 --------
+function integral(f, a, b, dx)
+    function add_dx(x)
+        return x + dx 
+    end 
+    return sum(f, a + dx / 2.0, add_dx, b) * dx 
+end
+
+print(pi_sum(1, 1000) * 8)
+print(integral(cube, 0, 1, 0.01))
+print(integral(cube, 0, 1, 0.001))
+
 function unit_test()
     assert(pi_sum(1, 1000) == pi_sum_2(1, 1000))
     assert(sum_integers(1, 1000) == sum_integers(1, 1000))
     assert(sum_cubes(1, 1000) == sum_cubes_2(1, 1000))
-
-    print(pi_sum(1, 1000) * 8)
-    print(sum_integers(1, 1000))
-    print(sum_cubes(1, 1000))
 end 
 unit_test()
 
