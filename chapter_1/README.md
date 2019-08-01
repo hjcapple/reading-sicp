@@ -53,5 +53,8 @@
 * P40 - [练习 1.32](exercise_1_32.lua)
 * P40 - [练习 1.33](exercise_1_33.lua)
 * P44 - [练习 1.34](exercise_1_34.md)
+* P44 - 1.3.3 过程作为一般性的方法
+	* P44 - [通过区间折半寻找方程的根](./half_interval_method.lua) 
+
 
 
