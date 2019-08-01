@@ -55,6 +55,8 @@
 * P44 - [练习 1.34](exercise_1_34.md)
 * P44 - 1.3.3 过程作为一般性的方法
 	* P44 - [通过区间折半寻找方程的根](./half_interval_method.lua) 
+	* P45 - [找出函数的不动点](./fixed_point.lua)
+
 
 
 
