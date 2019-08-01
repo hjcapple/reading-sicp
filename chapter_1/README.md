@@ -52,5 +52,6 @@
 * P40 - [练习 1.31](exercise_1_31.lua)
 * P40 - [练习 1.32](exercise_1_32.lua)
 * P40 - [练习 1.33](exercise_1_33.lua)
+* P44 - [练习 1.34](exercise_1_34.md)
 
 
