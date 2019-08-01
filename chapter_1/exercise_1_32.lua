@@ -15,7 +15,7 @@ function accumulate_2(combiner, null_value, term, a, next, b)
         if a > b then 
             return ret 
         else 
-            return iter(next(a), combiner(term(a) * ret))
+            return iter(next(a), combiner(term(a), ret))
         end
     end
     return iter(a, null_value)
@@ -32,7 +32,7 @@ function product(term, a, next, b)
     function combiner(a, b)
         return a * b 
     end
-    return accumulate(combiner, 1, term, a, next, b)
+    return accumulate_2(combiner, 1, term, a, next, b)
 end
 
 ------
