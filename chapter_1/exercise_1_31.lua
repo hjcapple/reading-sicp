@@ -1,5 +1,6 @@
 -- P40 - [练习 1.31]
 
+-- 递归版本
 function product(term, a, next, b)
     if a > b then 
         return 1
@@ -8,6 +9,7 @@ function product(term, a, next, b)
     end 
 end
 
+-- 迭代版本
 function product_2(term, a, next, b)
     function iter(a, ret)
         if a > b then 
