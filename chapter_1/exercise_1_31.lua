@@ -39,6 +39,18 @@ function pi_product_base(product_f, n)
     return product_f(term, 1, inc, n)
 end
 
+function factorial(n)
+    function term(i)
+        return i
+    end
+
+    function inc(x)
+        return x + 1
+    end
+
+    return product(term, 1, inc, n)
+end
+
 function pi_product(n)
     return pi_product_base(product, n)
 end 
@@ -48,5 +60,6 @@ function pi_product_2(n)
 end
 
 print(pi_product(1000) * 4)
+assert(factorial(6) == 720)
 assert(math.abs(pi_product(1000) - pi_product_2(1000)) < 0.0001)
 
