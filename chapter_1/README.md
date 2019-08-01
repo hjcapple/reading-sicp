@@ -49,3 +49,4 @@
 * P37 - [1.3.1 过程作为参数](./sum.lua)
 * P40 - [练习 1.29, Simpson 公式](./exercise_1_29.md)
 * P40 - [练习 1.30](exercise_1_30.lua)
+* P40 - [练习 1.31](exercise_1_31.lua)
