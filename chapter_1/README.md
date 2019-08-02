@@ -61,6 +61,8 @@
 * P47 - [练习 1.37, 连分数](exercise_1_37.md)
 * P47 - [练习 1.38](exercise_1_38.md)
 * P48 - [练习 1.39](exercise_1_39.md)
+* P48 - 1.3.4 过程作为返回值
+	* P48 - [平均阻尼](./average_damp.lua)
 
 
 
