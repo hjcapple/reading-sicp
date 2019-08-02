@@ -60,6 +60,8 @@
 * P47 - [练习 1.36](exercise_1_36.md)
 * P47 - [练习 1.37, 连分数](exercise_1_37.md)
 * P47 - [练习 1.38](exercise_1_38.md)
+* P48 - [练习 1.39](exercise_1_39.md)
+
 
 
 
