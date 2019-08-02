@@ -63,6 +63,7 @@
 * P48 - [练习 1.39](exercise_1_39.md)
 * P48 - 1.3.4 过程作为返回值
 	* P48 - [平均阻尼](./average_damp.lua)
+	* P49 - [牛顿法](./newtons_method.md)
 
 
 
