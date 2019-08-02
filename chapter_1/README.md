@@ -6,9 +6,9 @@
 * P13 - [练习 1.2](./exercise_1_2.md)
 * P13 - [练习 1.3](./exercise_1_3.lua)
 * P13 - [练习 1.4](./exercise_1_4.md)
-* P14 - [练习 1.5](./exercise_1_5.md)
+* P14 - [练习 1.5, 判断应用序和正则序](./exercise_1_5.md)
 * P15 - [1.1.7 实例： 采用牛顿法求平方根](./newton_sqrt.lua)
-* P16 - [练习 1.6](./exercise_1_6.md)
+* P16 - [练习 1.6, new-if](./exercise_1_6.md)
 * P16 - [练习 1.7](./exercise_1_7.md)
 * P17 - [练习 1.8](./exercise_1_8.lua)
 * P17 - [1.1.8 过程作为黑箱抽象](./newton_sqrt_blackbox.lua)
@@ -21,15 +21,15 @@
 * P24 - [1.2.2 树形递归](./fibonacci.lua)
 * P26 - [实例：换零钱方式的统计](./count_change.lua)
 * P27 - [练习 1.11](./exercise_1_11.lua)
-* P27 - [练习 1.12](./exercise_1_12.lua)
-* P28 - [练习 1.13](./exercise_1_13.md)
-* P29 - [练习 1.14](./exercise_1_14.md)
+* P27 - [练习 1.12, Pascal 三角](./exercise_1_12.lua)
+* P28 - [练习 1.13, Fib 最接近的整数](./exercise_1_13.md)
+* P29 - [练习 1.14, 换零钱计算图展开](./exercise_1_14.md)
 * P29 - [练习 1.15](./exercise_1_15.md)
 * P29 - [1.2.4 求幂](./expt.lua)
 * P30 - [练习 1.16](./exercise_1_16.lua)
 * P31 - [练习 1.17](./exercise_1_17.lua)
 * P31 - [练习 1.18](./exercise_1_18.lua)
-* P31 - [练习 1.19](./exercise_1_19.md)
+* P31 - [练习 1.19, Fib 快速计算](./exercise_1_19.md)
 * P32 - [1.2.5 最大公约数](./gcd.lua)
 * P33 - [练习 1.20](./exercise_1_20.md)
 * P33 - 1.2.6 实例： 素数检测
@@ -41,8 +41,8 @@
 * P36 - [练习 1.24](./exercise_1_24.md)
 * P36 - [练习 1.25](./exercise_1_25.md)
 * P36 - [练习 1.26](./exercise_1_26.md)
-* P36 - [练习 1.27](./exercise_1_27.md)
-* P37 - [练习 1.28，Miller-Rabin 测试](./exercise_1_28.md)
+* P36 - [练习 1.27, Carmichael 数](./exercise_1_27.md)
+* P37 - [练习 1.28, Miller-Rabin 测试](./exercise_1_28.md)
 
 ### 1.3 用高阶函数做抽象
 
@@ -56,6 +56,7 @@
 * P44 - 1.3.3 过程作为一般性的方法
 	* P44 - [通过区间折半寻找方程的根](./half_interval_method.lua) 
 	* P45 - [找出函数的不动点](./fixed_point.lua)
+* P47 - [练习 1.35, 不动点算黄金分割率 φ](exercise_1_35.md)
 * P47 - [练习 1.36](exercise_1_36.md)
 
 
