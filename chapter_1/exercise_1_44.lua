@@ -29,6 +29,6 @@ function square(x)
     return x * x 
 end 
 
-print(smooth(square)(5))
-print(smooth_n_times(square, 10)(5))
+print(smooth(square)(5))                -- 25.000000000067
+print(smooth_n_times(square, 10)(5))    -- 25.000000000667
 
