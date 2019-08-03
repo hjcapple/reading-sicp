@@ -55,7 +55,7 @@ print(newtons_method(cubic(3, 2, 1), 1.0))
 print(newtons_method(cubic(3, 4, 5), 1.0))
 print(newtons_method(cubic(6, 7, 8), 1.0))
 
-[[ 输出
+--[[ 输出
 -2.3247179572447
 -2.2134116627622
 -4.9054740060655
