@@ -1,4 +1,4 @@
--- P51 - [练习 1.40]
+-- P51 - [练习 1.41]
 
 function double(f)
     return function (x)

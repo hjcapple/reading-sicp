@@ -67,6 +67,8 @@
 	* P50 - [抽象和第一级过程](./fixed_point_of_transform.lua)
 * P51 - [练习 1.40](exercise_1_40.lua)
 * P51 - [练习 1.41](exercise_1_41.lua)
+* P51 - [练习 1.42](exercise_1_42.lua)
+
 
 
 
