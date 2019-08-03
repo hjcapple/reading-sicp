@@ -69,6 +69,7 @@
 * P51 - [练习 1.41](exercise_1_41.lua)
 * P51 - [练习 1.42](exercise_1_42.lua)
 * P51 - [练习 1.43](exercise_1_43.lua)
+* P51 - [练习 1.44](exercise_1_44.lua)
 
 
 
