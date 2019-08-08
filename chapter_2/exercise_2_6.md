@@ -106,7 +106,7 @@ two 可以写成 `(add-1 one)`, 将其展开为
 验证
 
 ``` Scheme
-((add-church one two) inc) 0) ;; 输出 3
+(((add-church one two) inc) 0) ;; 输出 3
 ```
 
 ### 代码
