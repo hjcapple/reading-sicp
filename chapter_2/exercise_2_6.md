@@ -58,9 +58,9 @@ two 可以写成 `(add-1 one)`, 将其展开为
 
 ``` Scheme
 (define (add-church a b)
-	(lambda (f) 
-		(lambda (x) 
-			....)))
+  (lambda (f) 
+    (lambda (x) 
+      ....)))
 ```
 
 但是我们还不知道具体内容，先来猜测一下。上面例子中，提到假设 f 为 inc, x 为 0，会有这样的形式。
