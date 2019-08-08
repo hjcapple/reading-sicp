@@ -6,8 +6,9 @@
 * P58 - [练习 2.1](./exercise_2_1.scm)
 * P60 - [练习 2.2](./exercise_2_2.scm)
 * P60 - [练习 2.3](./exercise_2_3.scm)
-* P62 - [练习 2.4，序对的过程性表示](./exercise_2_4.md)
+* P62 - [练习 2.4, 序对的过程性表示](./exercise_2_4.md)
 * P62 - [练习 2.5](./exercise_2_5.md)
+* P62 - [练习 2.6, Church 计数](./exercise_2_6.md)
 
 
 
