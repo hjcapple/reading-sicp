@@ -10,7 +10,7 @@
 * P62 - [练习 2.5](./exercise_2_5.md)
 * P62 - [练习 2.6, Church 计数](./exercise_2_6.md)
 * P63 - [练习 2.7](./exercise_2_7.scm)
-
+* P63 - [练习 2.8](./exercise_2_8.scm)
 
 
 
