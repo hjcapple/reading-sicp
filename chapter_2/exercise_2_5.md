@@ -9,9 +9,9 @@
 ``` Scheme
 #lang racket
 
-(define (my-cons x y)
-  (* (expt 2 x)
-     (expt 3 y)))
+(define (my-cons a b)
+  (* (expt 2 a)
+     (expt 3 b)))
 
 (define (my-car z)
   (define (iter z a)
@@ -28,6 +28,6 @@
   (iter z 0))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(my-car (my-cons 1 1))
-(my-cdr (my-cons 1 1))
+(my-car (my-cons 10 20))
+(my-cdr (my-cons 10 20))
 ```
