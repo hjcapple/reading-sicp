@@ -1,5 +1,7 @@
 #lang racket
 
+;; P63 - [练习 2.7]
+
 (define (make-interval a b)
   (cons a b))
 
