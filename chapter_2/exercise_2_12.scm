@@ -1,15 +1,30 @@
 #lang racket
 
-;; P63 - [练习 2.11]
+;; P64 - [练习 2.12]
 
 (define (make-interval a b)
   (cons a b))
+
+(define (make-center-width c w)
+  (make-interval (- c w) (+ c w)))
+
+(define (make-center-percent c p)
+  (make-center-width c (* (abs c) (/ p 100.0))))
 
 (define (lower-bound v)
   (car v))
 
 (define (upper-bound v)
   (cdr v))
+
+(define (center v)
+  (/ (+ (lower-bound v) (upper-bound v)) 2))
+
+(define (width v)
+  (/ (- (upper-bound v) (lower-bound v)) 2))
+
+(define (percent v)
+  (* (/ (width v) (center v)) 100.0))
 
 (define (add-interval x y)
   (make-interval (+ (lower-bound x) (lower-bound y))
@@ -71,3 +86,8 @@
 (print-interval (div-interval a b))
 ;(print-interval (div-interval a (make-interval -1 1))) ; error
 
+(define c (make-center-percent 10 20))
+(print-interval c)
+(newline)
+(center c)
+(percent c)
