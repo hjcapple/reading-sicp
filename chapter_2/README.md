@@ -26,6 +26,7 @@
 	* P67 - [表操作和表映射](./list_op_map.scm)
 * P69 - [练习 2.17](./exercise_2_17.scm)
 * P69 - [练习 2.18](./exercise_2_18.scm)
+* P69 - [练习 2.19](./exercise_2_19.md)
 
 
 
