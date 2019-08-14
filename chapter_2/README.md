@@ -30,6 +30,7 @@
 * P69 - [练习 2.20](./exercise_2_20.scm)
 * P71 - [练习 2.21](./exercise_2_21.scm)
 * P71 - [练习 2.22](./exercise_2_22.md)
+* P72 - [练习 2.23](./exercise_2_23.scm)
 
 
 
