@@ -39,7 +39,8 @@
 * P74 - [练习 2.27, deep-reverse](./exercise_2_27.scm)
 * P74 - [练习 2.28](./exercise_2_28.scm)
 * P74 - [练习 2.29](./exercise_2_29.scm)
-
+* P75 - [练习 2.30](./exercise_2_30.scm)
+* P76 - [练习 2.31](./exercise_2_31.scm)
 
 
 
