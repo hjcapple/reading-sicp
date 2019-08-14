@@ -25,7 +25,7 @@
 * P66 - 2.2.1 序列的表示
 	* P67 - [表操作和表映射](./list_op_map.scm)
 * P69 - [练习 2.17](./exercise_2_17.scm)
-* P69 - [练习 2.18](./exercise_2_18.scm)
+* P69 - [练习 2.18, reverse](./exercise_2_18.scm)
 * P69 - [练习 2.19](./exercise_2_19.md)
 * P69 - [练习 2.20, 不固定参数](./exercise_2_20.scm)
 * P71 - [练习 2.21](./exercise_2_21.scm)
@@ -34,7 +34,9 @@
 * P72 - 2.2.2 层次性结构
 	* P72 - [树操作和树映射](./tree_op_map.scm)
 * P73 - [练习 2.24](./exercise_2_24.md)
-
+* P74 - [练习 2.25](./exercise_2_25.scm)
+* P74 - [练习 2.26](./exercise_2_26.scm)
+* P74 - [练习 2.27, deep-reverse](./exercise_2_27.scm)
 
 
 
