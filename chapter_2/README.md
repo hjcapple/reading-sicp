@@ -27,10 +27,12 @@
 * P69 - [练习 2.17](./exercise_2_17.scm)
 * P69 - [练习 2.18](./exercise_2_18.scm)
 * P69 - [练习 2.19](./exercise_2_19.md)
-* P69 - [练习 2.20](./exercise_2_20.scm)
+* P69 - [练习 2.20, 不固定参数](./exercise_2_20.scm)
 * P71 - [练习 2.21](./exercise_2_21.scm)
 * P71 - [练习 2.22](./exercise_2_22.md)
 * P72 - [练习 2.23](./exercise_2_23.scm)
+* P72 - 2.2.2 层次性结构
+	* P72 - [树操作和树映射](./tree_op_map.scm)
 
 
 
