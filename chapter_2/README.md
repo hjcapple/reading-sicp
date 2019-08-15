@@ -44,7 +44,8 @@
 * P76 - [练习 2.32, 子集计算](./exercise_2_32.md)
 * P76 - 2.2.3 序列作为一种约定的界面
 	* P77 - [序列操作](./sequence_operations.scm)
-
+* P80 - [练习 2.33](./exercise_2_33.scm)
+* P81 - [练习 2.34](./exercise_2_34.scm)
 
 
 
