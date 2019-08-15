@@ -46,6 +46,11 @@
 	* P77 - [序列操作](./sequence_operations.scm)
 * P80 - [练习 2.33](./exercise_2_33.scm)
 * P81 - [练习 2.34](./exercise_2_34.scm)
+* P81 - [练习 2.35](./exercise_2_35.scm)
+* P81 - [练习 2.36](./exercise_2_36.scm)
+* P82 - [练习 2.37, 矩阵乘法](./exercise_2_37.scm)
+* P82 - [练习 2.38](./exercise_2_38.md)
+* P82 - [练习 2.39](./exercise_2_39.scm)
 
 
 
