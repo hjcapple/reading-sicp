@@ -53,5 +53,5 @@
 * P82 - [练习 2.38](./exercise_2_38.md)
 * P82 - [练习 2.39](./exercise_2_39.scm)
 * P84 - [练习 2.40](./exercise_2_40.scm)
-
+* P84 - [练习 2.41](./exercise_2_41.scm)
 
