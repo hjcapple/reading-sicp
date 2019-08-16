@@ -44,6 +44,7 @@
 * P76 - [练习 2.32, 子集计算](./exercise_2_32.md)
 * P76 - 2.2.3 序列作为一种约定的界面
 	* P77 - [序列操作](./sequence_operations.scm)
+	* P82 - [嵌套映射](./nested_mappings.scm)
 * P80 - [练习 2.33](./exercise_2_33.scm)
 * P81 - [练习 2.34](./exercise_2_34.scm)
 * P81 - [练习 2.35](./exercise_2_35.scm)
@@ -51,6 +52,6 @@
 * P82 - [练习 2.37, 矩阵乘法](./exercise_2_37.scm)
 * P82 - [练习 2.38](./exercise_2_38.md)
 * P82 - [练习 2.39](./exercise_2_39.scm)
-
+* P84 - [练习 2.40](./exercise_2_40.scm)
 
 
