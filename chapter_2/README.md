@@ -58,6 +58,9 @@
 * P85 - [练习 2.43](./exercise_2_43.md)
 * P86 - [2.2.4 实例: 一个图形语言]
 	* P86 - [图形语言](./picture_language.scm)
+	* P91 - [框架](./picture_frames.scm)
 * P90 - [练习 2.44](./exercise_2_44.scm)
 * P91 - [练习 2.45](./exercise_2_45.scm)
+* P92 - [练习 2.46](./exercise_2_46.scm)
+* P93 - [练习 2.47](./exercise_2_47.scm)
 
