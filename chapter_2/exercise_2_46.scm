@@ -1,7 +1,4 @@
-; #lang racket
-;(require (planet "sicp.ss" ("soegaard" "sicp.plt" 2 1)))
-#lang sicp
-(#%require sicp-pict)
+#lang racket
 
 ;; P92 - [练习 2.46]
 
