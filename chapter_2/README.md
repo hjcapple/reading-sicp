@@ -56,4 +56,8 @@
 * P84 - [练习 2.41](./exercise_2_41.scm)
 * P84 - [练习 2.42, 八皇后问题](./exercise_2_42.scm)
 * P85 - [练习 2.43](./exercise_2_43.md)
-* P90 - [练习 2.44, 图形语言](./exercise_2_44.scm)
+* P86 - [2.2.4 实例: 一个图形语言]
+	* P86 - [图形语言](./picture_language.scm)
+* P90 - [练习 2.44](./exercise_2_44.scm)
+* P91 - [练习 2.45](./exercise_2_45.scm)
+
