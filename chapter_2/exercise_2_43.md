@@ -24,7 +24,7 @@ Louis 将程序写成上面那样子。将 queen-cols 这个费时的递归计�
 
 更一般地，计算 (queen-cols 1) 时，重复了 board-size 次，慢了 board-size 倍。而计算 (queen-cols 2) 时，也重复计算了 board-size 次 (queen-cols 1)，于是叠加起来，就慢了  board-size ^ 2 倍。计算 (queen-cols 3) 时，叠加起来就慢了 board-size ^ 3 倍。
 
-于是计算 (queen-cols board-size)，也就慢了 `board-size ^ board-size` 被。
+于是计算 (queen-cols board-size)，也就慢了 `board-size ^ board-size` 倍。
 
-因此，假设原本问题需要时间 T, Louis 将费时的递归计算写在循环内部。估计需要用时 (board-size ^ board-size) * T。对于八皇后问题，就需用时 (8 ^ 8) * T = 823543 * T。
+因此，假设原本问题需要时间 T, Louis 将费时的递归计算写在循环内部，就需要用时 (board-size ^ board-size) * T。对于八皇后问题，就需用时 (8 ^ 8) * T = 823543 * T。
 
