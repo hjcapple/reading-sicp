@@ -1,7 +1,7 @@
 #lang racket
 (require (planet "sicp.ss" ("soegaard" "sicp.plt" 2 1)))
 
-;; P93 - [练习 2.48]
+;; P93 - [练习 2.49]
 
 ;; a) 画出给定框架边界的画家
 ;; 这里将 0.99 写成 1, 会显示不完整
