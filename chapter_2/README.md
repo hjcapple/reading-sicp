@@ -68,5 +68,4 @@
 * P93 - [练习 2.49](./exercise_2_49.scm)
 * P95 - [练习 2.50](./exercise_2_50.scm)
 * P95 - [练习 2.51](./exercise_2_51.scm)
-
-
+* P96 - [练习 2.52](./exercise_2_52.scm)
