@@ -75,4 +75,6 @@
 * P98 - [memq](./memq.scm)
 * P98 - [练习 2.53](./exercise_2_53.scm)
 * P98 - [练习 2.54](./exercise_2_54.scm)
+* P99 - [练习 2.55](./exercise_2_55.md)
+* P99 - [2.3.2 实例: 符号求导](./symbol_deriv.scm)
 
