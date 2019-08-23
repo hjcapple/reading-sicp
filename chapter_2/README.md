@@ -78,3 +78,5 @@
 * P99 - [练习 2.55](./exercise_2_55.md)
 * P99 - [2.3.2 实例: 符号求导](./symbol_deriv.scm)
 * P102 - [练习 2.56](./exercise_2_56.scm)
+* P102 - [练习 2.57](./exercise_2_57.scm)
+
