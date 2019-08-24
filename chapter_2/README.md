@@ -81,3 +81,6 @@
 * P102 - [练习 2.57](./exercise_2_57.scm)
 * P102 - [练习 2.58 - a](./exercise_2_58_a.scm)
 * P102 - [练习 2.58 - b](./exercise_2_58_b.scm)
+* P104 - [练习 2.59](./exercise_2_59.scm)
+* P104 - [练习 2.60](./exercise_2_60.md)
+
