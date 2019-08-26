@@ -88,6 +88,5 @@
 * P105 - [集合作为二叉树](./binary_tree_set.scm)
 * P108 - [练习 2.63](./exercise_2_63.md)
 * P108 - [练习 2.64](./exercise_2_64.md)
-
-
+* P108 - [练习 2.65](./exercise_2_65.scm)
 

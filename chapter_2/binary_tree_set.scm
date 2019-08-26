@@ -35,13 +35,13 @@
                     (adjoin-set x (right-branch set))))))
 
 ;;;;;;;;;;;;;;;;;;;;;
-(define (tree-from-list lst)
+(define (list->tree lst)
   (cond ((null? lst) null)
-        (else (adjoin-set (car lst) (tree-from-list (cdr lst))))))
+        (else (adjoin-set (car lst) (list->tree (cdr lst))))))
 
 
-(define a (tree-from-list '(2 4 6 8 10)))
-(define b (tree-from-list '(3 4 5 6 7 8 9)))
+(define a (list->tree '(2 4 6 8 10)))
+(define b (list->tree '(3 4 5 6 7 8 9)))
 
 (element-of-set? 3 a)
 (element-of-set? 9 b)
