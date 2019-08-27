@@ -69,7 +69,7 @@
             (let ((right-result (encode-symbol symbol (right-branch tree))))
               (if right-result
                   (cons 1 right-result)
-                  (error "bad symbol -- CHOOSE-BRANCH" symbol)))))))
+                  #f))))))
              
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define sample-tree
