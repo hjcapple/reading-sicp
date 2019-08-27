@@ -33,3 +33,29 @@ Huffman 树的形状如图：
 
 执行 [Huffman 编码树](huffman_tree.scm) 的程序，得到相同的结果。
 
+
+### 附
+
+图是使用 Graphviz 绘画的。绘画 Huffman 树 Dot 代码如下：
+
+``` Dot
+digraph G {
+    node [shape=plaintext]
+    node_A [label="A 4"]
+    node_B [label="B 2"]
+    node_D [label="D 1"]
+    node_C [label="C 1"]
+    node_CD [label="{C D} 2"]
+    node_BCD [label="{B C D} 4"]
+    node_ABCD [label="{A B C D} 8"]
+    
+    node_CD -> node_D [label="0"]
+    node_CD -> node_C [label="1"]
+    
+    node_BCD -> node_B [label="0"]
+    node_BCD -> node_CD [label="1"]
+    
+    node_ABCD -> node_A [label="0"]
+    node_ABCD -> node_BCD [label="1"]
+}
+```
