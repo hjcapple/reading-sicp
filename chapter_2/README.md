@@ -90,4 +90,8 @@
 * P108 - [练习 2.64](./exercise_2_64.md)
 * P108 - [练习 2.65](./exercise_2_65.scm)
 * P109 - [练习 2.66](./exercise_2_66.scm)
+* P109 - [练习 2.66](./exercise_2_66.scm)
+* P109 - [2.3.4 实例: Huffman 编码树](./huffman_tree.scm)
+* P114 - [练习 2.67](./exercise_2_67.md)
+
 
