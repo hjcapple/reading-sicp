@@ -66,7 +66,7 @@
                     (make-leaf-set (cdr pairs))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(make-leaf-set '((A 4) (B 2) (C 1) (D 1)))
+(make-leaf-set '((A 4) (B 2) (C 1) (D 1))) ; '((leaf D 1) (leaf C 1) (leaf B 2) (leaf A 4))
 
 (define sample-tree
   (make-code-tree (make-leaf 'A 4)
@@ -76,4 +76,4 @@
 
 (define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
 
-(decode sample-message sample-tree)
+(decode sample-message sample-tree) ; '(A D A B B C A)

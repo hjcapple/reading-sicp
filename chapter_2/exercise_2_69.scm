@@ -102,8 +102,8 @@
 (define symbols '(A D A B B C A))
 (define message (encode symbols huffman-tree))
 
-huffman-tree
-symbols
-message
-(decode message huffman-tree)
+huffman-tree                  ; '(((leaf A 4) ((leaf B 2) ((leaf D 1) (leaf C 1) (D C) 2) (B D C) 4) (A B D C) 8))
+symbols                       ; '(A D A B B C A)
+message                       ; '(0 0 0 1 1 0 0 0 0 1 0 0 1 0 0 1 1 1 0 0)  
+(decode message huffman-tree) ; '(A D A B B C A)
 
