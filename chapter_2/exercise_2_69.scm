@@ -1,6 +1,6 @@
 #lang racket
 
-;; P109 - [2.3.4 实例: Huffman 编码树]
+;; P114 - [练习 2.69]
 
 (define (make-leaf symbol weight)
   (list 'leaf symbol weight))
@@ -52,6 +52,25 @@
         ((= bit 1) (right-branch branch))
         (else (error "bad bit -- CHOOSE-BRANCH" bit))))
 
+(define (encode message tree)
+  (if (null? message)
+      null 
+      (append (encode-symbol (car message) tree)
+              (encode (cdr message) tree))))
+
+(define (encode-symbol symbol tree)
+  (if (leaf? tree)
+      (if (eq? symbol (symbol-leaf tree))
+          '()
+          #f)
+      (let ((left-result (encode-symbol symbol (left-branch tree))))
+        (if left-result
+            (cons 0 left-result)
+            (let ((right-result (encode-symbol symbol (right-branch tree))))
+              (if right-result
+                  (cons 1 right-result)
+                  (error "bad symbol -- CHOOSE-BRANCH" symbol)))))))
+
 (define (adjoin-set x set)
   (cond ((null? set) (list x))
         ((< (weight x) (weight (car set))) (cons x set))
@@ -65,15 +84,26 @@
         (adjoin-set (make-leaf (car pair) (cadr pair))
                     (make-leaf-set (cdr pairs))))))
 
+(define (generate-huffman-tree pairs)
+  (successive-merge (make-leaf-set pairs)))
+
+(define (successive-merge set)
+  (if (= (length set) 1)
+      set
+      (let ((left (car set))
+            (right (cadr set))
+            (remained (cddr set)))
+        (successive-merge (adjoin-set (make-code-tree left right)
+                                      remained)))))
+             
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(make-leaf-set '((A 4) (B 2) (C 1) (D 1)))
 
-(define sample-tree
-  (make-code-tree (make-leaf 'A 4)
-                  (make-code-tree (make-leaf 'B 2)
-                                  (make-code-tree (make-leaf 'D 1)
-                                                  (make-leaf 'C 1)))))
+(define huffman-tree (generate-huffman-tree '((A 4) (B 2) (C 1) (D 1))))
+(define symbols '(A D A B B C A))
+(define message (encode symbols huffman-tree))
 
-(define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
+huffman-tree
+symbols
+message
+(decode message huffman-tree)
 
-(decode sample-message sample-tree)

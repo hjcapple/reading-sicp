@@ -94,5 +94,6 @@
 * P109 - [2.3.4 实例: Huffman 编码树](./huffman_tree.scm)
 * P114 - [练习 2.67](./exercise_2_67.md)
 * P114 - [练习 2.68](./exercise_2_68.scm)
+* P114 - [练习 2.69](./exercise_2_69.scm)
 
 

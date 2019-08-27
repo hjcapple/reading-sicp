@@ -65,10 +65,10 @@
           #f)
       (let ((left-result (encode-symbol symbol (left-branch tree))))
         (if left-result
-            (cons '0 left-result)
+            (cons 0 left-result)
             (let ((right-result (encode-symbol symbol (right-branch tree))))
               (if right-result
-                  (cons '1 right-result)
+                  (cons 1 right-result)
                   (error "bad symbol -- CHOOSE-BRANCH" symbol)))))))
              
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
