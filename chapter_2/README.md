@@ -105,5 +105,6 @@
 * P119 - [2.4.2 带标志数据](./complex_number_tagged.scm)
 * P122 - [2.4.3 数据导向的程序设计和可加性](./complex_number_data_directed.scm)
 * P125 - [练习 2.73](./exercise_2_73.scm)
+* P126 - [练习 2.74](./exercise_2_74.scm)
 
 
