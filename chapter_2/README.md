@@ -99,6 +99,9 @@
 * P115 - [练习 2.71](./exercise_2_71.md)
 * P115 - [练习 2.72](./exercise_2_72.md)
 
+### 2.4 抽象数据的多重表示
 
+* P116 - [2.4.1 复数的表示](./complex_number.scm)
+* P119 - [2.4.2 带标志数据](./complex_number_tagged.scm)
 
 
