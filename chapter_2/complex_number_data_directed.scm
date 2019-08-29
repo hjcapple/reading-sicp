@@ -16,6 +16,9 @@
 (define (get op type)
   (hash-ref *op-table* (list op type) #f))
 
+(provide install-polar-package install-rectangular-package)
+(provide get put)
+(provide real-part imag-part magnitude angle)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (attach-tag type-tag contents)
@@ -118,20 +121,22 @@
   ((get 'make-from-mag-ang '(polar)) r a))
 
 ;;;;;;;;;;;;;;;;;;;
-(install-polar-package)
-(install-rectangular-package)
+(module* main #f
+  (install-polar-package)
+  (install-rectangular-package)
 
-(define a (make-from-real-imag 10 20))
-(define b (make-from-real-imag 1 2))
-(define c (make-from-mag-ang (magnitude a) (angle a)))
-(define d (make-from-mag-ang (magnitude b) (angle b)))
+  (define a (make-from-real-imag 10 20))
+  (define b (make-from-real-imag 1 2))
+  (define c (make-from-mag-ang (magnitude a) (angle a)))
+  (define d (make-from-mag-ang (magnitude b) (angle b)))
 
-(add-complex a b)
-(sub-complex a b)
-(mul-complex a b)
-(div-complex a b)
+  (add-complex a b)
+  (sub-complex a b)
+  (mul-complex a b)
+  (div-complex a b)
 
-(add-complex c d)
-(sub-complex c d)
-(mul-complex c d)
-(div-complex c d)
+  (add-complex c d)
+  (sub-complex c d)
+  (mul-complex c d)
+  (div-complex c d)
+)

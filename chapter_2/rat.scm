@@ -21,9 +21,9 @@
               (* (denom x) (denom y))))
 
 (define (sub-rat x y)
-    (make-rat (- (* (number x) (denom y)
+    (make-rat (- (* (number x) (denom y))
                  (* (number y) (denom x)))
-              (* (denom x) (denom y)))))
+              (* (denom x) (denom y))))
 
 (define (mul-rat x y)
     (make-rat (* (number x) (number y))
@@ -51,6 +51,7 @@
 (print-rat one-third)
 
 (print-rat (add-rat one-half one-third))
+(print-rat (sub-rat one-half one-third))
 (print-rat (mul-rat one-half one-third))
 (print-rat (add-rat one-third one-third))
 
