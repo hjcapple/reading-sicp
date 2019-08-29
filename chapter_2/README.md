@@ -106,5 +106,7 @@
 * P122 - [2.4.3 数据导向的程序设计和可加性](./complex_number_data_directed.scm)
 * P125 - [练习 2.73](./exercise_2_73.scm)
 * P126 - [练习 2.74](./exercise_2_74.scm)
-* P128 - [练习 2.75](./exercise_2_75.scm)
+* P128 - [练习 2.75, 消息传递](./exercise_2_75.scm)
+* P128 - [练习 2.76](./exercise_2_76.md)
+
 
