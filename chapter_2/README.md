@@ -113,5 +113,7 @@
 
 * P129 - [2.5.1 通用型算数运算](./generic_arithmetic.scm)
 * P132 - [练习 2.77](./exercise_2_77.md)
+* P132 - [练习 2.78](./exercise_2_78.scm)
+
 
 
