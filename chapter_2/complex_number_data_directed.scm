@@ -6,19 +6,17 @@
 ;; 简单地说，就是让程序更容易修改，再原有的基础上添加新功能。
 ;; 数据导向的设计方法就相对容易修改。而前面的显式分派风格，每次假如新类型或者新操作都很麻烦，就难以修改。
 ;; 见 [练习 2.76] 的讨论。
-;;;;;;;;;;
-;; put get 简单实现
-(define *op-table* (make-hash))
 
-(define (put op type proc)
-  (hash-set! *op-table* (list op type) proc))
+(require "ch2support.scm")
 
-(define (get op type)
-  (hash-ref *op-table* (list op type) #f))
+(module* complex-op #f
+  (provide install-polar-package install-rectangular-package)
+  (provide real-part imag-part magnitude angle)
+)
 
-(provide install-polar-package install-rectangular-package)
-(provide get put)
-(provide real-part imag-part magnitude angle)
+(module* data-directed #f
+  (provide attach-tag type-tag contents apply-generic)
+)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (attach-tag type-tag contents)
@@ -34,7 +32,15 @@
       (cdr datum)
       (error "Bad tagged datum -- CONTENTS" datum)))
 
-(define (square x) (* x x))
+(define (apply-generic op . args)
+  (let ((type-tags (map type-tag args)))
+    (let ((proc (get op type-tags)))
+      (if proc
+          (apply proc (map contents args))
+          (error "No method for these types -- APPLY-GENERIC"
+                 (list op type-tags))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define (add-complex z1 z2)
   (make-from-real-imag (+ (real-part z1) (real-part z2))
@@ -100,14 +106,6 @@
   (put 'make-from-mag-ang '(polar)
        (lambda (r a) (tag (make-from-mag-ang r a))))
   'done)
-
-(define (apply-generic op . args)
-  (let ((type-tags (map type-tag args)))
-    (let ((proc (get op type-tags)))
-      (if proc
-          (apply proc (map contents args))
-          (error "No method for these types -- APPLY-GENERIC"
-                 (list op type-tags))))))
 
 (define (real-part z) (apply-generic 'real-part z))
 (define (imag-part z) (apply-generic 'imag-part z))

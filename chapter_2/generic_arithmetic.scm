@@ -2,34 +2,9 @@
 
 ;; P129 - [2.5.1 通用型算数运算]
 
-(require "complex_number_data_directed.scm")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define (gcd a b)
-  (if (= b 0)
-      a
-      (gcd b (remainder a b))))
-
-(define (attach-tag type-tag contents)
-  (cons type-tag contents))
-
-(define (type-tag datum)
-  (if (pair? datum)
-      (car datum)
-      (error "Bad tagged datum -- TYPE-TAG" datum)))
-
-(define (contents datum)
-  (if (pair? datum)
-      (cdr datum)
-      (error "Bad tagged datum -- CONTENTS" datum)))
-
-(define (apply-generic op . args)
-  (let ((type-tags (map type-tag args)))
-    (let ((proc (get op type-tags)))
-      (if proc
-          (apply proc (map contents args))
-          (error "No method for these types -- APPLY-GENERIC"
-                 (list op type-tags))))))
+(require "ch2support.scm")
+(require (submod "complex_number_data_directed.scm" complex-op))
+(require (submod "complex_number_data_directed.scm" data-directed))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (add x y) (apply-generic 'add x y))

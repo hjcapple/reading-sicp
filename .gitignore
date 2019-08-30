@@ -2,3 +2,4 @@
 *.dep
 *.zo
 *.scm~
+.DS_Store
