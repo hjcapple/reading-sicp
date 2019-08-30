@@ -106,6 +106,10 @@
        (lambda (x y) (tag (make-from-real-imag x y))))
   (put 'make-from-mag-ang 'complex
        (lambda (r a) (tag (make-from-mag-ang r a))))
+  ;(put 'real-part '(complex) real-part)
+  ;(put 'imag-part '(complex) imag-part)
+  ;(put 'magnitude '(complex) magnitude)
+  ;(put 'angle     '(complex) angle)
   'done)
 
 (define (make-complex-from-real-imag x y)
@@ -121,6 +125,9 @@
   (install-scheme-number-package)
   (install-polar-package)
   (install-rectangular-package)
+
+  ;(define z (make-complex-from-real-imag 3 4))
+  ;(magnitude z)
   
   (add (make-scheme-number 10) (make-scheme-number 5))
   (sub (make-scheme-number 10) (make-scheme-number 5))
