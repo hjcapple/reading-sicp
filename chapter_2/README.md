@@ -116,5 +116,7 @@
 * P132 - [练习 2.78](./exercise_2_78.scm)
 * P132 - [练习 2.79](./exercise_2_79_80.scm)
 * P132 - [练习 2.80](./exercise_2_79_80.scm)
+* P132 - [2.5.2 不同类型数据的组合](./generic_arithmetic_coercion.scm)
+
 
 

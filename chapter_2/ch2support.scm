@@ -1,5 +1,8 @@
 #lang racket
 
+(provide get put gcd square fib)
+(provide get-coercion put-coercion)
+
 ;;;from chapter 1
 (define (square x) (* x x))
 
@@ -29,5 +32,15 @@
 (define (get op type)
   (hash-ref *op-table* (list op type) #f))
 
-(provide get put gcd square fib)
+;;;-----------
+;; put-coercion get-coercion 简单实现
+(define *coercion-table* (make-hash))
+
+(define (put-coercion op type proc)
+  (hash-set! *coercion-table* (list op type) proc))
+
+(define (get-coercion op type)
+  (hash-ref *coercion-table* (list op type) #f))
+
+
 
