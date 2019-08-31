@@ -111,10 +111,11 @@
   ((get 'make 'scheme-number) n))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (number x) (car x))
+(define (denom x) (cdr x))
+  
 (define (install-rational-package)
   ;; internal procedures
-  (define (number x) (car x))
-  (define (denom x) (cdr x))
   (define (make-rat n d) 
     (let ((g (gcd n d)))
       (cons (/ n g) (/ d g))))
@@ -154,9 +155,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (install-coercion-package)
-  (define (scheme-number->rational n)
-    (make-rational (contents n) 1))
-  (put-coercion 'scheme-number 'rational scheme-number->rational)
+  (define (rational->scheme-number n)
+    (let ((x (contents n)))
+      (make-scheme-number (/ (number x) (denom x)))))
+  (put-coercion 'rational 'scheme-number rational->scheme-number)
   'done)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
