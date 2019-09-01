@@ -7,7 +7,11 @@
 (require (submod "complex_number_data_directed.scm" data-directed))
  
 ;;;;;;;;;;;;;;;;;;;;;;;;
-(define (raise x) (apply-generic 'raise x))
+(define (raise x) 
+  (let ((raise-proc (get 'raise (list (type-tag x)))))
+    (if raise-proc
+        (raise-proc (contents x))
+        #f)))
 
 (define (install-raise-package)
   (put 'raise '(integer)
@@ -82,4 +86,5 @@
   (raise int-val)
   (raise rat-val)
   (raise real-val)
+  (raise complex-val)
 )
