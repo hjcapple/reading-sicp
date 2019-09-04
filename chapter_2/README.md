@@ -123,6 +123,8 @@
 * P137 - [练习 2.84](./exercise_2_84.scm)
 * P137 - [练习 2.85](./exercise_2_85.scm)
 * P137 - [练习 2.86](./exercise_2_86.md)
+* P138 - [2.5.3 符号代数](./symbolic_algebra.scm)
+* P143 - [练习 2.87](./symbolic_algebra.scm)
 
 
 
