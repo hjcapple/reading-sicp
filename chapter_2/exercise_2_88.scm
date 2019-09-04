@@ -1,7 +1,6 @@
 #lang racket
 
-;; P138 - [2.5.3 符号代数]
-;; P143 - [练习 2.87]
+;; P143 - [练习 2.88]
 
 (require "ch2support.scm")
 
@@ -24,16 +23,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (add x y) (apply-generic 'add x y))
+(define (sub x y) (apply-generic 'sub x y))
 (define (mul x y) (apply-generic 'mul x y))
+(define (neg x)   (apply-generic 'neg x))
 (define (=zero? x) (apply-generic '=zero? x))
 
 (define (install-scheme-number-package)
   (define (tag-2-args op)
     (lambda (x y) (attach-tag 'scheme-number (op x y))))
+  (define (tag x) (attach-tag 'scheme-number x))
   (put 'add '(scheme-number scheme-number) (tag-2-args +))
+  (put 'sub '(scheme-number scheme-number) (tag-2-args -))
   (put 'mul '(scheme-number scheme-number) (tag-2-args *))
-  (put '=zero? '(scheme-number)
-       (lambda (x) (= x 0)))
+  (put 'neg '(scheme-number) (lambda (x) (tag (- x))))
+  (put '=zero? '(scheme-number) (lambda (x) (= x 0)))
   )
 
 (define (install-polynomial-package)
@@ -49,6 +52,8 @@
          (lambda (x y) (tag (op (number->poly (variable y) x) y)))))
   (put-op 'add add-poly)
   (put-op 'mul mul-poly)
+  (put-op 'sub sub-poly)
+  (put 'neg '(polynomial) (lambda (x) (tag (neg-poly x))))
   (put '=zero? '(polynomial) =zero-poly?)
   )
   
@@ -68,6 +73,9 @@
       (make-poly (variable p1)
                  (add-terms (term-list p1) (term-list p2)))
       (error "Polys not in same var -- ADD-POLY" (list p1 p2))))
+
+(define (sub-poly p1 p2)
+  (add-poly p1 (neg p2)))
 
 (define (mul-poly p1 p2)
   (if (same-variable? (variable p1) (variable p2))
@@ -119,6 +127,18 @@
             (coeff-all-zero? (rest-terms term-list))
             #f)))
   (coeff-all-zero? (term-list poly)))
+
+;; 练习 2.88
+(define (neg-poly p)
+  (make-poly (variable p)
+             (neg-terms (term-list p))))
+  
+(define (neg-terms L)
+  (if (empty-termlist? L)
+      (the-empty-termlist)
+      (let ((t (first-term L)))
+        (adjoin-term (make-term (order t) (neg (coeff t)))
+                     (neg-terms (rest-terms L))))))
 
 (define (the-empty-termlist) '())
 (define (first-term term-list) (car term-list))
@@ -182,31 +202,27 @@
   (define b (make-poly 'x '((100 1) (2 2) (0 1))))
 
   (print-poly "a" a)
-  (print-poly "b" b)
+  (print-poly "-a" (neg a))
   
-  (print-poly "a + b" (add-poly a b))
-  (print-poly "a * b" (mul-poly a b))
+  (print-poly "b" b)
+  (print-poly "-b" (neg b))
+  
+  (print-poly "a - b" (sub-poly a b))
   
   (define y0 (make-poly 'y '((1 1) (0 1))))
   (define y1 (make-poly 'y '((2 1) (0 1))))
   (define y2 (make-poly 'y '((1 1) (0 -1))))
   (define c (make-poly 'x (list (list 2 y0) (list 1 y1) (list 0 y2))))
   (print-poly "c" c)
+  (print-poly "-c" (neg c))
   
   (define y4 (make-poly 'y '((1 1) (0 -2))))
   (define y5 (make-poly 'y '((3 1) (0 7))))
   (define d (make-poly 'x (list (list 1 y4) (list 0 y5))))
   (print-poly "d" d)
+  (print-poly "-d" (neg d))
   
-  (print-poly "c + d" (add-poly c d))
-  (print-poly "c * d" (mul-poly c d))
-  
-  (print-poly "a + c" (add-poly a c))
-  (print-poly "a * c" (mul-poly a c))
-  
-  (=zero? 0)
-  (=zero? 1)
-  (=zero? (make-poly 'x '((100 0) (99 0))))
-  (=zero? a)
+  (print-poly "c - d" (sub-poly c d))
+  (print-poly "a - c" (sub-poly a c))
 )
 
