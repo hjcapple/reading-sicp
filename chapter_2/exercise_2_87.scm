@@ -3,28 +3,56 @@
 ;; P138 - [2.5.3 符号代数]
 ;; P143 - [练习 2.87]
 
-;; 为避免引入过多代码，通用函数只考虑数字和多项式，
+(require "ch2support.scm")
 
-(define (number->poly variable n)
-  (make-poly variable (adjoin-term (make-term 0 n) (the-empty-termlist))))
+;; 为避免引入过多代码，只考虑数字和多项式，
+(define (attach-tag type-tag contents) contents)
+(define (contents datum) datum)
+  
+(define (type-tag datum)
+  (if (number? datum)
+      'scheme-number
+      'polynomial))
 
-(define (add x y)
-  (cond ((and (number? x) (number? y)) (+ x y))
-        ((and (number? x) (not (number? y))) (add-poly (number->poly (variable y) x) y))
-        ((and (not (number? x)) (number? y)) (add-poly x (number->poly (variable x) y)))
-        (else (add-poly x y))))
+(define (apply-generic op . args)
+  (let ((type-tags (map type-tag args)))
+    (let ((proc (get op type-tags)))
+      (if proc
+          (apply proc (map contents args))
+          (error "No method for these types -- APPLY-GENERIC"
+                 (list op type-tags))))))
 
-(define (mul x y)
-  (cond ((and (number? x) (number? y)) (* x y))
-        ((and (number? x) (not (number? y))) (mul-poly (number->poly (variable y) x) y))
-        ((and (not (number? x)) (number? y)) (mul-poly x (number->poly (variable x) y)))
-        (else (mul-poly x y))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (add x y) (apply-generic 'add x y))
+(define (mul x y) (apply-generic 'mul x y))
+(define (=zero? x) (apply-generic '=zero? x))
 
-(define (=zero? x)
-  (cond ((number? x) (= x 0))
-        (else (=zero-poly? x))))
+(define (install-scheme-number-package)
+  (define (tag-2-args op)
+    (lambda (x y) (attach-tag 'scheme-number (op x y))))
+  (put 'add '(scheme-number scheme-number) (tag-2-args +))
+  (put 'mul '(scheme-number scheme-number) (tag-2-args *))
+  (put '=zero? '(scheme-number)
+       (lambda (x) (= x 0)))
+  )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (install-polynomial-package)
+  (define (number->poly variable n)
+    (make-poly variable (adjoin-term (make-term 0 n) (the-empty-termlist))))
+  (define (tag x) (attach-tag 'polynomial x))
+  (define (put-op name op)
+    (put name '(polynomial polynomial)
+         (lambda (x y) (tag (op x y))))
+    (put name '(polynomial scheme-number)
+         (lambda (x y) (tag (op x (number->poly (variable x) y)))))
+    (put name '(scheme-number polynomial)
+         (lambda (x y) (tag (op (number->poly (variable y) x) y)))))
+  (put-op 'add add-poly)
+  (put-op 'mul mul-poly)
+  (put '=zero? '(polynomial) =zero-poly?)
+  )
+  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (same-variable? v1 v2)
   (define (variable? x) (symbol? x))
   (and (variable? v1) (variable? v2) (eq? v1 v2)))
@@ -76,8 +104,13 @@
         (adjoin-term (make-term (+ (order t1) (order t2))
                                 (mul (coeff t1) (coeff t2)))
                      (mul-term-by-all-terms t1 (rest-terms L))))))
+        
+(define (adjoin-term term term-list)
+  (if (=zero? (coeff term))
+      term-list
+      (cons term term-list)))
 
-;; 练习 2.86
+;; 练习 2.87
 (define (=zero-poly? poly)
   (define (coeff-all-zero? term-list)
     (if (empty-termlist? term-list)
@@ -86,11 +119,6 @@
             (coeff-all-zero? (rest-terms term-list))
             #f)))
   (coeff-all-zero? (term-list poly)))
-        
-(define (adjoin-term term term-list)
-  (if (=zero? (coeff term))
-      term-list
-      (cons term term-list)))
 
 (define (the-empty-termlist) '())
 (define (first-term term-list) (car term-list))
@@ -130,9 +158,9 @@
     
   (define (print-term-list variable term-list)
     (cond ((not (null? term-list))
-          (print-term variable (car term-list))
+          (print-term variable (first-term term-list))
           (cond ((> (length term-list) 1) (display " + ")))
-          (print-term-list variable (cdr term-list)))))
+          (print-term-list variable (rest-terms term-list)))))
   
   (display "(")
   (print-term-list (variable poly) (term-list poly))
@@ -147,6 +175,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (module* main #f
+  (install-scheme-number-package)
+  (install-polynomial-package)         
+         
   (define a (make-poly 'x '((5 1) (4 2) (2 3) (1 -2) (0 -5))))
   (define b (make-poly 'x '((100 1) (2 2) (0 1))))
 
