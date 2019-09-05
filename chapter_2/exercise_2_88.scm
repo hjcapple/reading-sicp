@@ -112,11 +112,6 @@
         (adjoin-term (make-term (+ (order t1) (order t2))
                                 (mul (coeff t1) (coeff t2)))
                      (mul-term-by-all-terms t1 (rest-terms L))))))
-        
-(define (adjoin-term term term-list)
-  (if (=zero? (coeff term))
-      term-list
-      (cons term term-list)))
 
 ;; 练习 2.87
 (define (=zero-poly? poly)
@@ -139,6 +134,11 @@
       (let ((t (first-term L)))
         (adjoin-term (make-term (order t) (neg (coeff t)))
                      (neg-terms (rest-terms L))))))
+        
+(define (adjoin-term term term-list)
+  (if (=zero? (coeff term))
+      term-list
+      (cons term term-list)))
 
 (define (the-empty-termlist) '())
 (define (first-term term-list) (car term-list))
