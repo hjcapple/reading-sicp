@@ -132,16 +132,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 使用中缀方式打印多项式，方便查看结果
 (define (print-poly-impl poly)
-  (define (=number? x num)
-    (and (number? x) (= x num)))
   (define (print-val val)
     (if (number? val)
-        (if (> val 0)
+        (if (negative? val)
             (display val)
-            (begin 
-               (display "(")
-               (display val)
-               (display ")")))
+            (display-brackets val))
         (print-poly-impl val)))
   
   (define (print-term variable term)
@@ -156,14 +151,22 @@
                   (display "^")
                   (print-val (order term))))))
     
-  (define (print-term-list variable term-list)
-    (cond ((not (null? term-list))
-          (print-term variable (first-term term-list))
-          (cond ((> (length term-list) 1) (display " + ")))
-          (print-term-list variable (rest-terms term-list)))))
+  (define (print-terms variable terms)
+    (cond ((not (null? terms))
+          (print-term variable (car terms))
+          (cond ((> (length terms) 1) (display " + ")))
+          (print-terms variable (cdr terms)))))
   
+  (define (not-zero-terms term-list)
+    (if (empty-termlist? term-list)
+        '()
+        (let ((t (first-term term-list)))
+          (if (=zero? (coeff t))
+              (not-zero-terms (rest-terms term-list))
+              (cons t (not-zero-terms (rest-terms term-list)))))))
+          
   (display "(")
-  (print-term-list (variable poly) (term-list poly))
+  (print-terms (variable poly) (not-zero-terms (term-list poly)))
   (display ")"))
 
 (define (print-poly info poly)

@@ -1,10 +1,13 @@
 #lang racket
 
-(provide get put gcd square fib)
+(provide get put gcd square fib =number?)
 (provide get-coercion put-coercion)
+(provide display-brackets)
 
 ;;;from chapter 1
 (define (square x) (* x x))
+
+(define (=number? x num) (and (number? x) (= x num)))
 
 ;;;from section 1.2.5, for Section 2.1.1
 (define (gcd a b)
@@ -41,6 +44,12 @@
 
 (define (get-coercion op type)
   (hash-ref *coercion-table* (list op type) #f))
+
+;;---------------
+(define (display-brackets val)
+  (display "(")
+  (display val)
+  (display ")"))
 
 
 
