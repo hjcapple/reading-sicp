@@ -125,11 +125,13 @@
             (list (the-empty-termlist) L1)
             (let ((new-c (div (coeff t1) (coeff t2)))
                   (new-o (- (order t1) (order t2))))
-              (let ((new-t (make-term new-o new-c)))
-                (let ((new-L1 (sub-terms L1 (mul-term-by-all-terms new-t L2))))
-                  (let ((rest-of-result (div-terms new-L1 L2)))
-                    (list (adjoin-term new-t (car rest-of-result))
-                          (cadr rest-of-result))))))))))
+              (if (=zero? new-c)  ;; 需要判断商为 0 的情况(coeff也为多项式时可能出现),不然会无限循环
+                  (list (the-empty-termlist) L1)
+                  (let ((new-t (make-term new-o new-c)))
+                    (let ((new-L1 (sub-terms L1 (mul-term-by-all-terms new-t L2))))
+                      (let ((rest-of-result (div-terms new-L1 L2)))
+                        (list (adjoin-term new-t (car rest-of-result))
+                              (cadr rest-of-result)))))))))))
                     
 (define (add-terms L1 L2)
   (cond ((empty-termlist? L1) L2)
@@ -279,6 +281,7 @@
   (print-poly "c * d" (mul c d))
   (print-poly "(c * d) / c" (div (mul c d) c))
   (print-poly "(c * d) / d" (div (mul c d) d))
+  (print-poly "(c / d)" (div c d))
   
   (define e (make-poly 'x (make-term-list '((2 1) (1 -9) (0 -27)))))
   (define f (make-poly 'x (make-term-list '((1 1) (0 -3)))))
