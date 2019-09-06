@@ -257,8 +257,8 @@
   (define (print-val val)
     (if (number? val)
         (if (negative? val)
-            (display val)
-            (display-brackets val))
+            (display-brackets val)
+            (display val))
         (print-poly-impl val)))
   
   (define (print-term variable term)

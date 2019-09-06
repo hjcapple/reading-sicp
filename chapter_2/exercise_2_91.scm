@@ -226,16 +226,16 @@
           (cond ((> (length terms) 1) (display " + ")))
           (print-terms variable (cdr terms)))))
   
-  (define (not-zero-terms term-list)
+  (define (nonzero-terms term-list)
     (if (empty-termlist? term-list)
         '()
         (let ((t (first-term term-list)))
           (if (=zero? (coeff t))
-              (not-zero-terms (rest-terms term-list))
-              (cons t (not-zero-terms (rest-terms term-list)))))))
+              (nonzero-terms (rest-terms term-list))
+              (cons t (nonzero-terms (rest-terms term-list)))))))
           
   (display "(")
-  (print-terms (variable poly) (not-zero-terms (term-list poly)))
+  (print-terms (variable poly) (nonzero-terms (term-list poly)))
   (display ")"))
 
 (define (print-poly info poly)
