@@ -129,6 +129,8 @@
 * P143 - [练习 2.89](./exercise_2_89.scm)
 * P143 - [练习 2.90](./exercise_2_90.scm)
 * P143 - [练习 2.91](./exercise_2_91.scm)
+* P144 - [练习 2.92](./exercise_2_92.scm)
+
 
 
 
