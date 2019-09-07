@@ -1,12 +1,8 @@
 #lang racket
 
-;; P144 - [练习 2.92]
+;; P144 - [练习 2.93]
 
-; 关键看 poly->poly 的实现，将多项式转换成其它变量，比如某多项式
-; (poly->poly p 'x), 转换成 x 变量, 可看成 (y + 1)*x^2 + (y^2 + 1)*x + (y-1)
-; (poly->poly p 'y), 转换成 y 变量, 可看成 (x)*y^2 + (x^2 + 1)*y + (x^2 + x -1)
-; 两者是相同的，主要是看代的方式不同。
-; 之后利用 poly->poly 函数，就可以将 add-poly、sub-poly 中的多项式转换成相同变量。
+; 见 install-rational-package 函数
 
 (require "ch2support.scm")
 
@@ -76,6 +72,47 @@
   (put 'obj->poly 'polynomial poly->poly)
   (put '=zero? '(polynomial) =zero-poly?)
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (install-rational-package)
+  ;; internal procedures
+  (define (number x) (car x))
+  (define (denom x) (cdr x))
+  (define (make-rat n d) (cons n d))
+  (define (add-rat x y)
+    (make-rat (add (mul (number x) (denom y))
+                   (mul (number y) (denom x)))
+              (mul (denom x) (denom y))))
+  (define (sub-rat x y)
+    (make-rat (sub (mul (number x) (denom y))
+                   (mul (number y) (denom x)))
+              (mul (denom x) (denom y))))
+  (define (mul-rat x y)
+    (make-rat (mul (number x) (number y))
+              (mul (denom x) (denom y))))
+  (define (div-rat x y)
+    (make-rat (mul (number x) (denom y))
+              (mul (denom x) (number y))))
+  
+  ;; interface to the rest of the system
+  (define (tag x) (attach-tag 'rational x))
+  (put 'add '(rational rational)
+       (lambda (x y) (tag (add-rat x y))))
+  (put 'sub '(rational rational)
+       (lambda (x y) (tag (sub-rat x y))))
+  (put 'mul '(rational rational)
+       (lambda (x y) (tag (mul-rat x y))))
+  (put 'div '(rational rational)
+       (lambda (x y) (tag (div-rat x y))))
+  (put 'make 'rational
+       (lambda (n d) (tag (make-rat n d))))
+  )
+
+(define (make-rational n d)
+  ((get 'make 'rational) n d))
+
+(define (number-rat x) (car (contents x)))
+(define (denom-rat x) (cdr (contents x)))
   
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 练习 2.92
@@ -126,6 +163,8 @@
 
 (define (make-poly variable term-list)
   (cons 'polynomial (cons variable term-list)))
+
+(define make-polynomial make-poly)
 
 (define (variable p) (car (cdr p)))
 (define (term-list p) (cdr (cdr p)))
@@ -304,30 +343,20 @@
                      (make-term-list (cdr pairs))))))
 
 (module* main #f
-  (require rackunit)
+  (install-rational-package)
   (install-scheme-number-package)
   (install-polynomial-package)   
   
-  (define y0 (make-poly 'y '((1 1) (0 1))))
-  (define y1 (make-poly 'y '((2 1) (0 1))))
-  (define y2 (make-poly 'y '((1 1) (0 -1))))
-  (define c (make-poly 'x (list (list 2 y0) (list 1 y1) (list 0 y2))))
-  (check-equal? c (poly->poly (poly->poly c 'y) 'x))
-
-  (define y4 (make-poly 'y '((1 1) (0 -2))))
-  (define y5 (make-poly 'y '((3 1) (0 7))))
-  (define d (make-poly 'x (list (list 1 y4) (list 0 y5))))
-  (check-equal? d (poly->poly (poly->poly d 'y) 'x))
+  (define p1 (make-polynomial 'x '((2 1) (0 1))))
+  (define p2 (make-polynomial 'x '((3 1) (0 1))))
+  (define rf (make-rational p2 p1))
   
-  (check-equal? (add c d) (add c (poly->poly d 'y)))
-  (check-equal? (sub c d) (sub c (poly->poly d 'y)))
-  (check-equal? (mul c d) (mul c (poly->poly d 'y)))
-  (check-equal? (div c d) (div c (poly->poly d 'y)))
+  (print-poly "p1" p1)
+  (print-poly "p2" p2)
   
-  (print-poly "c + d" (add c (poly->poly d 'y)))
-  (print-poly "c - d" (sub c (poly->poly d 'y)))
-  (print-poly "c * d" (mul c (poly->poly d 'y)))
-  (print-poly "c / d" (div c (poly->poly d 'y)))
+  (define rt2 (add rf rf))
+  rt2
+  (print-poly "rt2-number" (number-rat rt2))
+  (print-poly "rt2-denom" (denom-rat rt2))
 )
-
 
