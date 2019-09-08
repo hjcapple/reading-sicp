@@ -5,15 +5,22 @@
 
 (require "ch2support.scm")
 
-;; 为避免引入过多代码，只考虑数字和多项式，
-(define (attach-tag type-tag contents) contents)
-(define (contents datum) datum)
+;; 为避免引入过多代码，数字和多项式特殊处理
+(define (attach-tag type-tag contents)
+  (if (or (number? contents) (polynomial? contents))
+      contents
+      (cons type-tag contents)))
+  
+(define (contents datum)
+  (if (or (number? datum) (polynomial? datum))
+      datum
+      (cdr datum)))
   
 (define (type-tag datum)
-  (if (number? datum)
-      'scheme-number
-      'polynomial))
-
+  (cond ((number? datum) 'scheme-number)
+        ((polynomial? datum) 'polynomial)
+        (else (car datum))))
+        
 (define (apply-generic op . args)
   (let ((type-tags (map type-tag args)))
     (let ((proc (get op type-tags)))
@@ -57,11 +64,15 @@
   (define (variable? x) (symbol? x))
   (and (variable? v1) (variable? v2) (eq? v1 v2)))
 
-(define (make-poly variable term-list)
-  (cons variable term-list))
+(define (polynomial? p)
+  (and (pair? p) 
+       (eq? (car p) 'polynomial)))
 
-(define (variable p) (car p))
-(define (term-list p) (cdr p))
+(define (make-poly variable term-list)
+  (cons 'polynomial (cons variable term-list)))
+
+(define (variable p) (car (cdr p)))
+(define (term-list p) (cdr (cdr p)))
 
 (define (add-poly p1 p2)
   (if (same-variable? (variable p1) (variable p2))
