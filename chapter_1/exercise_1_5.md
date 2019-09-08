@@ -22,40 +22,4 @@
 
 结论就是，假如解释器采用应用序，`(test 0 (p))` 不会停止。假如采用正则序，`(test 0 (p))` 结果为 0。
 
-------
 
-将这个测试翻译成 Lua，可看到也不会停止。
-
-``` Lua
-function p()
-    return p()
-end
-
-function test(x, y)
-    if x == 0 then 
-        return 0
-    else
-        return y 
-    end 
-end
-
-print(test(0, p()))
-```
-
-而正则序，大致相当于如下代码，返回 0。
-
-``` Lua
-function p()
-    return p()
-end
-
-function test(x, y)
-    if x == 0 then 
-        return 0
-    else
-        return y()
-    end 
-end
-
-print(test(0, p))
-```

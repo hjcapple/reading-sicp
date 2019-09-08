@@ -2,82 +2,55 @@
 
 下面程序搜索前 10 个 carmichael 数字。即通过了所有费马检查，但又不是素数。
 
-``` Lua
-function square(x) 
-    return x * x
-end
+``` Scheme
+#lang racket
 
-function remainder(n, b)
-    return n % b
-end
+(define (square x) (* x x))
 
-function prime(n)
-    function smallest_divisor(n)
-        return find_divisor(n, 2)
-    end
+(define (smallest-divisor n)
+  (find-divisor n 2))
 
-    function find_divisor(n, test_divisor)
-        if square(test_divisor) > n then 
-            return n
-        elseif divides(test_divisor, n) then 
-            return test_divisor
-        else
-            return find_divisor(n, test_divisor + 1)
-        end
-    end
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (+ test-divisor 1)))))
 
-    function divides(a, b)
-        return remainder(b, a) == 0
-    end
+(define (divides? a b)
+  (= (remainder b a) 0))
 
-    return smallest_divisor(n) == n
-end
+(define (prime? n)
+  (= n (smallest-divisor n)))
 
-function expmod(base, exp, m)
-    function even(n)
-        return n % 2 == 0
-    end
+(define (expmod base exp m)
+  (cond ((= exp 0) 1)
+        ((even? exp)
+         (remainder (square (expmod base (/ exp 2) m))
+                    m))
+        (else
+          (remainder (* base (expmod base (- exp 1) m))
+                     m))))  
 
-    if exp == 0 then 
-        return 1
-    elseif even(exp) then
-        local tmp = expmod(base, exp / 2, m)
-        return remainder(square(tmp), m)
-    else
-        local tmp = expmod(base, exp - 1, m)
-        return remainder(base * tmp, m)
-    end 
-end
+(define (carmichael-test n)
+  (define (fermat-test n a)
+    (= (expmod a n n) a))
+  
+  (define (iter-test n a)
+    (cond ((= a 0) #t)
+          ((fermat-test n a) (iter-test n (- a 1)))
+          (else #f)))
+  
+  (iter-test n (- n 1)))
 
-function carmichael_test(n)
-    function fermat_test(n, a)
-        return expmod(a, n, n) == a 
-    end
+(define (search-for-carmichae n count)
+  (cond ((not (= count 0))
+         (cond ((and (not (prime? n)) (carmichael-test n))
+                (displayln n)
+                (search-for-carmichae (+ n 1) (- count 1)))
+               (else (search-for-carmichae (+ n 1) count))))))
 
-    function iter(n, a)
-        if a == 0 then 
-            return true
-        elseif fermat_test(n, a) then 
-            return iter(n, a - 1)
-        else 
-            return false
-        end
-    end 
-    return iter(n, n - 1)
-end
+;;;;;;;;;;;;;;;;;
+(search-for-carmichae 1 10)
 
-function search_for_carmichael(n, count)
-    if count == 0 then 
-        return
-    end
-    if not prime(n) and carmichael_test(n) then 
-        count = count - 1
-        print(string.format("%d", n))
-    end
-    search_for_carmichael(n + 1, count)
-end
-
-search_for_carmichael(1, 10)
 ```
 
 输出如下。
@@ -110,7 +83,7 @@ search_for_carmichael(1, 10)
 29341 = 13 × 37 × 61
 ```
 
-上面程序中，假如将 `search_for_carmichael` 的判断翻转过来写成 `carmichael_test(n) and not prime(n)` 就会慢很多。这是因为判断 `prime` 要比`carmichael_test` 快。而当是素数时，`carmichael_test` 一定为真，就包含了多余的运算。
+上面程序中，假如将 `search-for-carmichae` 的判断翻转过来写成 `(and (carmichael-test n) (not (prime? n)))` 就会慢很多。这是因为判断 `prime?` 要比`carmichael-test` 快。而当是素数时，`carmichael-test` 一定为真，就包含了多余的运算。
 
-Lua 的判断是短路求值，当写成 `not prime(n) and carmichael_test(n))` 时。假如是素数，`carmichael_test` 就会被跳过。
+DrRacket 的判断是短路求值，当写成 `(and (not (prime? n)) (carmichael-test n))` 时。假如是素数，`carmichael-test` 就会被跳过。
 

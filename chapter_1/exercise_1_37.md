@@ -21,51 +21,41 @@ f(k, k) -> f(k - 1, k) -> f(k - 2, k) ... f(1, k)
 
 代码如下
 
-``` Lua
--- 递归版本
-function cont_frac(n_fn, d_fn, k)
-    function impl(i)
-        if i == k then 
-            return n_fn(i) / d_fn(i)
-        else
-            return n_fn(i) / (d_fn(i) + impl(i + 1, k))
-        end
-    end
-    return impl(1)
-end
+``` Scheme
+#lang racket
 
--- 迭代版本
-function cont_frac_2(n_fn, d_fn, k)
-    function iter(i, ret)
-        if i < 1 then 
-            return ret
-        else 
-            return iter(i - 1, n_fn(i) / (d_fn(i) + ret))
-        end
-    end
-    return iter(k - 1, n_fn(i) / d_fn(i))
-end
+; 递归版本
+(define (cont-frac n-fn d-fn k)
+  (define (impl i)
+    (if (= i k)
+        (/ (n-fn i) (d-fn i))
+        (/ (n-fn i) (+ (d-fn i) (impl (+ i 1))))))
+  (impl 1))
 
-function golden_ratio(n)
-    function fn(x)
-        return 1
-    end
-    return cont_frac(fn, fn, n)
-end
+; 迭代版本
+(define (cont-frac-2 n-fn d-fn k)
+  (define (iter i ret)
+    (if (< i 1)
+        ret
+        (iter (- i 1) 
+              (/ (n-fn i) (+ (d-fn i) ret)))))
+  (iter (- k 1) (/ (n-fn k) (d-fn k))))
 
-function golden_ratio_2(n)
-    function fn(x)
-        return 1
-    end
-    return cont_frac_2(fn, fn, n)
-end
+(define (golden-ratio n)
+  (define (fn x) 1)
+  (cont-frac fn fn n))
 
----------------------
-function equal(a, b, tolerance)
-    local abs = math.abs
-    return abs(a - b) < tolerance
-end
-assert(equal(golden_ratio(10), golden_ratio_2(10), 0.0001))
+(define (golden-ratio-2 n)
+  (define (fn x) 1)
+  (cont-frac-2 fn fn n))
+
+;;;;;;;;;;;;;;;;;;;;;
+(exact->inexact (golden-ratio 10))
+(exact->inexact (golden-ratio 11))
+
+(require rackunit)
+(check-= (golden-ratio 10) (golden-ratio-2 10) 0.0001)
+(check-= (golden-ratio 11) (golden-ratio-2 11) 0.0001)
 ```
 
 见 [练习 1.13](./exercise_1_13.md)
@@ -79,8 +69,8 @@ assert(equal(golden_ratio(10), golden_ratio_2(10), 0.0001))
 而
 
 ```
-golden_ratio(10) = 0.61797752808989
-golden_ratio(11) = 0.61805555555556
+(golden-ratio 10) = 0.6179775280898876
+(golden-ratio 11) = 0.6180555555555556
 ```
 
 只要 k = 11, 计算结果的前面 4 个小数位就完全相同。

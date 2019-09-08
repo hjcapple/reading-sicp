@@ -38,44 +38,45 @@ q ← 2pq + qq
 
 ------
 
-最后 Lua 代码为：
+最后代码为：
 
-``` Lua
-function fast_fib(n)
-    function even(n)
-        return n % 2 == 0
-    end
+``` Scheme
+#lang racket
 
-    function fib_iter(a, b, p, q, count)
-        if count == 0 then 
-            return b 
-        elseif even(count) then 
-            local next_p = p * p + q * q
-            local next_q = 2 * p * q + q * q
-            return fib_iter(a, b, next_p, next_q, count / 2)
-        else
-            local next_a = b * q + a * q + a * p
-            local next_b = b * p + a * q
-            return fib_iter(next_a, next_b, p, q, count - 1) 
-        end 
-    end
+(define (fast-fib n)
+  (fib-iter 1 0 0 1 n))
 
-    return fib_iter(1, 0, 0, 1, n)
-end
+(define (fib-iter a b p q count)
+  (cond ((= count 0) b)
+        ((even? count)
+         (fib-iter a
+                   b
+                   (+ (* p p) (* q q))    ;compute p'
+                   (+ (* 2 p q) (* q q))  ;compute q'
+                   (/ count 2)))
+        (else (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1)))))
 
-function unit_test()
-    function fib(n)
-        if n == 0 then 
-            return 0 
-        elseif n == 1 then 
-            return 1
-        else 
-            return fib(n - 1) + fib(n - 2)
-        end
-    end
-    for i = 0, 20 do 
-        assert(fib(i) == fast_fib(i))
-    end
-end 
-unit_test()
+;;;;;;;;;;;;;;;;;;;
+(module* test #f
+  (require rackunit)
+  (define (for-loop n last op)
+    (cond ((<= n last)
+           (op n)
+           (for-loop (+ n 1) last op))))
+  
+  (define (fib n)
+    (cond ((= n 0) 0)
+          ((= n 1) 1)
+          (else (+ (fib (- n 1)) 
+                   (fib (- n 2))))))
+  
+  (define (check i)
+    (check-equal? (fib i) (fast-fib i)))
+  
+  (for-loop 0 20 check)
+)
 ```

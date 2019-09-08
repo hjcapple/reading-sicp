@@ -9,69 +9,41 @@ D = 1 2 1 1 4 1 1 6 1 1  8  1  1  10 ....
 
 D 每隔 3 个数字，其中的偶数就会累增。i 和 D 的关系为
 
-``` Lua
-function d_fn(i)
-    if (i + 1) % 3 == 0 then 
-        return 2 * (i + 1) / 3
-    else
-        return 1 
-    end
-end
+``` Scheme
+(define (d-fn i)
+  (if (= (remainder (+ i 1) 3) 0) ; (i + 1) % 3 == 0
+      (/ (* 2 (+ i 1)) 3)         ; 2 * (i + 1) / 3
+      1))
 ```
-
-``` Lua
-local d_factor = 0
-function d_fn(i)
-    if (i + 1) % 3 == 0 then 
-        d_factor = d_factor + 2
-        return d_factor
-    else
-        return 1 
-    end
-end
-```
-
-也可以加个计数值，来累增偶数。
 
 代码如下
 
-``` Lua
-function cont_frac(n_fn, d_fn, k)
-    function impl(i)
-        if i == k then 
-            return n_fn(i) / d_fn(i)
-        else
-            return n_fn(i) / (d_fn(i) + impl(i + 1, k))
-        end
-    end
-    return impl(1)
-end
+``` Scheme
+#lang racket
 
-function compute_e(k)
-    function n_fn(i)
-        return 1
-    end
+(define (cont-frac n-fn d-fn k)
+  (define (impl i)
+    (if (= i k)
+        (/ (n-fn i) (d-fn i))
+        (/ (n-fn i) (+ (d-fn i) (impl (+ i 1))))))
+  (impl 1))
 
-    local d_factor = 0
-    function d_fn(i)
-        if (i + 1) % 3 == 0 then 
-            d_factor = d_factor + 2
-            return d_factor
-        else
-            return 1 
-        end
-    end
+(define (compute-e k)
+  (define (n-fn i) 1)
+  (define (d-fn i)
+    (if (= (remainder (+ i 1) 3) 0)
+        (/ (* 2 (+ i 1)) 3)
+        1))
+  (+ (cont-frac n-fn d-fn k) 2))
 
-    return cont_frac(n_fn, d_fn, k) + 2
-end
-
-print(compute_e(100))
+;;;;;;;;;;;;;
+(exact->inexact (compute-e 100))
 ```
 
 计算得到 e 的结果为
 
 ```
-2.718281828459
+2.718281828459045
 ```
 
 而 e 的精确结果为

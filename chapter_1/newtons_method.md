@@ -57,64 +57,54 @@ f(y) = y - f(y)/f'(y) = y - (y ^ 2 - x) / (2 * y) = (y + x/y) / 2
 
 ### 代码
 
-``` Lua
-function fixed_point(f, first_guess)
-    function close_enough(x, y)
-        local abs = math.abs
-        local tolerance = 0.00001
-        return abs(x - y) < tolerance
-    end
+``` Scheme
+#lang racket
 
-    function try(guess)
-        local next_guess = f(guess)
-        if close_enough(guess, next_guess) then 
-            return next_guess
-        else 
-            return try(next_guess)
-        end
-    end
+(define (fixed-point f first-guess)
+  (define (close-enough? v1 v2)
+    (let ((tolerance 0.00001))
+      (< (abs (- v1 v2)) tolerance)))
+  (define (try guess)
+    (let ((next (f guess)))
+      (if (close-enough? guess next)
+          next
+          (try next))))
+  (try first-guess))
 
-    return try(first_guess)
-end
 
-function deriv(g)
-    local dx = 0.00001
-    return function (x)
-        return (g(x + dx) - g(x)) / dx
-    end
-end
+(define (deriv g)
+  (let ((dx 0.00001))
+    (lambda (x)
+      (/ (- (g (+ x dx)) (g x))
+         dx))))
 
-function newton_transform(g)
-    return function (x)
-        return x - g(x) / deriv(g)(x)
-    end
-end
+(define (newton-transform g)
+  (lambda (x)
+    (- x (/ (g x) ((deriv g) x)))))
 
-function newtons_method(g, guess)
-    return fixed_point(newton_transform(g), guess)
-end
+(define (newtons-method g guess)
+  (fixed-point (newton-transform g) guess))
 
-function sqrt(x)
-    return newtons_method(function(y) 
-        return y * y - x
-    end, 1.0)
-end
+(define (sqrt x)
+  (newtons-method (lambda (y) (- (square y) x))
+                  1.0))
 
-function cube(x)
-    return x * x * x
-end 
+(define (square x) (* x x))
+(define (cube x) (* x x x))
 
-print(deriv(cube)(5))   -- 75.00014999664
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+((deriv cube) 5)  ; 75.00014999664018
 
--------------------------
-function unit_test()
-    function assert_equal(a, b, tolerance)
-        tolerance = tolerance or 0.0001
-        assert(math.abs(a - b) < tolerance)
-    end
-    for i = 0, 100 do 
-        assert_equal(sqrt(i), math.sqrt(i))
-    end
-end 
-unit_test()
+(module* test #f
+  (require rackunit)
+  (define (for-loop n last op)
+    (cond ((<= n last)
+           (op n)
+           (for-loop (+ n 1) last op))))
+  
+  (define (check-n n)
+    (check-= (sqrt n) (expt n (/ 1 2)) 0.0001))
+    
+  (for-loop 0 100 check-n)
+)
 ```

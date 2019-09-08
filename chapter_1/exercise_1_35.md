@@ -16,33 +16,27 @@
 
 ------
 
-``` Lua
-function fixed_point(f, first_guess)
-    function close_enough(x, y)
-        local abs = math.abs
-        local tolerance = 0.00001
-        return abs(x - y) < tolerance
-    end
+``` Scheme
+#lang racket
 
-    function try(guess)
-        local next_guess = f(guess)
-        if close_enough(guess, next_guess) then 
-            return next_guess
-        else 
-            return try(next_guess)
-        end
-    end
+(define (fixed-point f first-guess)
+  (define (close-enough? v1 v2)
+    (let ((tolerance 0.00001))
+      (< (abs (- v1 v2)) tolerance)))
+  (define (try guess)
+    (let ((next (f guess)))
+      (if (close-enough? guess next)
+          next
+          (try next))))
+  (try first-guess))
 
-    return try(first_guess)
-end
-
-print(fixed_point(function(x)
-    return 1 + 1 / x
-end, 1.0))
+;;;;;;;;;;;;;;;;;;;;
+(fixed-point (lambda (x) (+ 1 (/ 1 x)))
+             1.0)
 ```
 
 计算得到结果
 
 ```
-1.6180327868852
+1.6180327868852458
 ```

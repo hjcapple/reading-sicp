@@ -1,23 +1,20 @@
 ## P24 - [练习 1.10]
 
-翻译成 Lua 代码，打印结果。
+使用下面代码打印结果。
 
 ``` Lua
-function A(x, y)
-    if y == 0 then 
-        return 0
-    elseif x == 0 then
-        return 2 * y
-    elseif y == 1 then 
-        return 2
-    else
-        return A(x - 1, A(x, y - 1))
-    end
-end 
+#lang racket
 
-print(A(1, 10))
-print(A(2, 4))
-print(A(3, 3))
+(define (A x y)
+  (cond ((= y 0) 0)
+        ((= x 0) (* 2 y))
+        ((= y 1) 2)
+        (else (A (- x 1)
+                 (A x (- y 1))))))
+
+(A 1 10)
+(A 2 4)
+(A 3 3)
 ```
 
 可知道 

@@ -84,59 +84,38 @@ mod 运算，可看成是时钟转圈，超出一圈又会绕到原来的地方�
 
 ### 代码
 
-Lua 代码如下：
+``` Scheme
+#lang racket
 
-``` Lua
-function square(x) 
-    return x * x
-end
+(define (square x) (* x x))
 
-function remainder(n, b)
-    return n % b
-end
+(define (expmod base exp m)
+  (cond ((= exp 0) 1)
+        ((even? exp)
+         (remainder (square (expmod base (/ exp 2) m))
+                    m))
+        (else
+          (remainder (* base (expmod base (- exp 1) m))
+                     m))))  
 
-function expmod(base, exp, m)
-    function even(n)
-        return n % 2 == 0
-    end
+(define (fermat-test n)
+  (define (try-it a)
+    (= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
 
-    if exp == 0 then 
-        return 1
-    elseif even(exp) then
-        local tmp = expmod(base, exp / 2, m)
-        return remainder(square(tmp), m)
-    else
-        local tmp = expmod(base, exp - 1, m)
-        return remainder(base * tmp, m)
-    end 
-end
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((fermat-test n) (fast-prime? n (- times 1)))
+        (else false)))
 
-function fermat_test(n)
-    function try_it(a)
-        return expmod(a, n, n) == a 
-    end
-    return try_it(math.random(1, n - 1))
-end
-
-function fast_prime(n, times)
-    if times == 0 then
-        return true 
-    elseif fermat_test(n) then 
-        return fast_prime(n, times - 1)
-    else 
-        return false
-    end 
-end
-
-function unit_test()
-    local nums = { 2, 3, 5, 7, 11, 13, 17, 19, 23 }
-    for _, num in ipairs(nums) do 
-        assert(fast_prime(num, 100))
-    end
-    local nums = { 36, 25, 9, 16, 4 }
-    for _, num in ipairs(nums) do 
-        assert(not fast_prime(num, 100))
-    end
-end
-unit_test()
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(module* test #f
+  (require rackunit)
+  (for-each (lambda (num)
+             (check-true (fast-prime? num 100)))
+           '(2 3 5 7 11 13 17 19 23))
+  (for-each (lambda (num)
+             (check-false (fast-prime? num 100)))
+           '(36 25 9 16 4))
+)
 ```

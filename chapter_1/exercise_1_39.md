@@ -18,45 +18,39 @@
 
 代码如下：
 
-``` Lua
-function cont_frac(n_fn, d_fn, k)
-    function impl(i)
-        if i == k then 
-            return n_fn(i) / d_fn(i)
-        else
-            return n_fn(i) / (d_fn(i) + impl(i + 1, k))
-        end
-    end
-    return impl(1)
-end
+``` Scheme
+#lang racket
 
-function tran_cf(x, k)
-    function n_fn(i)
-        if i == 1 then
-            return x
-        else 
-            return - x * x
-        end
-    end 
+(define (cont-frac n-fn d-fn k)
+  (define (impl i)
+    (if (= i k)
+        (/ (n-fn i) (d-fn i))
+        (/ (n-fn i) (+ (d-fn i) (impl (+ i 1))))))
+  (impl 1))
 
-    function d_fn(i)
-        return 2 * i - 1
-    end
+(define (tran-cf x k)
+  (define (n-fn i)
+    (if (= i 1)
+        x
+        (- (* x x))))
+  (define (d-fn i)
+    (- (* 2 i) 1))
+  (cont-frac n-fn d-fn k))
 
-    return cont_frac(n_fn, d_fn, k)
-end
+;;;;;;;;;;;;;
+(module* test #f
+  (require rackunit)
+  (define (for-loop n last op)
+    (cond ((<= n last)
+           (op n)
+           (for-loop (+ n 1) last op))))
+  
+  (define (test-n n)
+    (let ((x (/ n (* 2 3.1415926))))
+      (check-= (tran-cf x 100) (tan x) 0.0001)))
+  
+  (for-loop 0 360 test-n)
+)
 
------------
-function unit_test()
-    function equal(a, b, tolerance)
-        tolerance = tolerance or 0.0001
-        return math.abs(a - b) < tolerance
-    end
-    for i = 0, 360 do 
-        local n = i / (2 * math.pi)
-        assert(equal(tran_cf(n, 100), math.tan(n)))
-    end
-end 
-unit_test()
 ```
 

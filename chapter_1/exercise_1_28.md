@@ -60,66 +60,46 @@ Miller-Rabin 检查除了应用费马小定理的变形公式
 
 ### 代码
 
-``` Lua
-function square(x) 
-    return x * x
-end
+``` Scheme
+#lang racket
 
-function remainder(n, b)
-    return n % b
-end
+(define (square x) (* x x))
 
-function expmod(base, exp, m)
-    function even(n)
-        return n % 2 == 0
-    end
+(define (nontrivial? a n)
+  (and (not (= a 1))
+       (not (= a (- n 1)))
+       (= (remainder (square a) n) 1)))
 
-    function nontrivial(a, n)
-        return (a ~= 1) and (a ~= n - 1) and remainder(square(a), n) == 1
-    end
+(define (expmod base exp m)
+  (cond ((= exp 0) 1)
+        ((nontrivial? base m) 0)
+        ((even? exp)
+         (remainder (square (expmod base (/ exp 2) m))
+                    m))
+        (else
+          (remainder (* base (expmod base (- exp 1) m))
+                     m))))  
 
-    if exp == 0 then 
-        return 1
-    elseif nontrivial(base, m) then 
-        return 0
-    elseif even(exp) then
-        local tmp = expmod(base, exp / 2, m)
-        return remainder(square(tmp), m)
-    else
-        local tmp = expmod(base, exp - 1, m)
-        return remainder(base * tmp, m)
-    end 
-end
+(define (fmiller-rabin-test n)
+  (define (try-it a)
+    (= (expmod a (- n 1) n) 1))
+  (try-it (+ 1 (random (- n 1)))))
 
-function miller_rabin_test(n)
-    function try_it(a)
-        return expmod(a, n - 1, n) == 1 
-    end
-    return try_it(math.random(1, n - 1))
-end
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((fmiller-rabin-test n) (fast-prime? n (- times 1)))
+        (else false)))
 
-function fast_prime(n, times)
-    if times == 0 then
-        return true 
-    elseif miller_rabin_test(n) then 
-        return fast_prime(n, times - 1)
-    else
-        return false
-    end 
-end
-
-function unit_test()
-    local nums = { 2, 3, 5, 7, 11, 13, 17, 19, 23 }
-    for _, num in ipairs(nums) do 
-        assert(fast_prime(num, 100))
-    end
-    local nums = { 36, 25, 9, 16, 4, 561, 1105, 1729, 2465 }
-    for _, num in ipairs(nums) do 
-        assert(not fast_prime(num, 100))
-    end
-end
-unit_test()
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(module* test #f
+  (require rackunit)
+  (for-each (lambda (num)
+             (check-true (fast-prime? num 100)))
+           '(2 3 5 7 11 13 17 19 23))
+  (for-each (lambda (num)
+             (check-false (fast-prime? num 100)))
+           '(36 25 9 16 4 561 1105 1729 2465))
+)
 ```
 
 注意看到，561, 1105, 1729, 2465 这几个 carmichael 数字也被检测出并非素数。

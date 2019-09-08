@@ -83,51 +83,36 @@ P(x) 也可以不选择直线，而是选择一条二次曲线 <img src="http://
 
 ### 代码
 
-``` Lua
-function sum(term, a, next, b)
-    if a > b then 
-        return 0
-    else 
-        return term(a) + sum(term, next(a), next, b)
-    end 
-end
+``` Scheme
+#lang racket
 
-function simpson_integral(f, a, b, n)
-    function even(n)
-        return n % 2 == 0
-    end
+(define (sum term a next b)
+  (if (> a b)
+      0
+      (+ (term a)
+         (sum term (next a) next b))))
 
-    if not even(n) then 
-        n = n + 1
-    end
+(define (inc n) (+ n 1))
+(define (cube x) (* x x x))
 
-    local h = (b - a) / n
-    function term(k)
-        function factor(k)
-            if k == 0 or k == n then 
-                return 1
-            elseif even(k) then 
-                return 2
-            else 
-                return 4
-            end 
-        end
-        return factor(k) * f(a + h * k)
-    end
+(define (simpson-integral f a b n)
+  (define (factor k)
+    (cond ((or (= k 0) (= k n)) 1)
+          ((even? k) 2)
+          (else 4)))
+  
+  (define (term k)
+    (let ((h (/ (- b a) n)))
+      (* (factor k) (f (+ a (* h k))))))
+  
+  (if (odd? n)
+      (simpson-integral f a b (+ 1 n))
+      (let ((h (/ (- b a) n)))
+        (/ (* (sum term 0 inc n) h) 3.0))))
 
-    function inc(n)
-        return n + 1
-    end
-
-    return sum(term, 0, inc, n) * h / 3.0
-end 
-
-function cube(x)
-    return x * x * x
-end
-
-print(simpson_integral(cube, 0, 1, 100))
-print(simpson_integral(cube, 0, 1, 1000))
+;;;;;;;;;;;;;;;;;;;;;;;;
+(simpson-integral cube 0 1 100)
+(simpson-integral cube 0 1 99)
 ```
 
 输出

@@ -1,111 +1,92 @@
 ## P35 - [练习 1.22]
 
-``` Lua
-function square(x) 
-    return x * x
-end
+``` Scheme
+#lang racket
 
-function remainder(n, b)
-    return n % b
-end
+(define (square x) (* x x))
+(define (runtime) (current-inexact-milliseconds)) 
 
-function prime(n)
-    function smallest_divisor(n)
-        return find_divisor(n, 2)
-    end
+(define (smallest-divisor n)
+  (find-divisor n 2))
 
-    function find_divisor(n, test_divisor)
-        if square(test_divisor) > n then 
-            return n
-        elseif divides(test_divisor, n) then 
-            return test_divisor
-        else
-            return find_divisor(n, test_divisor + 1)
-        end
-    end
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (+ test-divisor 1)))))
 
-    function divides(a, b)
-        return remainder(b, a) == 0
-    end
+(define (divides? a b)
+  (= (remainder b a) 0))
 
-    return smallest_divisor(n) == n
-end
+(define (prime? n)
+  (= n (smallest-divisor n)))
 
-function timed_prime_test(n)
-    function start_prime_test(n, start_time)
-        if prime(n) then 
-            report_prime(os.clock() - start_time)
-            return true
-        end
-        return false
-    end
+(define (timed-prime-test n)
+  (start-prime-test n (runtime)))
 
-    function report_prime(elapsed_time)
-        print(string.format("%d is prime: %f", n, elapsed_time * 1000))
-    end
+(define (start-prime-test n start-time)
+  (if (prime? n)
+      (begin
+        (report-prime n (- (runtime) start-time))
+        #t)
+      #f))
 
-    return start_prime_test(n, os.clock())
-end
+(define (report-prime n elapsed-time)
+  (newline)
+  (display n)
+  (display " is prime: ")
+  (display elapsed-time))
 
-function search_for_primes(n, count)
-    function make_odd(n)
-        if n % 2 == 0 then 
-            return n + 1
-        else 
-            return n
-        end
-    end
+(define (search-for-primes n count)
+  (define (make-odd n)
+    (if (even? n)
+        (+ n 1)
+        n))
+  (define (iter-even n count)
+    (cond ((not (= count 0))
+           (if (timed-prime-test n)
+               (iter-even (+ n 2) (- count 1))
+               (iter-even (+ n 2) count)))))
+  (iter-even (make-odd n) count))
 
-    function iter_even(n, count)
-        if count == 0 then 
-            return
-        elseif timed_prime_test(n) then
-            iter_even(n + 2, count - 1)
-        else 
-            iter_even(n + 2, count)
-        end
-    end
-
-    return iter_even(make_odd(n), count)
-end
-
-search_for_primes(1000, 3)
-search_for_primes(10000, 3)
-search_for_primes(100000, 3)
-search_for_primes(1000000, 3)
-search_for_primes(10000000, 3)
-search_for_primes(100000000, 3)
-```
-
-现代的机器比以前快得多，我多寻找了几个素数。执行 Lua 程序，在我的机器上结果如下，时间单位是毫秒。
+;;;;;;;;;;;;;;;;;
+(search-for-primes 1000 3)
+(search-for-primes 10000 3)
+(search-for-primes 100000 3)
+(search-for-primes 1000000 3)
+(search-for-primes 10000000 3)
+(search-for-primes 100000000 3)
 
 ```
-1009 is prime: 0.010000
-1013 is prime: 0.011000
-1019 is prime: 0.011000
-10007 is prime: 0.032000
-10009 is prime: 0.034000
-10037 is prime: 0.033000
-100003 is prime: 0.107000
-100019 is prime: 0.104000
-100043 is prime: 0.085000
-1000003 is prime: 0.274000
-1000033 is prime: 0.281000
-1000037 is prime: 0.271000
-10000019 is prime: 0.850000
-10000079 is prime: 0.872000
-10000103 is prime: 0.840000
-100000007 is prime: 2.595000
-100000037 is prime: 2.531000
-100000039 is prime: 2.511000
+
+现代的机器比以前快得多，我多寻找了几个素数。用 Racket 执行程序，在我的机器上结果如下，时间单位是毫秒。
+
+```
+1009 is prime: 0.001953125
+1013 is prime: 0.0029296875
+1019 is prime: 0.001953125
+10007 is prime: 0.007080078125
+10009 is prime: 0.008056640625
+10037 is prime: 0.008056640625
+100003 is prime: 0.02197265625
+100019 is prime: 0.02197265625
+100043 is prime: 0.023193359375
+1000003 is prime: 0.071044921875
+1000033 is prime: 0.070068359375
+1000037 is prime: 0.06982421875
+10000019 is prime: 0.21923828125
+10000079 is prime: 0.219970703125
+10000103 is prime: 0.220947265625
+100000007 is prime: 0.672119140625
+100000037 is prime: 0.696044921875
+100000039 is prime: 0.68994140625
 ```
 
 3 个素数时间值取平均数，耗时
 
 | n 附近   | 1000  | 10000  | 100000  | 1000000  | 10000000 | 100000000 |
 |---------|-------|--------|---------|----------|----------|-----------|
-| 时间(ms) | 0.011 | 0.033  | 0.0987  | 0.2753   |0.854     | 2.546     |
-| 跟前面时间比值 | - | 3.09  | 2.99  | 2.79   |3.1     | 2.98     |
+| 时间(ms) | 0.002279 | 0.007731  | 0.022380  | 0.0703125   |0.220052    | 0.686035     |
+| 跟前面时间比值 | - | 3.392857  | 2.894737  | 3.141818   |3.129630     | 3.117604     |
 
 每次 n 增加 10 倍，时间增加 3 倍左右。而 `sqrt(10) = 3.1622`。
 

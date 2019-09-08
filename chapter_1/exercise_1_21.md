@@ -1,36 +1,25 @@
 ## P35 - [练习 1.21]
 
-``` Lua
-function square(x) 
-    return x * x
-end
+``` Scheme
+#lang racket
 
-function remainder(n, b)
-    return n % b
-end
+(define (square x) (* x x))
 
-function smallest_divisor(n)
-    function divides(a, b)
-        return remainder(b, a) == 0
-    end
+(define (smallest-divisor n)
+  (find-divisor n 2))
 
-    function find_divisor(n, test_divisor)
-        if square(test_divisor) > n then 
-            return n
-        elseif divides(test_divisor, n) then 
-            return test_divisor
-        else
-            return find_divisor(n, test_divisor + 1)
-        end
-    end
+(define (divides? a b)
+  (= (remainder b a) 0))
 
-    return find_divisor(n, 2)
-end
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (+ test-divisor 1)))))
 
-
-print(smallest_divisor(199))    -- 199
-print(smallest_divisor(1999))   -- 1999
-print(smallest_divisor(19999))  -- 7
+;;;;;;;;;;;;;;;;
+(smallest-divisor 199)    ; 199
+(smallest-divisor 1999)   ; 1999
+(smallest-divisor 19999)  ; 7
 ```
 
 199 和 1999 的最小因子为自身，它们都是素数。

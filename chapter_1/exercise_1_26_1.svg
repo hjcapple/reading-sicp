@@ -12,12 +12,12 @@
 <!-- node_0 -->
 <g id="node1" class="node">
 <title>node_0</title>
-<text text-anchor="middle" x="63.2132" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 19, 19)</text>
+<text text-anchor="middle" x="63.2132" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 19 19)</text>
 </g>
 <!-- node_1 -->
 <g id="node2" class="node">
 <title>node_1</title>
-<text text-anchor="middle" x="225.6396" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 18, 19)</text>
+<text text-anchor="middle" x="225.6396" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 18 19)</text>
 </g>
 <!-- node_0&#45;&gt;node_1 -->
 <g id="edge1" class="edge">
@@ -28,7 +28,7 @@
 <!-- node_2 -->
 <g id="node3" class="node">
 <title>node_2</title>
-<text text-anchor="middle" x="384.566" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 9, 19)</text>
+<text text-anchor="middle" x="384.566" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 9 19)</text>
 </g>
 <!-- node_1&#45;&gt;node_2 -->
 <g id="edge2" class="edge">
@@ -39,7 +39,7 @@
 <!-- node_3 -->
 <g id="node4" class="node">
 <title>node_3</title>
-<text text-anchor="middle" x="539.9924" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 8, 19)</text>
+<text text-anchor="middle" x="539.9924" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 8 19)</text>
 </g>
 <!-- node_2&#45;&gt;node_3 -->
 <g id="edge3" class="edge">
@@ -50,7 +50,7 @@
 <!-- node_4 -->
 <g id="node5" class="node">
 <title>node_4</title>
-<text text-anchor="middle" x="695.4188" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 4, 19)</text>
+<text text-anchor="middle" x="695.4188" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 4 19)</text>
 </g>
 <!-- node_3&#45;&gt;node_4 -->
 <g id="edge4" class="edge">
@@ -61,7 +61,7 @@
 <!-- node_5 -->
 <g id="node6" class="node">
 <title>node_5</title>
-<text text-anchor="middle" x="850.8452" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 2, 19)</text>
+<text text-anchor="middle" x="850.8452" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 2 19)</text>
 </g>
 <!-- node_4&#45;&gt;node_5 -->
 <g id="edge5" class="edge">
@@ -72,7 +72,7 @@
 <!-- node_6 -->
 <g id="node7" class="node">
 <title>node_6</title>
-<text text-anchor="middle" x="1006.2716" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 1, 19)</text>
+<text text-anchor="middle" x="1006.2716" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 1 19)</text>
 </g>
 <!-- node_5&#45;&gt;node_6 -->
 <g id="edge6" class="edge">
@@ -83,7 +83,7 @@
 <!-- node_7 -->
 <g id="node8" class="node">
 <title>node_7</title>
-<text text-anchor="middle" x="1161.698" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">expmod(13, 0, 19)</text>
+<text text-anchor="middle" x="1161.698" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">(expmod 13 0 19)</text>
 </g>
 <!-- node_6&#45;&gt;node_7 -->
 <g id="edge7" class="edge">

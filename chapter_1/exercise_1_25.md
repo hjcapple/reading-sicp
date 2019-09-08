@@ -20,12 +20,12 @@
   (cond ((= exp 0) 1)
         ((even? exp)
          (remainder 
-          (square (expmod base (/ exp 2) m))
-          m))
+           (square (expmod base (/ exp 2) m))
+           m))
         (else
-         (remainder 
-          (* base (expmod base (- exp 1) m))
-          m))))
+          (remainder 
+            (* base (expmod base (- exp 1) m))
+            m))))
 ```
 
 `(expmod base exp m)` 里面使用 `remainder` 取余数，计算结果不会超过 m。而实现过程是递归的，出现下面运算。
