@@ -11,4 +11,10 @@
 	* [monte-carlo、cesaro-test 简述](./monte_carlo_and_cesaro.md)
 	* P157 - [练习 3.5](./exercise_3_5.scm)
 	* P157 - [练习 3.6](./exercise_3_6.scm)
+* P157 - 3.1.3 引进赋值的代价
+	* P161 - [练习 3.7](./exercise_3_7.scm)
+	* P162 - [练习 3.8](./exercise_3_8.scm)
 
+### 3.2 求值的环境模型
+
+* P163 - 3.2.1 求值规则
