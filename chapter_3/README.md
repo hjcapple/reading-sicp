@@ -35,4 +35,5 @@
 	* P178 - [练习 3.16](./exercise_3_16.md)
 	* P178 - [练习 3.17](./exercise_3_17.scm)
 	* P179 - [练习 3.18](./exercise_3_18.scm)
+	* P179 - [练习 3.19](./exercise_3_19.scm)
 
