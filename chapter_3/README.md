@@ -45,4 +45,4 @@
 	* P183 - [一维表格](./table_1d.scm)
 	* P185 - [二维表格](./table_2d.scm)
 	* P186 - [局部表格](./table_local.scm)
-
+	* P186 - [练习 3.24](./exercise_3_24.scm)

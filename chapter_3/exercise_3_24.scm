@@ -1,13 +1,13 @@
 #lang sicp
 
-;; P186 - [局部表格]
+;; P186 - [练习 3.24]
 
-(define (assoc key records)
-  (cond ((null? records) false)
-        ((equal? key (caar records)) (car records))
-        (else (assoc key (cdr records)))))
-
-(define (make-table)
+(define (make-table same-key?)
+  (define (assoc key records)
+    (cond ((null? records) false)
+          ((same-key? key (caar records)) (car records))
+          (else (assoc key (cdr records)))))
+  
   (let ((local-table (list '*table*)))
     (define (lookup key-1 key-2)
       (let ((subtable (assoc key-1 (cdr local-table))))
@@ -36,11 +36,12 @@
             (else (error "Unknown operation -- TABLE" m))))
     dispatch))
 
-(define operation-table (make-table))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+(define operation-table (make-table equal?))
 (define get (operation-table 'lookup-proc))
 (define put (operation-table 'insert-proc!))
 
-;;;;;;;;;;;;;;;;;;;;;;;;
 ; 这些数字是 ASCII 码,+ 符号是 43, a 符号是 97 等
 (put 'math '+ 43)
 (put 'math '- 45)
@@ -50,4 +51,5 @@
 (put 'letters 'b 98)
 
 (get 'math '-)
+(get 'letters 'a)
 (get 'letters 'b)
