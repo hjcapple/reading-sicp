@@ -41,4 +41,8 @@
 	* P183 - [练习 3.21](./exercise_3_21.md)
 	* P183 - [练习 3.22](./exercise_3_22.scm)
 	* P183 - [练习 3.23](./exercise_3_23.md)
+* P183 - 3.3.3 表格的表示
+	* P183 - [一维表格](./table_1d.scm)
+	* P185 - [二维表格](./table_2d.scm)
+	* P186 - [局部表格](./table_local.scm)
 
