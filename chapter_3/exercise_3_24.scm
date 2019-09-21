@@ -1,6 +1,6 @@
 #lang sicp
 
-;; P186 - [练习 3.24]
+;; P187 - [练习 3.24]
 
 (define (make-table same-key?)
   (define (assoc key records)
