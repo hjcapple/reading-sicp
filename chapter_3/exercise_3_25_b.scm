@@ -18,7 +18,8 @@
 ; (insert! 'a 1000 t)  
 ; 就会错误地冲掉 keys = (list 'a 'b) 的记录。因为第二条语句，会将 key = 'a 的记录直接修改成 1000，这样就丢失了原来的子表格。
 
-; 递归创建子表格，会出现上述的崩溃或者冲掉记录，根本原因是 keys 的个数不固定。于是每一层都可能是最终记录，也可能是子表格，要统一处理两者会很麻烦。
+; 递归创建子表格，会出现上述的崩溃或者冲掉记录，根本原因是 keys 的个数不固定。于是每一层都可能是最终记录，也可能是子表格，
+; 要统一处理两者会很麻烦，甚至是不可能的。
 ; 这种解法，虽然可以传入不同个数的 keys。但同一个表格中每个 keys 的个数最好相同，不适合在同一个表格中混用不同个数的 keys。
 ; [练习 3.25 - 解法 a] 反而会更简单，也更通用。
 
@@ -31,7 +32,7 @@
   (if (list? key-list)
       (let ((record-or-subtable (assoc (car key-list) (cdr table))))
         (if record-or-subtable
-            (if (null? (cdr key-list))
+            (if (null? (cdr key-list))  ; 判断记录或者子表格。没有多余的 keys, 是记录。有多余的 keys, 就是表格。
                 (cdr record-or-subtable)
                 (lookup (cdr key-list) record-or-subtable))
             false))
@@ -43,7 +44,7 @@
   
   (if (list? key-list)
       (let ((record-or-subtable (assoc (car key-list) (cdr table))))
-        (if (null? (cdr key-list))
+        (if (null? (cdr key-list))      ; 判断记录或者子表格。没有多余的 keys, 是记录。有多余的 keys, 就是表格。
             (let ((record record-or-subtable))
               (if record
                   (set-cdr! record value)
