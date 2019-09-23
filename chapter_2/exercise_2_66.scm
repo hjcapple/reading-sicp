@@ -34,7 +34,10 @@
 
 (define (insert key value tree)
   (cond ((null? tree) (make-tree (make-entry key value) null null))
-        ((= key (entry-key (entry tree))) tree)
+        ((= key (entry-key (entry tree)))
+         (make-tree (make-entry key value)
+                    (left-branch tree)
+                    (right-branch tree)))
         ((< key (entry-key (entry tree)))
          (make-tree (entry tree)
                     (insert key value (left-branch tree))
@@ -47,9 +50,9 @@
 ;;;;;;;;;;;;;;;;;;;;;
 (define (list->tree lst)
   (if (null? lst)
-    null 
-    (let ((e (car lst)))
-      (insert (car e) (cadr e) (list->tree (cdr lst))))))
+      null 
+      (let ((e (car lst)))
+        (insert (car e) (cadr e) (list->tree (cdr lst))))))
 
 (define a (list->tree '((1 "Yellow")
                         (3 "Red")
@@ -61,4 +64,6 @@ a
 (lookup 9 a)
 (lookup 10 a)
 (lookup 4 a)
+
+(lookup 4 (insert 4 "Black" a))
 
