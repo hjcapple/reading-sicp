@@ -48,3 +48,4 @@
 	* P187 - [练习 3.24](./exercise_3_24.scm)
 	* P187 - [练习 3.25 - 解法 a](./exercise_3_25_a.scm)
 	* P187 - [练习 3.25 - 解法 b](./exercise_3_25_b.scm)
+	* P187 - [练习 3.26](./exercise_3_26.scm)
