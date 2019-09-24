@@ -50,3 +50,4 @@
 	* P187 - [练习 3.25 - 解法 b](./exercise_3_25_b.scm)
 	* P187 - [练习 3.26](./exercise_3_26.scm)
 	* P188 - [练习 3.27](./exercise_3_27.md)
+* P188 - [3.3.4 数字电路的模拟器](./digital_circuit.scm)
