@@ -2,6 +2,8 @@
 
 ;; P180 - [3.3.2 队列的表示]
 
+(#%provide make-queue insert-queue! delete-queue! empty-queue? front-queue)
+
 (define (front-ptr queue) (car queue))
 
 (define (rear-ptr queue) (cdr queue))
@@ -42,16 +44,19 @@
   (newline))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define q1 (make-queue))
-
-(insert-queue! q1 'a) ; ((a) a)
-(print-queue q1)      ; (a)
-
-(insert-queue! q1 'b) ; ((a b) b)
-(print-queue q1)      ; (a b)
-
-(delete-queue! q1)    ; ((b) b)
-(print-queue q1)      ; (b)
-
-(delete-queue! q1)    ; (() b)
-(print-queue q1)      ; ()
+(#%require (only racket module*))
+(module* main #f
+  (define q1 (make-queue))
+  
+  (insert-queue! q1 'a) ; ((a) a)
+  (print-queue q1)      ; (a)
+  
+  (insert-queue! q1 'b) ; ((a b) b)
+  (print-queue q1)      ; (a b)
+  
+  (delete-queue! q1)    ; ((b) b)
+  (print-queue q1)      ; (b)
+  
+  (delete-queue! q1)    ; (() b)
+  (print-queue q1)      ; ()
+)
