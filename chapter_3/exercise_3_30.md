@@ -23,7 +23,7 @@
 
 级联进位加法器电路图中，信号 A、B 直接从外部设置，本身没有延迟。n 位加法器，由 n 个全加器串联而成，一个全加器的 c-in 是另一个全加器的 c-out。延迟主要由 c 引起。
 
-因此要分析级联进位加法器的延迟，首先要分析全加器的延迟。而全加器又由半加器组合而成，又要分析半加器的延迟。
+要分析级联进位加法器的延迟，首先要分析全加器的延迟。而全加器又由半加器组合而成，又要分析半加器的延迟。
 
 ### 半加器
 
@@ -36,13 +36,13 @@ delay-1 = or-gate-delay + and-gate-delay
 delay-2 = and-gate-delay + inverter-delay + and-gate-delay
 ```
 
-因此 S 出口的最大延迟为
+因此 S 的最大延迟为
 
 ``` C
 half-adder-delay-S = max(or-gate-delay, and-gate-delay + inverter-delay) 
                     + and-gate-delay
 ```
-信号到达 C 出口，只经过 and-gate，因此 C 的延迟为
+信号到达 C，只经过 and-gate，因此 C 的延迟为
 
 ```
 half-adder-delay-C = and-gate-delay
@@ -52,7 +52,7 @@ half-adder-delay-C = and-gate-delay
 
 <img src="./exercise_3_30_b.svg"/>
 
-为了分析 C-out 的最大延迟，我们寻找产出最大延迟的连接路径。最大延迟路径为，经过一个半加器，从半加器的 S 出，再经过一个半加器，从半加器 C 出，再经过一个 or-gate。
+为了分析 C-out 的最大延迟，我们寻找产生最大延迟的连接路径。最大延迟路径为，经过一个半加器，从半加器的 S 出，再经过一个半加器，从半加器 C 出，再经过一个 or-gate。
 
 于是全加器 C-out 的延迟为
 
@@ -65,7 +65,8 @@ full-adder-delay-C = half-adder-delay-S + half-adder-delay-C + or-gate-delay
 同理全加器的 Sum 延迟为
 
 ```
-full-adder-delay-Sum = 2 * max(or-gate-delay, and-gate-delay + inverter-delay) 
+full-adder-delay-Sum = half-adder-delay-S + half-adder-delay-S
+                     = 2 * max(or-gate-delay, and-gate-delay + inverter-delay) 
                        + 2 * and-gate-delay
 ```
 
