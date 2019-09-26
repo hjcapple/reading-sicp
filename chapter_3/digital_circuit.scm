@@ -4,7 +4,8 @@
 
 ;; P188 - [3.3.4 数字电路的模拟器]
 
-(#%provide make-wire and-gate inverter probe propagate set-signal!)
+(#%provide make-wire and-gate inverter probe propagate set-signal! get-signal)
+(#%provide half-adder full-adder get-agenda-current-time)
 
 (define (half-adder a b s c)
   (let ((d (make-wire)) 
@@ -163,6 +164,9 @@
       (let ((first-seg (first-segment agenda)))
         (set-current-time! agenda (segment-time first-seg))
         (front-queue (segment-queue first-seg)))))
+
+(define (get-agenda-current-time)
+  (current-time the-agenda))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (probe name wire)

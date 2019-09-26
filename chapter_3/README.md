@@ -53,3 +53,4 @@
 * P188 - [3.3.4 数字电路的模拟器](./digital_circuit.scm)
 	* P192 - [练习 3.28](./exercise_3_28.md)
 	* P192 - [练习 3.29](./exercise_3_29.md)
+	* P192 - [练习 3.30](./exercise_3_30.md)
