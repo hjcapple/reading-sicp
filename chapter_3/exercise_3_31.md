@@ -38,5 +38,5 @@ accept-action-procedure! 是 add-action! 触发的。当用线路连接 or-gate�
 
 假如 accept-action-procedure! 不调用 (proc), 线路并不会被正确初始化。
 
-于是半加器中，当 A = 1, B = 0 时，调用 `(propagate)` 后下面的第一个 and-gate 仍然为 0，不会触发 inverter 改变。E 线路仍然错误地停留在没有初始好的值 0。但实际上 E 线路的值应该为 1。
+于是半加器中，当 A = 1, B = 0 时，调用 `(propagate)` 后下面的第一个 and-gate 输出仍然为 0，不会触发 inverter 输出改变。E 线路仍然错误地停留在没有初始好的值 0。但实际上 E 线路的值应该为 1。
 
