@@ -27,7 +27,7 @@
 
 ### 半加器
 
-<img src="./exercise_3_30_a.svg"/>
+<img src="./half-adder.svg"/>
 
 上图是半加器的连接图，A、B 信号到 S 信号经过 or-gate、and-gate，也可以经过 and-gate、inverter、or-gate。两者的延迟分别为
 
@@ -50,7 +50,7 @@ half-adder-delay-C = and-gate-delay
 
 ### 全加器
 
-<img src="./exercise_3_30_b.svg"/>
+<img src="./full-adder.svg"/>
 
 为了分析 C-out 的最大延迟，我们寻找产生最大延迟的连接路径。最大延迟路径为，经过一个半加器，从半加器的 S 出，再经过一个半加器，从半加器 C 出，再经过一个 or-gate。
 
