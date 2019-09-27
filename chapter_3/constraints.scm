@@ -3,7 +3,7 @@
 ;; P198 - [3.3.5 约束的传播]
 
 (#%provide make-connector adder multiplier constant probe)
-(#%provide set-value! forget-value!)
+(#%provide set-value! forget-value! has-value? get-value connect)
 
 (define (adder a1 a2 sum)
   (define (process-new-value)
