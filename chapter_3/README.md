@@ -57,3 +57,6 @@
 	* P195 - [练习 3.31](./exercise_3_31.md)
 	* P197 - [练习 3.32](./exercise_3_32.md)
 * P198 - [3.3.5 约束的传播](./constraints.scm)
+	* P205 - [练习 3.33](./exercise_3_33.scm)
+
+	

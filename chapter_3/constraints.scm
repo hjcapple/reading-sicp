@@ -2,6 +2,9 @@
 
 ;; P198 - [3.3.5 约束的传播]
 
+(#%provide make-connector adder multiplier constant probe)
+(#%provide set-value! forget-value!)
+
 (define (adder a1 a2 sum)
   (define (process-new-value)
     (cond ((and (has-value? a1) (has-value? a2))
@@ -164,14 +167,17 @@
     (constant 32 y)
     'ok))
 
-(define C (make-connector))
-(define F (make-connector))
-(celsius-fahrenheit-converter C F)
-
-(probe "Celsius temp" C)
-(probe "Fahrenheit temp" F)
-(set-value! C 25 'user)
-
-(forget-value! C 'user)
-(set-value! F 212 'user)
+(#%require (only racket module*))
+  (module* main #f
+  (define C (make-connector))
+  (define F (make-connector))
+  (celsius-fahrenheit-converter C F)
+  
+  (probe "Celsius temp" C)
+  (probe "Fahrenheit temp" F)
+  (set-value! C 25 'user)
+  
+  (forget-value! C 'user)
+  (set-value! F 212 'user)
+)
 
