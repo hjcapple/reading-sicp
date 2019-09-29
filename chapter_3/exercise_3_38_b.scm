@@ -39,7 +39,9 @@
   (let ((balance 100)
         (peter-balance 0)
         (paul-balance 0)
-        (mary-balance 0))
+        (mary-balance-1 0)
+        (mary-balance-2 0)
+        )
     (define (process x)
       (cond ((eq? x 'Peter-Get)
              (set! peter-balance balance))
@@ -49,10 +51,12 @@
              (set! paul-balance balance))
             ((eq? x 'Paul-Set)
              (set! balance (- paul-balance 20)))
-            ((eq? x 'Mary-Get)
-             (set! mary-balance balance))
+            ((eq? x 'Mary-Get-1)
+             (set! mary-balance-1 balance))
+            ((eq? x 'Mary-Get-2)
+             (set! mary-balance-2 balance))
             ((eq? x 'Mary-Set)
-             (set! balance (- mary-balance (/ mary-balance 2))))))
+             (set! balance (- mary-balance-2 (/ mary-balance-1 2))))))
     (for-each process orders)
     
     (set! all-balance-values(adjoin-set balance all-balance-values))
@@ -62,21 +66,23 @@
     (newline)))
 
 ; 用于判断列表中 a 是否在 b 前面。
-; 当 a 在 b 的前面时，肯定先搜索到 a, 再搜索到 b
+; 当 a 在 b 的前面时,肯定先搜索到 a, 再搜索到 b
 (define (right-order? order a b)
   (and (memq a order)
        (memq b (memq a order))))
 
 (define (gen-orders)
-  (let* ((lst (list 'Peter-Get 'Peter-Set 'Paul-Get 'Paul-Set 'Mary-Get 'Mary-Set))
+  (let* ((lst (list 'Peter-Get 'Peter-Set 'Paul-Get 'Paul-Set 'Mary-Get-1 'Mary-Get-2 'Mary-Set))
          (orders (arrange lst)))
     (filter (lambda (x)
               (and (right-order? x 'Peter-Get 'Peter-Set)
                    (right-order? x 'Paul-Get 'Paul-Set)
-                   (right-order? x 'Mary-Get 'Mary-Set)))
+                   (right-order? x 'Mary-Get-1 'Mary-Get-2)
+                   (right-order? x 'Mary-Get-2 'Mary-Set)))
             orders)))
 
 (define orders (gen-orders))
 (for-each run orders)
 all-balance-values
+
 

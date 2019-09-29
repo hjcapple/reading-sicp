@@ -53,63 +53,60 @@ balance 的最后结果为 45。
 1. 获取 balance。
 2. 计算新值，设置 balance。
 
-于是我们生成 
-
-`(list 'Peter-Get 'Peter-Set 'Paul-Get 'Paul-Set 'Mary-Get 'Mary-Set)`
-
-的全部排列，6 项的排列共有 720 种情况。
-
-但需要注意每个进程中，必须先执行 get, 再执行 set。因此
-
-* 'Peter-Get 必须排在 'Peter-Set 前面
-* 'Paul-Get 必须排在 'Paul-Set 前面
-* 'Mary-Get 必须排在 'Mary-Set 前面
-
-过滤掉某些排列，最后的可能情况为 `720 / (2! * 2! * 2!) = 90` 种。原始排列中，'Peter-Get、'Peter-Set 顺序不固定，两者谁在前的可能性一样。因此过滤掉每种强制顺序，都需要除以 2!。有 3 种强制顺序，也就除以 (2! * 2! * 2!)。
-
-注意这里有个细节，Mary 的进程为
+注意有个细节，Mary 的进程为
 
 ``` Scheme
 (set! balance (- balance (/ balance 2))
 ```
 
-根据解释器的实现，Mary 可能需要获取 balance 两次，也可能被优化成只获取 balance 一次。假如是两次的情况，就需要拆分成 Mary-Get-1、Mary-Get-2 进行排列，并且 Mary-Get-1 在 Mary-Get-2 前面。
+Mary 需要获取 balance 两次，每次都可能被打断。
 
-这样就会出现 7 项排列共 5040 种情况，再过滤掉强制顺序，可能情况为 `5040 / (2! * 2! * 3!) = 210` 种。
+于是我们生成 
 
-我们按照 Mary 进程只获取 balance 一次，共 6 项排列进行分析。会稍微简单些，方便画图，实际书中后续章节是按照多次访问变量来计算的，跟这里有点不同。[完整程序在这里](./exercise_3_38_b.scm)。
+`(list 'Peter-Get 'Peter-Set 'Paul-Get 'Paul-Set 'Mary-Get-1 'Mary-Get-2 'Mary-Set)`
+
+的全部排列，7 项排列共 5040 种情况。Mary 需要获取 balance 两次，就拆分成 Mary-Get-1、Mary-Get-2。
+
+每个进程中，必须先执行 get, 再执行 set。于是有下面的强制顺序
+
+* Peter-Get、Peter-Set
+* Paul-Get、Paul-Set
+* Mary-Get-1、Mary-Get-2、Mary-Set
+
+拿 Mary 进程来说，3 项的排列为 3!。但在强制顺序下，只剩下一种排列。于是过滤掉强制顺序，可能情况为 `5040 / (2! * 2! * 3!) = 210` 种。
+
+生成所有可能的排列顺序，逐一运行，得到每种可能的结果。
+
+[完整程序在这里](./exercise_3_38_b.scm)。
 
 输出如下（输出太长，没有全部列出):
 
 ```
-(Peter-Get Peter-Set Paul-Get Paul-Set Mary-Get Mary-Set): 45
-(Peter-Get Peter-Set Paul-Get Mary-Get Paul-Set Mary-Set): 55
-(Peter-Get Peter-Set Paul-Get Mary-Get Mary-Set Paul-Set): 90
-(Peter-Get Peter-Set Mary-Get Paul-Get Paul-Set Mary-Set): 55
-(Peter-Get Peter-Set Mary-Get Paul-Get Mary-Set Paul-Set): 90
-(Peter-Get Peter-Set Mary-Get Mary-Set Paul-Get Paul-Set): 35
-(Peter-Get Paul-Get Peter-Set Paul-Set Mary-Get Mary-Set): 40
+(Peter-Get Peter-Set Paul-Get Paul-Set Mary-Get-1 Mary-Get-2 Mary-Set): 45
+(Peter-Get Peter-Set Paul-Get Mary-Get-1 Paul-Set Mary-Get-2 Mary-Set): 35
+(Peter-Get Peter-Set Paul-Get Mary-Get-1 Mary-Get-2 Paul-Set Mary-Set): 55
+(Peter-Get Peter-Set Paul-Get Mary-Get-1 Mary-Get-2 Mary-Set Paul-Set): 90
+(Peter-Get Peter-Set Mary-Get-1 Paul-Get Paul-Set Mary-Get-2 Mary-Set): 35
+(Peter-Get Peter-Set Mary-Get-1 Paul-Get Mary-Get-2 Paul-Set Mary-Set): 55
+(Peter-Get Peter-Set Mary-Get-1 Paul-Get Mary-Get-2 Mary-Set Paul-Set): 90
 ....
-(Mary-Get Paul-Get Mary-Set Paul-Set Peter-Get Peter-Set): 90
-(Mary-Get Mary-Set Peter-Get Peter-Set Paul-Get Paul-Set): 40
-(Mary-Get Mary-Set Peter-Get Paul-Get Peter-Set Paul-Set): 30
-(Mary-Get Mary-Set Peter-Get Paul-Get Paul-Set Peter-Set): 60
-(Mary-Get Mary-Set Paul-Get Peter-Get Peter-Set Paul-Set): 30
-(Mary-Get Mary-Set Paul-Get Peter-Get Paul-Set Peter-Set): 60
-(Mary-Get Mary-Set Paul-Get Paul-Set Peter-Get Peter-Set): 40
-'(60 30 50 110 80 40 35 90 55 45)
+(Mary-Get-1 Mary-Get-2 Mary-Set Peter-Get Peter-Set Paul-Get Paul-Set): 40
+(Mary-Get-1 Mary-Get-2 Mary-Set Peter-Get Paul-Get Peter-Set Paul-Set): 30
+(Mary-Get-1 Mary-Get-2 Mary-Set Peter-Get Paul-Get Paul-Set Peter-Set): 60
+(Mary-Get-1 Mary-Get-2 Mary-Set Paul-Get Peter-Get Peter-Set Paul-Set): 30
+(Mary-Get-1 Mary-Get-2 Mary-Set Paul-Get Peter-Get Paul-Set Peter-Set): 60
+(Mary-Get-1 Mary-Get-2 Mary-Set Paul-Get Paul-Set Peter-Get Peter-Set): 40
+'(50 60 30 110 70 80 25 40 90 55 35 45)
 ```
 
-根据顺序不同，最终 balance 的可能值为 `(60 30 50 110 80 40 35 90 55 45)`。
-
-假如 Mary 进程获取 balance 两次，原理是一样的，稍微改改程序。定义 mary-balance-1、mary-balance-2 两个变量。最终 balance 的可能值为 `(50 60 30 110 70 80 25 40 90 55 35 45)`。[完整程序在这里](./exercise_3_38_b_2.scm)。
+根据顺序不同，最终 balance 的可能值为 `(50 60 30 110 70 80 25 40 90 55 35 45)`。
 
 ### 画图
 
 不可能每种情况都画出来，只画
 
 ```
-(Mary-Get Paul-Get Mary-Set Paul-Set Peter-Get Peter-Set): 90
+(Peter-Get Paul-Get Paul-Set Mary-Get-1 Peter-Set Mary-Get-2 Mary-Set): 70
 ```
 
 这种情况的时序图。
