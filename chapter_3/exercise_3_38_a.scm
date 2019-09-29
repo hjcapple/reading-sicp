@@ -17,9 +17,8 @@
       (list '())
       (accumulate append '()
                   (map (lambda (x)
-                         (let ((subarrange (arrange (remove x lst))))
-                           (append '() (map (lambda (sub) (append (list x) sub)) 
-                                            subarrange))))
+                         (map (lambda (sub) (append (list x) sub)) 
+                              (arrange (remove x lst))))
                        lst))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
