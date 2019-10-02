@@ -63,5 +63,3 @@ exchange 中调用 `(account1 'withdraw)`。假如按照 Louis 的修改，会�
 
 二来，假如需要使用 `recursive_mutex` 来避免死锁，通常表示程序设计得有问题。
 
-书中的 process 被翻译成“进程”，实际上书中的 process 是指计算过程，更类似如日常说的线程(thread)。书中说的多进程并发，更类似日常说的多线程程序设计。
-
