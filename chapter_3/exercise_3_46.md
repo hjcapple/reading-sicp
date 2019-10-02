@@ -8,5 +8,5 @@
 
 这时 P1、P2 都返回 false。于是 `(mutex 'acquire)` 就都会返回，P1、P2 同时获取到 mutex, 这明显是错的。
 
-正确的 `test-and-set!` 的实现，不可能两个并行计算过程都返回 false。
+原子操作的 `test-and-set!`，不可能两个并行计算过程都返回 false。
 
