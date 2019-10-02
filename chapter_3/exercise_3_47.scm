@@ -1,7 +1,5 @@
 #lang sicp
 
-;; P218 - [练习 3.47]
-
 (define (make-mutex)
   (let ((cell (list false)))            
     (define (the-mutex m)
@@ -14,7 +12,7 @@
 (define (clear! cell)
   (set-car! cell false))
 
-;; 这里的 test-and-set! 并非原子操作,实现不了真正的 mutex
+;; 这里的 test-and-set! 并非原子操作，实现不了真正的 mutex
 (define (test-and-set! cell)
   (if (car cell)
       true
@@ -22,6 +20,9 @@
         false)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 信号量的实现需要维护好一个计数器。每次获取，就递减计数器，当计数器为 0 时，就需要重试。释放时
+; 就递增计数器。重点在于这个计数器本身需要 mutex 或者 test-and-set! 进行保护。
+
 ; a) 基于互斥元
 (define (make-semaphore n)
   (let ((lock (make-mutex)))
@@ -41,7 +42,7 @@
              (lock 'release))))
     the-semaphore))
 
-; b) 基于 test-and-set!,类似于基于互斥元的版本。
+; b) 基于 test-and-set!，类似于基于互斥元的版本。
 ; 仅仅是将 (lock 'acquire) 和 (lock 'release) 的实现展开。
 (define (make-semaphore-2 n)
   (let ((cell (list false)))
