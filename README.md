@@ -17,3 +17,10 @@
 第 1 章的代码和习题最开始使用 Lua 来完成，第 1 章所用到的 Scheme 特性，Lua 都有直接的对应。但到了第 2 章，发现 Lua 语言还不够灵活，缺少操作符号(Symbol)的能力，于是转回使用 Scheme。第 1 章的代码也改写到 Scheme，但保留 Lua 版本。
 
 * [第1章 构造过程抽象](./chapter_1_lua/README.md)（Lua 版本）
+
+### 环境配置
+
+正常安装 [DrRacket](https://racket-lang.org)后，某些代码用到了 `#lang sicp`，需要额外安装 sicp package。
+
+打开 DrRacket, 选择 File -> Package Manager 菜单项。在 `Do What I Mean` 一栏输入 `sicp`, 点击 Install。
+
