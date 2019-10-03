@@ -1,23 +1,8 @@
 #lang sicp
 
-(define (make-mutex)
-  (let ((cell (list false)))            
-    (define (the-mutex m)
-      (cond ((eq? m 'acquire)
-             (if (test-and-set! cell)
-                 (the-mutex 'acquire))) ; retry
-            ((eq? m 'release) (clear! cell))))
-    the-mutex))
+;; P218 - [练习 3.47]
 
-(define (clear! cell)
-  (set-car! cell false))
-
-;; 这里的 test-and-set! 并非原子操作，实现不了真正的 mutex
-(define (test-and-set! cell)
-  (if (car cell)
-      true
-      (begin (set-car! cell true)
-        false)))
+(#%require "serializer.scm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 信号量的实现需要维护好一个计数器。每次获取，就递减计数器，当计数器为 0 时，就需要重试。释放时
