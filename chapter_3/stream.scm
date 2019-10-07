@@ -3,7 +3,7 @@
 ;; P220 - [3.5.1 流作为延时的表]
 
 (#%provide stream-car stream-cdr)
-(#%provide stream-enumerate-interval display-stream)
+(#%provide stream-enumerate-interval display-stream display-line stream-ref)
 
 (define (stream-car stream) (car stream))
 (define (stream-cdr stream) (force (cdr stream)))
