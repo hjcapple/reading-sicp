@@ -4,6 +4,7 @@
 
 (#%provide stream-car stream-cdr)
 (#%provide stream-enumerate-interval display-stream display-line stream-ref)
+(#%provide stream-filter)
 
 (define (stream-car stream) (car stream))
 (define (stream-cdr stream) (force (cdr stream)))

@@ -7,13 +7,20 @@
 在 DrRacket 中
 
 ``` Scheme
+(define x (stream-map show (stream-enumerate-interval 0 10)))
+```
+
+会输出 0。在 stream-map 中，调用了一次 show 来得到 `(car x)` 的值，其它部分延迟求值。
+
+### b)
+
+``` Scheme
 (stream-ref x 5)
 ```
 
 会输出
 
 ```
-0
 1
 2
 3
@@ -22,11 +29,11 @@
 5
 ```
 
-前面的 0 - 5 是 `show` 函数中 `display-line` 的打印值。最后的 5 是 `(stream-ref x 5)` 的返回值。
+前面的 1 - 5 是 `show` 函数中 `display-line` 的打印值。最后的 5 是 `(stream-ref x 5)` 的返回值。
 
 从打印结果可以看到，stream-map 的实现中使用了 delay 延迟求值。调用 stream-map 时，不会直接调用 show。当使用 stream-ref 时，才真正会触发 show 函数。并且到达 5 时，得到想要的结果，就可停下来了。并没有继续打印 6 - 10.
 
-### b)
+### c)
 
 ``` Scheme
 (stream-ref x 7)
