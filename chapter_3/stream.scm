@@ -2,6 +2,9 @@
 
 ;; P220 - [3.5.1 流作为延时的表]
 
+(#%provide stream-car stream-cdr)
+(#%provide stream-enumerate-interval display-stream)
+
 (define (stream-car stream) (car stream))
 (define (stream-cdr stream) (force (cdr stream)))
 
@@ -44,12 +47,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (#%require "ch3support.scm")
+(#%require (only racket module*))
+(module* main #f
+  (stream-car
+    (stream-cdr
+      (stream-filter prime?
+                     (stream-enumerate-interval 10000 1000000))))
 
-(stream-car
-  (stream-cdr
-    (stream-filter prime?
-                   (stream-enumerate-interval 10000 1000000))))
-
-(stream-ref (stream-filter prime?
-                           (stream-enumerate-interval 10000 1000000)) 1)
+  (stream-ref (stream-filter prime?
+                             (stream-enumerate-interval 10000 1000000)) 1)
+)
 
