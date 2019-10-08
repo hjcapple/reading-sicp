@@ -90,3 +90,4 @@
 	* P226 - [练习 3.52](./exercise_3_52.md)
 
 * P226 - [3.5.2 无穷流](./infinite_stream.scm)
+	* P230 - [练习 3.53](./exercise_3_53.md)
