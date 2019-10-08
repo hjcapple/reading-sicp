@@ -4,6 +4,9 @@
 
 (#%require "stream.scm")
 
+(#%provide add-stream integers-starting-from integers)
+(#%provide stream-head->list)
+
 (define (integers-starting-from n)
   (cons-stream n (integers-starting-from (+ n 1))))
 
@@ -61,14 +64,23 @@
           (else (iter (stream-cdr ps)))))
   (iter primes-2))
 
+;; 将 s 的前 n 个值，转成列表，方便调试
+(define (stream-head->list s n)
+  (if (or (= n 0) (stream-null? s))
+      '()
+      (cons (stream-car s) (stream-head->list (stream-cdr s) (- n 1)))))
+
 ;;;;;;;;;;;;;;;;;;;;
-(stream-ref no-sevens 100)  ; 117
-(stream-ref fibs 10)        ; 55
-(stream-ref fibs-2 10)      ; 55
-(stream-ref primes 50)      ; 233
-(stream-ref primes-2 50)    ; 233
-(stream-ref ones 100)       ; 1
-(stream-ref integers 100)   ; 101
-(stream-ref integers-2 100) ; 101
-(stream-ref double 10)      ; 1024
+(#%require (only racket module*))
+(module* main #f
+  (stream-ref no-sevens 100)  ; 117
+  (stream-ref fibs 10)        ; 55
+  (stream-ref fibs-2 10)      ; 55
+  (stream-ref primes 50)      ; 233
+  (stream-ref primes-2 50)    ; 233
+  (stream-ref ones 100)       ; 1
+  (stream-ref integers 100)   ; 101
+  (stream-ref integers-2 100) ; 101
+  (stream-ref double 10)      ; 1024
+)
 

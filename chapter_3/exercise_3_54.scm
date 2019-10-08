@@ -3,11 +3,7 @@
 ;; P230 - [练习 3.54]
 
 (#%require "stream.scm")
-
-(define (integers-starting-from n)
-  (cons-stream n (integers-starting-from (+ n 1))))
-
-(define integers (integers-starting-from 1))
+(#%require "infinite_stream.scm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (mul-stream s1 s2)
