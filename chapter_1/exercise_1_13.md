@@ -5,7 +5,7 @@ Fib 的定义如下：
 ```
 Fib(0) = 0
 Fib(1) = 1
-Fib(n) = Fib(n - 1) + Fib(n - 1) 当 n >= 2 时
+Fib(n) = Fib(n - 1) + Fib(n - 2) 当 n >= 2 时
 ```
 
 我们设
@@ -24,7 +24,7 @@ Fib(n) = Fib(n - 1) + Fib(n - 1) 当 n >= 2 时
 
 可知基础情况成立。而假设 <img src="http://latex.codecogs.com/svg.latex?Fib(n)=\frac{\phi^{n}-\gamma^{n}}{\sqrt{5}}"/> 成立，有
 
-<img src="http://latex.codecogs.com/svg.latex?\begin{align}Fib(n)=Fib(n-1)+Fib(n-1)=\frac{\phi^{n-1}-\gamma^{n-1}}{\sqrt{5}}+\frac{\phi^{n-2}-\gamma^{n-2}}{\sqrt{5}}=\frac{\phi^{n-1}(1+\frac{1}{\phi})-\gamma^{n-1}(1+\frac{1}{\gamma})}{\sqrt{5}}\notag\end{align}"/>
+<img src="http://latex.codecogs.com/svg.latex?\begin{align}Fib(n)=Fib(n-1)+Fib(n-2)=\frac{\phi^{n-1}-\gamma^{n-1}}{\sqrt{5}}+\frac{\phi^{n-2}-\gamma^{n-2}}{\sqrt{5}}=\frac{\phi^{n-1}(1+\frac{1}{\phi})-\gamma^{n-1}(1+\frac{1}{\gamma})}{\sqrt{5}}\notag\end{align}"/>
 
 而
 
