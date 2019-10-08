@@ -93,3 +93,5 @@
 	* P230 - [练习 3.53](./exercise_3_53.md)
 	* P230 - [练习 3.54](./exercise_3_54.scm)
 	* P230 - [练习 3.55](./exercise_3_55.scm)
+	* P230 - [练习 3.56](./exercise_3_56.scm)
+

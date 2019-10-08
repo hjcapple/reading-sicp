@@ -4,7 +4,7 @@
 
 (#%require "stream.scm")
 
-(#%provide add-stream integers-starting-from integers)
+(#%provide add-stream integers-starting-from integers scale-stream)
 (#%provide stream-head->list)
 
 (define (integers-starting-from n)
