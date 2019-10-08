@@ -4,7 +4,7 @@
 
 (#%provide stream-car stream-cdr)
 (#%provide stream-enumerate-interval display-stream display-line stream-ref)
-(#%provide stream-filter)
+(#%provide stream-filter stream-map)
 
 (define (stream-car stream) (car stream))
 (define (stream-cdr stream) (force (cdr stream)))
@@ -14,11 +14,20 @@
       (stream-car s)
       (stream-ref (stream-cdr s) (- n 1))))
 
-(define (stream-map proc s)
+;; P225 - [练习 3.50]
+(define (stream-map proc . argstreams)
+  (if (stream-null? (car argstreams))
+      the-empty-stream
+      (cons-stream 
+        (apply proc (map stream-car argstreams))
+        (apply stream-map
+               (cons proc (map stream-cdr argstreams))))))
+
+(define (stream-map-2 proc s)
   (if (stream-null? s)
       the-empty-stream
       (cons-stream (proc (stream-car s))
-                   (stream-map proc (stream-cdr s)))))
+                   (stream-map-2 proc (stream-cdr s)))))
 
 (define (stream-for-each proc s)
   (cond ((not (stream-null? s))
