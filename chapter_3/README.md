@@ -96,4 +96,5 @@
 	* P230 - [练习 3.56](./exercise_3_56.scm)
 	* P231 - [练习 3.57](./exercise_3_57.md)
 	* P231 - [练习 3.58](./exercise_3_58.md)
+	* P231 - [练习 3.59, e^x, sinx, cosx 幂级数展开](./exercise_3_59.scm)
 
