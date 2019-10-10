@@ -4,8 +4,8 @@
 (define fibs 
   (cons-stream 0
                (cons-stream 1
-                            (add-stream (stream-cdr fibs) 
-                                        fibs))))
+                            (add-streams (stream-cdr fibs) 
+                                         fibs))))
 ```                                        
 
 根据 fibs 的定义，要计算第 n 个数的值，需要先计算第 n - 1 和 n - 2 的值。有

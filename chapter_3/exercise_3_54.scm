@@ -6,11 +6,11 @@
 (#%require "infinite_stream.scm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define (mul-stream s1 s2)
+(define (mul-streams s1 s2)
   (stream-map * s1 s2))
 
 (define factorials 
-  (cons-stream 1 (mul-stream factorials (stream-cdr integers))))
+  (cons-stream 1 (mul-streams factorials (stream-cdr integers))))
 
 ;
 ;     1   2   6   24  120 720  ... = factorials

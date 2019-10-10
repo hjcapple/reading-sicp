@@ -4,7 +4,7 @@
 
 (#%require "stream.scm")
 
-(#%provide add-stream integers-starting-from integers scale-stream)
+(#%provide add-streams integers-starting-from integers scale-stream)
 (#%provide stream-head->list)
 
 (define (integers-starting-from n)
@@ -36,16 +36,16 @@
 ;; 隐式地定义流
 (define ones (cons-stream 1 ones))
 
-(define (add-stream s1 s2)
+(define (add-streams s1 s2)
   (stream-map + s1 s2))
 
-(define integers-2 (cons-stream 1 (add-stream ones integers-2)))
+(define integers-2 (cons-stream 1 (add-streams ones integers-2)))
 
 (define fibs-2 
   (cons-stream 0
                (cons-stream 1
-                            (add-stream (stream-cdr fibs) 
-                                        fibs))))
+                            (add-streams (stream-cdr fibs) 
+                                         fibs))))
 
 (define (scale-stream stream factor)
   (stream-map (lambda (x) (* x factor)) stream))

@@ -1,7 +1,7 @@
 ## P226 - [练习 3.52]
 
 ``` Scheme
-(define s (cons-stream 1 (add-stream s s)))
+(define s (cons-stream 1 (add-streams s s)))
 ```
 
 s 可以看成是 s 移动一个位置，跟自身相加。而第一个数是 1，第二个数就是 1 + 1 = 2，第三个数是 2 + 2 = 4 ....。
