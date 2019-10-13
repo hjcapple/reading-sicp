@@ -98,4 +98,5 @@
 	* P231 - [练习 3.58](./exercise_3_58.md)
 	* P231 - [练习 3.59, e^x, sinx, cosx 幂级数展开](./exercise_3_59.scm)
 	* P232 - [练习 3.60, mul-series](./exercise_3_60.scm)
+	* P232 - [练习 3.61](./exercise_3_61.scm)
 

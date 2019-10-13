@@ -5,6 +5,7 @@
 (#%require "stream.scm")
 (#%require "infinite_stream.scm")
 (#%require "exercise_3_59.scm")
+(#%provide mul-series)
 
 ; s1 = (car-s1 + cdr-s1), s2 = (car-s2 + cdr-s2)
 ; s1 * s2 = car-s1 * car-s2 + cdr-s1 * car-s2 + cdr-s2 * car-s1 + cdr-s1 * cdr-s2
@@ -41,19 +42,21 @@
                  (mul-series-3 (stream-cdr s2) s1))))
 
 ;;;;;;;;;;;;;;
-
-; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-(stream-head->list (add-streams (mul-series cosine-series cosine-series)
-                                (mul-series sine-series sine-series)) 
-                   20)
-
-; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-(stream-head->list (add-streams (mul-series-2 cosine-series cosine-series)
-                                (mul-series-2 sine-series sine-series)) 
-                   20)
-
-; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-(stream-head->list (add-streams (mul-series-3 cosine-series cosine-series)
-                                (mul-series-3 sine-series sine-series)) 
-                   20)
+(#%require (only racket module*))
+  (module* main #f
+  ; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
+  (stream-head->list (add-streams (mul-series cosine-series cosine-series)
+                                  (mul-series sine-series sine-series)) 
+                     20)
+  
+  ; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
+  (stream-head->list (add-streams (mul-series-2 cosine-series cosine-series)
+                                  (mul-series-2 sine-series sine-series)) 
+                     20)
+  
+  ; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
+  (stream-head->list (add-streams (mul-series-3 cosine-series cosine-series)
+                                  (mul-series-3 sine-series sine-series)) 
+                     20)
+)
 
