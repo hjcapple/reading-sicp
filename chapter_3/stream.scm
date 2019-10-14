@@ -1,14 +1,45 @@
-#lang sicp
+#lang racket
 
 ;; P220 - [3.5.1 流作为延时的表]
 
-(#%provide stream-car stream-cdr)
-(#%provide stream-enumerate-interval display-stream display-stream-n display-line stream-ref)
-(#%provide stream-filter stream-map)
+(provide cons-stream stream-car stream-cdr stream-null? the-empty-stream)
+(provide stream-enumerate-interval display-stream display-stream-n display-line stream-ref)
+(provide stream-filter stream-map)
 
 (define (stream-car stream) (car stream))
 (define (stream-cdr stream) (force (cdr stream)))
+(define (stream-null? stream) (null? stream))
+(define the-empty-stream '())
 
+(define-syntax cons-stream
+  (syntax-rules ()
+    ((_ A B) (cons A (delay B)))))
+
+(define (memo-proc proc)
+  (let ((already-run? false)
+        (result false))
+    (lambda ()
+      (if (not already-run?)
+          (begin
+            (set! result (proc))
+            (set! already-run? true)
+            result)
+          result))))
+
+(define (force delayed-object)
+  (delayed-object))
+
+; 具有记忆过程
+(define-syntax delay
+  (syntax-rules ()
+    ((_ exp) (memo-proc (lambda () exp)))))
+
+; 没有记忆过程 
+;(define-syntax delay
+;  (syntax-rules ()
+;    ((_ exp) (lambda () exp))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (stream-ref s n)
   (if (= n 0)
       (stream-car s)
@@ -61,8 +92,7 @@
                    (stream-enumerate-interval (+ low 1) high))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(#%require "ch3support.scm")
-(#%require (only racket module*))
+(require "ch3support.scm")
 (module* main #f
   (stream-car
     (stream-cdr

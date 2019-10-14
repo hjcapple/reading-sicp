@@ -1,12 +1,12 @@
-#lang sicp
+#lang racket
 
-;; P232 - [练习 3.61]
+;; P232 - [练习 3.62]
 
-(#%require "stream.scm")
-(#%require "infinite_stream.scm")
-(#%require "exercise_3_59.scm") ; for cosine-series、sine-series
-(#%require "exercise_3_60.scm") ; for mul-series
-(#%require "exercise_3_61.scm") ; for invert-unit-series
+(require "stream.scm")
+(require "infinite_stream.scm")
+(require "exercise_3_59.scm") ; for cosine-series、sine-series
+(require "exercise_3_60.scm") ; for mul-series
+(require "exercise_3_61.scm") ; for invert-unit-series
 
 (define (div-series s1 s2)
   (if (= (stream-car s2) 0)

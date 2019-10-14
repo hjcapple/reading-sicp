@@ -1,10 +1,10 @@
-#lang sicp
+#lang racket
 
 ;; P232 - [系统地将迭代操作方式表示为流过程]
 
-(#%require "stream.scm")
-(#%require "infinite_stream.scm")
-(#%require "exercise_3_55.scm") ; for partial-sums
+(require "stream.scm")
+(require "infinite_stream.scm")
+(require "exercise_3_55.scm") ; for partial-sums
 
 (define (average x y) (/ (+ x y) 2))
 (define (square x) (* x x))

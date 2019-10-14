@@ -1,8 +1,8 @@
-#lang sicp
+#lang racket
 
 ;; P225 - [练习 3.51]
 
-(#%require "stream.scm")
+(require "stream.scm")
 
 (define (stream-map proc . argstreams)
   (if (stream-null? (car argstreams))

@@ -1,11 +1,11 @@
-#lang sicp
+#lang racket
 
 ;; P232 - [练习 3.60]
 
-(#%require "stream.scm")
-(#%require "infinite_stream.scm")
-(#%require "exercise_3_59.scm")
-(#%provide mul-series)
+(require "stream.scm")
+(require "infinite_stream.scm")
+(require "exercise_3_59.scm")
+(provide mul-series)
 
 ; s1 = (car-s1 + cdr-s1), s2 = (car-s2 + cdr-s2)
 ; s1 * s2 = car-s1 * car-s2 + cdr-s1 * car-s2 + cdr-s2 * car-s1 + cdr-s1 * cdr-s2
@@ -42,8 +42,7 @@
                  (mul-series-3 (stream-cdr s2) s1))))
 
 ;;;;;;;;;;;;;;
-(#%require (only racket module*))
-  (module* main #f
+(module* main #f
   ; (1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
   (stream-head->list (add-streams (mul-series cosine-series cosine-series)
                                   (mul-series sine-series sine-series)) 

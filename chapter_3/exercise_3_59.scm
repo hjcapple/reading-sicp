@@ -1,10 +1,10 @@
-#lang sicp
+#lang racket
 
 ;; P231 - [练习 3.59]
 
-(#%require "stream.scm")
-(#%require "infinite_stream.scm")
-(#%provide exp-series cosine-series sine-series)
+(require "stream.scm")
+(require "infinite_stream.scm")
+(provide exp-series cosine-series sine-series)
 
 (define (div-stream s1 s2)
   (stream-map / s1 s2))
@@ -27,7 +27,6 @@
   (cons-stream 0 (integrate-series cosine-series)))
 
 ;;;;;;;;;;;;;;;;;;;;;
-(#%require (only racket module*))
 (module* main #f
   (define ones (cons-stream 1 ones))
   (stream-head->list (neg-stream ones) 10)       

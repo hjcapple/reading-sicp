@@ -1,4 +1,4 @@
-## P226 - [练习 3.52]
+## P226 - [练习 3.53]
 
 ``` Scheme
 (define s (cons-stream 1 (add-streams s s)))

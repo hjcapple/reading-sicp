@@ -1,9 +1,9 @@
-#lang sicp
+#lang racket
 
 ;; P231 - [练习 3.58]
 
-(#%require "stream.scm")
-(#%require "infinite_stream.scm")
+(require "stream.scm")
+(require "infinite_stream.scm")
 
 (define (expand num den radix)
   (cons-stream

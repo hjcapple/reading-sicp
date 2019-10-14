@@ -1,9 +1,9 @@
-#lang sicp
+#lang racket
 
 ;; P230 - [练习 3.54]
 
-(#%require "stream.scm")
-(#%require "infinite_stream.scm")
+(require "stream.scm")
+(require "infinite_stream.scm")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (mul-streams s1 s2)

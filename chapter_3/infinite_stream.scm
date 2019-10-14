@@ -1,11 +1,11 @@
-#lang sicp
+#lang racket
 
 ;; P226 - [3.5.2 无穷流]
 
-(#%require "stream.scm")
+(require "stream.scm")
 
-(#%provide add-streams integers-starting-from integers scale-stream)
-(#%provide stream-head->list)
+(provide add-streams integers-starting-from integers scale-stream)
+(provide stream-head->list)
 
 (define (integers-starting-from n)
   (cons-stream n (integers-starting-from (+ n 1))))
@@ -71,7 +71,6 @@
       (cons (stream-car s) (stream-head->list (stream-cdr s) (- n 1)))))
 
 ;;;;;;;;;;;;;;;;;;;;
-(#%require (only racket module*))
 (module* main #f
   (stream-ref no-sevens 100)  ; 117
   (stream-ref fibs 10)        ; 55
