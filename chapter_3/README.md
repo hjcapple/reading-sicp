@@ -101,3 +101,7 @@
 	* P232 - [练习 3.61, invert-unit-series](./exercise_3_61.scm)
 	* P232 - [练习 3.62, div-series, tan-series](./exercise_3_62.scm)
 
+* P232 - 3.5.3 流计算模式的使用
+	* P232 - [系统地将迭代操作方式表示为流过程](./stream_iterations.scm)
+
+
