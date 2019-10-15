@@ -105,5 +105,6 @@
 	* P232 - [系统地将迭代操作方式表示为流过程](./stream_iterations.scm)
 	* P235 - [练习 3.63](./exercise_3_63.md)
 	* P235 - [练习 3.64](./exercise_3_64.scm)
+	* P235 - [练习 3.65](./exercise_3_65.scm)
 
 
