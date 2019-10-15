@@ -5,6 +5,7 @@
 (require "stream.scm")
 (require "infinite_stream.scm")
 (require "exercise_3_55.scm") ; for partial-sums
+(provide sqrt-stream)
 
 (define (average x y) (/ (+ x y) 2))
 (define (square x) (* x x))
@@ -50,8 +51,10 @@
   (display "============")
   (newline))
 
-(display-stream-withmsg "(sqrt-stream 2)" (sqrt-stream 2) 20)
-(display-stream-withmsg "pi-stream" pi-stream 20)
-(display-stream-withmsg "(euler-transform pi-stream)" (euler-transform pi-stream) 20)
-(display-stream-withmsg "accelerated-sequence" (accelerated-sequence euler-transform pi-stream) 8)
+(module* main #f
+  (display-stream-withmsg "(sqrt-stream 2)" (sqrt-stream 2) 20)
+  (display-stream-withmsg "pi-stream" pi-stream 20)
+  (display-stream-withmsg "(euler-transform pi-stream)" (euler-transform pi-stream) 20)
+  (display-stream-withmsg "accelerated-sequence" (accelerated-sequence euler-transform pi-stream) 8)
+)
 
