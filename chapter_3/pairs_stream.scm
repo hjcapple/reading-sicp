@@ -5,6 +5,7 @@
 (require "stream.scm")
 (require "infinite_stream.scm")
 (require "ch3support.scm")
+(provide interleave pairs)
 
 (define (interleave s1 s2)
   (if (stream-null? s1)
@@ -21,13 +22,15 @@
       (pairs (stream-cdr s) (stream-cdr t)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(displayln "int-pairs")
-(define int-pairs (pairs integers integers))
-(display-stream-n int-pairs 20)
-
-(displayln "prime-pairs")
-(define prime-pairs (stream-filter (lambda (pair)
-                                     (prime? (+ (car pair) (cadr pair))))
-                                   int-pairs))
-(display-stream-n prime-pairs 20)
+(module* main #f
+  (displayln "int-pairs")
+  (define int-pairs (pairs integers integers))
+  (display-stream-n int-pairs 20)
+  
+  (displayln "prime-pairs")
+  (define prime-pairs (stream-filter (lambda (pair)
+                                       (prime? (+ (car pair) (cadr pair))))
+                                     int-pairs))
+  (display-stream-n prime-pairs 20)
+)
 
