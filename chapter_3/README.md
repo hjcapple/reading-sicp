@@ -109,6 +109,7 @@
 	* P235 - [序对的无穷流](./pairs_stream.scm)
 	* P237 - [练习 3.66](./exercise_3_66.md)
 	* P237 - [练习 3.67](./exercise_3_67.scm)
+	* P237 - [练习 3.68](./exercise_3_68.md)
 
 
 
