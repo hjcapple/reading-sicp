@@ -5,6 +5,7 @@
 (require "stream.scm")
 (require "infinite_stream.scm")
 (require "pairs_stream.scm")
+(provide weighted-pairs)
 
 (define (merge-weighted s1 s2 weight)
   (cond ((stream-null? s1) s2)
@@ -39,11 +40,9 @@
   (+ (car pair) (cadr pair)))
 
 (define a-pairs (weighted-pairs integers integers weight-a))
-(displayln "a-pairs")
-(display-stream-n a-pairs 30)
 
 ; b)
-(define (weigh-b pair)
+(define (weight-b pair)
   (let ((i (car pair))
         (j (cadr pair)))
     (+ (* 2 i) (* 3 j) (* 5 i j))))
@@ -55,6 +54,12 @@
                        (= (remainder x 5) 0)))
                  integers))
 
-(define b-pairs (weighted-pairs filter-integers filter-integers weigh-b))
-(displayln "b-pairs")
-(display-stream-n b-pairs 30)
+(define b-pairs (weighted-pairs filter-integers filter-integers weight-b))
+
+(module* main #f
+  (displayln "a-pairs")
+  (display-stream-n a-pairs 30)
+  
+  (displayln "b-pairs")
+  (display-stream-n b-pairs 30)
+)

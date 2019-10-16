@@ -112,6 +112,7 @@
 	* P237 - [练习 3.68](./exercise_3_68.md)
 	* P238 - [练习 3.69](./exercise_3_69.scm)
 	* P238 - [练习 3.70](./exercise_3_70.scm)
+	* P238 - [练习 3.71, Ramanujan数](./exercise_3_71.scm)
 
 
 
