@@ -5,11 +5,11 @@
 (require "stream.scm")
 (require "infinite_stream.scm")
 (require "pairs_stream.scm")
-(require "exercise_3_70.scm")
+(require "exercise_3_70.scm") ; for weighted-pairs
 
 (define (cube x) (* x x x))
 
-(define (sum-cube pair)
+(define (cube-sum pair)
   (let ((i (car pair))
         (j (cadr pair)))
     (+ (cube i) (cube j))))
@@ -17,14 +17,14 @@
 (define (ramanujan-filter s)
   (let ((s0 (stream-car s))
         (s1 (stream-car (stream-cdr s))))
-    (if (= (sum-cube s0) (sum-cube s1))
+    (if (= (cube-sum s0) (cube-sum s1))
         (cons-stream 
-          (list (sum-cube s0) s0 s1)
+          (list (cube-sum s0) s0 s1)
           (ramanujan-filter (stream-cdr (stream-cdr s))))
         (ramanujan-filter (stream-cdr s)))))
 
 (define ramanujan-numbers
-  (ramanujan-filter (weighted-pairs integers integers sum-cube)))
+  (ramanujan-filter (weighted-pairs integers integers cube-sum)))
 
 (display-stream-n ramanujan-numbers 10)
 
