@@ -19,4 +19,4 @@
   y)
 
 ;;;;;;;;;;;;;;;;;
-(stream-ref (solve (lambda (y) y) 1 0.001) 1000)
+(stream-ref (solve (lambda (y) y) 1 0.001) 1000) ; 2.716923932235896

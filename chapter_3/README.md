@@ -120,7 +120,7 @@
 	* P240 - [练习 3.76](./exercise_3_76.scm)
 
 * P241 - [3.5.4 流和延时求值](./delayed_stream.scm)
-
+	* P242 - [练习 3.77](./exercise_3_77.scm)
 
 
 
