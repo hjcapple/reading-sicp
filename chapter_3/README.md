@@ -126,7 +126,7 @@
 	* P243 - [练习 3.80](./exercise_3_80.md)
 
 * P245 - [3.5.5 函数式程序的模块化和对象的模块化](./monte_carlo_stream.scm)
-
+	* P246 - [练习 3.81](./exercise_3_81.scm)
 
 
 
