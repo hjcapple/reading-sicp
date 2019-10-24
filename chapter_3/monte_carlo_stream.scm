@@ -4,18 +4,9 @@
 
 (require "stream.scm")
 (require "infinite_stream.scm")
+(require "ch3support.scm")  ; for rand-update, gcd
+(provide monte-carlo)
 
-(define (gcd a b)
-  (if (= b 0)
-      a
-      (gcd b (remainder a b))))
-
-; 线性同余法，a 和 m 是素数
-(define (rand-update x)
-  (let ((a 48271) (b 19851020) (m 2147483647))
-    (modulo (+ (* a x) b) m)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define random-init 7)
 (define random-numbers
   (cons-stream random-init
@@ -48,4 +39,6 @@
               (monte-carlo cesaro-stream 0 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;
-(stream-ref pi 2000)  ; 3.125526806694407
+(module* main #f
+  (stream-ref pi 2000)  ; 3.125526806694407
+)
