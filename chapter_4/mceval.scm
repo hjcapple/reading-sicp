@@ -14,7 +14,7 @@
 ;;;;  interface, due to renamings of apply).
 
 ;; SECTION 4.1.1
-(define apply-in-underlying-scheme apply)
+(#%require (rename sicp apply-in-underlying-scheme apply))
 
 (define (eval exp env)
   (cond ((self-evaluating? exp) exp)
@@ -288,6 +288,9 @@
         (list '- -)
         (list '* *)
         (list '/ /)
+        (list '= =)
+        (list '< <)
+        (list '> >)
         ))
 
 (define (primitive-procedure-names)
