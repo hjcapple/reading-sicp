@@ -284,6 +284,8 @@
         (list 'cdr cdr)
         (list 'cons cons)
         (list 'null? null?)
+        (list 'display display)
+        (list 'newline newline)
         (list '+ +)
         (list '- -)
         (list '* *)
