@@ -83,6 +83,7 @@
 (define (self-evaluating? exp)
   (cond ((number? exp) true)
         ((string? exp) true)
+        ((boolean? exp) true)
         (else false)))
 
 (define (quoted? exp)
@@ -282,6 +283,7 @@
 (define primitive-procedures
   (list (list 'car car)
         (list 'cdr cdr)
+        (list 'list list)
         (list 'cons cons)
         (list 'null? null?)
         (list 'display display)
