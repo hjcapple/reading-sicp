@@ -16,3 +16,4 @@
 	* P259 - [练习 4.6](./exercise_4_6.md)
 	* P260 - [练习 4.7](./exercise_4_7.md)
 	* P260 - [练习 4.8](./exercise_4_8.md)
+	* P260 - [练习 4.9](./exercise_4_9.md)

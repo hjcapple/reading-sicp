@@ -60,7 +60,7 @@
 
 其中 `fib` 会转成
 
-```
+``` Scheme
 (define (fib n)
   ((lambda () 
      (define (fib-iter a b count) 
