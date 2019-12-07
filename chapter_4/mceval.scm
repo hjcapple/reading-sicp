@@ -30,6 +30,7 @@
         ((begin? exp) 
          (eval-sequence (begin-actions exp) env))
         ((cond? exp) (eval (cond->if exp) env))
+        ((let? exp) (eval (let->combination exp) env))
         ((application? exp)
          (apply (eval (operator exp) env)
                 (list-of-values (operands exp) env)))
@@ -182,6 +183,17 @@
 
 (define (cond->if exp)
   (expand-clauses (cond-clauses exp)))
+
+;; 练习 4.16
+(define (let? exp) (tagged-list? exp 'let))
+
+(define (let->combination exp)
+  (define (let-body exp) (cddr exp))
+  (define (let-vars exp) (map car (cadr exp)))
+  (define (let-exps exp) (map cadr (cadr exp)))
+  (cons (make-lambda (let-vars exp) 
+                     (let-body exp)) 
+        (let-exps exp)))
 
 (define (expand-clauses clauses)
   (if (null? clauses)

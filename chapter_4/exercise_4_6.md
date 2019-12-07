@@ -9,11 +9,6 @@
 let 的代码实现为
 
 ``` Scheme
-(define (map op sequence)
-  (if (null? sequence)
-      '()
-      (cons (op (car sequence)) (map op (cdr sequence)))))
-
 (define (let? exp) (tagged-list? exp 'let))
 
 (define (let->combination exp)
