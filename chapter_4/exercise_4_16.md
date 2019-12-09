@@ -62,9 +62,8 @@
 ``` Scheme
 (
  (define a 1)
- (display b)
+ (+ a b)
  (define b 1)
- (display a)
 )
 ```
 
@@ -75,9 +74,8 @@
  (let ((a '*unassigned*)
        (b '*unassigned*)) 
    (set! a 1)  ;; 保持顺序
-   (display b) 
-   (set! b 1) 
-   (display a))
+   (+ a b) 
+   (set! b 1))
 )
 ```
 
@@ -89,8 +87,7 @@
        (b '*unassigned*)) 
    (set! a 1)  ;; 将转换的 set! 都放到前面了(这样不好)
    (set! b 1) 
-   (display b) 
-   (display a))
+   (+ a b))
 )
 ``` 
 
@@ -99,9 +96,8 @@
 ``` Scheme
 (define (f)
   (define a 1)
-  (display b)  ;; variable is unassigned b
-  (define b 1)
-  (display a))
+  (+ a b)  ;; variable is unassigned b
+  (define b 1))
 (f)
 ```
 
