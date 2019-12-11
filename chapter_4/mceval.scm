@@ -14,9 +14,13 @@
 ;;;;  interface, due to renamings of apply).
 
 ;; SECTION 4.1.1
+(#%require "ch4support.scm")
 (#%require (rename sicp apply-in-underlying-scheme apply))
+(#%provide (all-defined))
 
-(define (eval exp env)
+;; redefineable 见 ch4support.scm 中的注释
+(redefineable eval)
+(redefine (eval exp env)
   (cond ((self-evaluating? exp) exp)
         ((variable? exp) (lookup-variable-value exp env))
         ((quoted? exp) (text-of-quotation exp))
@@ -364,6 +368,10 @@
 ;;;Following are commented out so as not to be evaluated when
 ;;; the file is loaded.
 (define the-global-environment (setup-environment))
-(driver-loop)
 
-'METACIRCULAR-EVALUATOR-LOADED
+(#%require (only racket module*))
+(module* main #f
+  (driver-loop)
+  'METACIRCULAR-EVALUATOR-LOADED
+)
+

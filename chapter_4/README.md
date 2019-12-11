@@ -3,6 +3,7 @@
 ### 各求值器
 
 * [Metacircular Evaluator](./mceval.scm), 4.1.1 到 4.1.4 小节
+* [Analyzing Evaluator](./analyzingmceval.scm), 4.1.7 小节
 
 ### 4.1 元循环求值器
 
@@ -33,4 +34,4 @@
 	* P271 - [练习 4.19](./exercise_4_19.md)
 	* P271 - [练习 4.20](./exercise_4_20.md)
 	* P272 - [练习 4.21](./exercise_4_21.md)
-
+* P273 - [4.1.7 将语法分析与执行分离](./analyzingmceval.scm)
