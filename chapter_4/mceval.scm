@@ -188,7 +188,7 @@
 (define (cond->if exp)
   (expand-clauses (cond-clauses exp)))
 
-;; 练习 4.16
+;; 练习 4.6
 (define (let? exp) (tagged-list? exp 'let))
 
 (define (let->combination exp)

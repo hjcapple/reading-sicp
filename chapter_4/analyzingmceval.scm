@@ -42,6 +42,7 @@
         ((lambda? exp) (analyze-lambda exp))
         ((begin? exp) (analyze-sequence (begin-actions exp)))
         ((cond? exp) (analyze (cond->if exp)))
+        ((let? exp) (analyze (let->combination exp)))
         ((application? exp) (analyze-application exp))
         (else
           (error "Unknown expression type -- ANALYZE" exp))))
@@ -117,6 +118,17 @@
           (error
             "Unknown procedure type -- EXECUTE-APPLICATION"
             proc))))
+
+;; 练习 4.6
+(define (let? exp) (tagged-list? exp 'let))
+
+(define (let->combination exp)
+  (define (let-body exp) (cddr exp))
+  (define (let-vars exp) (map car (cadr exp)))
+  (define (let-exps exp) (map cadr (cadr exp)))
+  (cons (make-lambda (let-vars exp) 
+                     (let-body exp)) 
+        (let-exps exp)))
 
 (#%require (only racket module*))
 (module* main #f
