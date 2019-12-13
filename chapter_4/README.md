@@ -36,3 +36,4 @@
 	* P272 - [练习 4.21](./exercise_4_21.md)
 * P273 - [4.1.7 将语法分析与执行分离](./analyzingmceval.scm)
 	* P276 - [练习 4.22](./exercise_4_22.md)
+	* P276 - [练习 4.23](./exercise_4_23.md)
