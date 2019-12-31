@@ -54,6 +54,8 @@
 * P284 - [4.2.3 将流作为惰性的表](./streams_as_lazy_list.scm)
 	* P286 - [练习 4.32](./exercise_4_32.md)
 	* P286 - [练习 4.33](./exercise_4_33.md)
+	* P286 - [练习 4.34](./exercise_4_34.scm)
+
 
 	
 

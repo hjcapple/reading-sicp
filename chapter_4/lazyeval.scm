@@ -28,6 +28,7 @@
 ;; of eval overrides the definition from 4.1.1
 (#%require "ch4support.scm")
 (#%require "mceval.scm")
+(#%provide (all-defined) (all-from "mceval.scm"))
 
 ;;;SECTION 4.2.2
 
