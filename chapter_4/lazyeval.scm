@@ -48,6 +48,7 @@
         ((begin? exp) 
          (eval-sequence (begin-actions exp) env))
         ((cond? exp) (eval (cond->if exp) env))
+        ((let? exp) (eval (let->combination exp) env))
         ((application? exp)             ; clause from book
          (apply (actual-value (operator exp) env)
                 (operands exp)

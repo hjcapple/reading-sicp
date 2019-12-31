@@ -304,6 +304,7 @@
         (list 'null? null?)
         (list 'display display)
         (list 'newline newline)
+        (list 'modulo modulo)
         (list '+ +)
         (list '- -)
         (list '* *)
