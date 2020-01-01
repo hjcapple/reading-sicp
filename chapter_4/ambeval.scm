@@ -30,8 +30,7 @@
 ;; of eval overrides the definition from 4.1.1
 (#%require "ch4support.scm")
 (#%require "mceval.scm")
-(#%provide (all-defined))
-
+(#%provide (all-defined) (all-from "mceval.scm"))
 
 ;;;Code from SECTION 4.3.3, modified as needed to run it
 
@@ -59,6 +58,21 @@
 
 (define (ambeval exp env succeed fail)
   ((analyze exp) env succeed fail))
+
+(define (easy-ambeval max-number-vals exp)
+  (let ((all-valus '()))
+    (define (append-val val) 
+      (set! all-valus (append all-valus (list val))))
+    (ambeval exp the-global-environment 
+             (lambda (val next-alternative)
+               (append-val val)
+               (if (< (length all-valus) max-number-vals)
+                   (next-alternative)
+                   (append-val '...)))
+             (lambda () 'done))
+    (if (= (length all-valus) 1) 
+        (car all-valus)
+        all-valus)))
 
 ;;;Simple expressions
 

@@ -322,6 +322,7 @@
         (list 'integer? integer?)
         (list 'sqrt sqrt)
         (list 'eq? eq?)
+        (list 'prime? prime?)
         ))
 
 (define (primitive-procedure-names)
