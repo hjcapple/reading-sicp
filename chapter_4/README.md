@@ -5,6 +5,7 @@
 * [Metacircular Evaluator](./mceval.scm), 4.1.1 到 4.1.4 小节
 * [Analyzing Evaluator](./analyzingmceval.scm), 4.1.7 小节
 * [Lazy Evaluator](./lazyeval.scm), 4.2 节
+* [Amb Evaluator](./ambeval.scm), 4.3 节
 
 ### 4.1 元循环求值器
 

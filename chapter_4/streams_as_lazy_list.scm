@@ -1,6 +1,10 @@
+#lang sicp
+
 ;; P284 - [4.2.3 将流作为惰性的表]
 
-;; 下面的代码，可作为 lazyeval.scm 的输入
+(#%require "lazyeval.scm")
+
+(lazy-eval '(begin
 
 (define (cons x y)
   (lambda (m) (m x y)))
@@ -35,7 +39,7 @@
 (define ones (cons 1 ones))
 (define integers (cons 1 (add-lists ones integers)))
 
-(list-ref integers 17)
+(displayln (list-ref integers 17))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -51,4 +55,9 @@
   (define dy (map f y))
   y)
 
-(list-ref (solve (lambda (x) x) 1 0.001) 1000)
+(displayln (list-ref (solve (lambda (x) x) 1 0.001) 1000))
+'done
+
+))
+
+

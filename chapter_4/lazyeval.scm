@@ -148,6 +148,9 @@
          (thunk-value obj))
         (else obj)))
 
+(define (lazy-eval exp)
+  (actual-value exp the-global-environment))
+
 (#%require (only racket module*))
 (module* main #f
   (driver-loop)
