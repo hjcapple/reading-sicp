@@ -61,7 +61,7 @@
 
 * P287 - 4.3.1 [amb 和搜索](./amb_and_search.scm)
 	* 注：amb 的意思是 ambiguous
-
+	* P290 - [练习 4.35](./exercise_4_35.scm)
 
 
 

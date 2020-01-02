@@ -317,6 +317,7 @@
         (list '< <)
         (list '> >)
         (list '>= >=)
+        (list '<= <=)
         (list 'abs abs)
         (list 'remainder remainder)
         (list 'integer? integer?)
