@@ -63,6 +63,7 @@
 	* 注：amb 的意思是 ambiguous
 	* P290 - [练习 4.35](./exercise_4_35.scm)
 	* P290 - [练习 4.36](./exercise_4_36.md)
+	* P290 - [练习 4.37](./exercise_4_37.md)
 
 
 
