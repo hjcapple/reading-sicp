@@ -67,4 +67,5 @@
 * P290 - 4.3.2 非确定性程序的实例
 	* P290 - [逻辑谜题](./multiple_dwelling.scm)
 	* P291 - [练习 4.38](./exercise_4_38.md)
+	* P291 - [练习 4.39](./exercise_4_39.md)
 
