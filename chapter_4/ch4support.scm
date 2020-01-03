@@ -3,6 +3,7 @@
 (provide get put)
 (provide redefineable redefine)
 (provide prime?)
+(provide permutations)
 
 ;; put get 简单实现
 (define *op-table* (make-hash))
@@ -53,4 +54,28 @@
 
 (define (prime? n)
   (= n (smallest-divisor n)))
+
+
+;; P82 - [嵌套映射]
+(define (flatmap proc seq)
+  (accumulate append null (map proc seq)))
+
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))))
+
+(define (remove item lst)
+  (filter (lambda (x) (not (eq? x item)))
+          lst))
+
+(define (permutations s)
+  (if (null? s)
+      (list null)
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (permutations (remove x s))))
+               s)))
+
 
