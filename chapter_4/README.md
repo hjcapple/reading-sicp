@@ -68,4 +68,5 @@
 	* P290 - [逻辑谜题](./multiple_dwelling.scm)
 	* P291 - [练习 4.38](./exercise_4_38.md)
 	* P291 - [练习 4.39](./exercise_4_39.md)
+	* P291 - [练习 4.40](./exercise_4_40.md)
 
