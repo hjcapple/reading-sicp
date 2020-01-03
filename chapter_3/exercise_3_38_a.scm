@@ -2,26 +2,8 @@
 
 ;; P210 - [练习 3.38-a]
 
-(define (remove item lst)
-  (filter (lambda (x) (not (eq? x item)))
-          lst))
+(require "ch3support.scm")
 
-(define (accumulate op initial sequence)
-  (if (null? sequence)
-      initial
-      (op (car sequence)
-          (accumulate op initial (cdr sequence)))))
-
-(define (arrange lst)      
-  (if (null? lst)
-      (list '())
-      (accumulate append '()
-                  (map (lambda (x)
-                         (map (lambda (sub) (append (list x) sub)) 
-                              (arrange (remove x lst))))
-                       lst))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (run orders)
   (let ((balance 100))
     (define (process x)
@@ -37,5 +19,5 @@
     (display balance)
     (newline)))
 
-(define orders (arrange (list 'Peter 'Paul 'Mary)))
+(define orders (permutations (list 'Peter 'Paul 'Mary)))
 (for-each run orders)

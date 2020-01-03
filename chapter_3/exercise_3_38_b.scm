@@ -2,24 +2,7 @@
 
 ;; P210 - [练习 3.38-b]
 
-(define (remove item lst)
-  (filter (lambda (x) (not (eq? x item)))
-          lst))
-
-(define (accumulate op initial sequence)
-  (if (null? sequence)
-      initial
-      (op (car sequence)
-          (accumulate op initial (cdr sequence)))))
-
-(define (arrange lst)      
-  (if (null? lst)
-      (list '())
-      (accumulate append '()
-                  (map (lambda (x)
-                         (map (lambda (sub) (append (list x) sub)) 
-                              (arrange (remove x lst))))
-                       lst))))
+(require "ch3support.scm")
 
 (define (element-of-set? x set)
   (cond ((null? set) false)
@@ -72,7 +55,7 @@
 
 (define (gen-orders)
   (let* ((lst (list 'Peter-Get 'Peter-Set 'Paul-Get 'Paul-Set 'Mary-Get-1 'Mary-Get-2 'Mary-Set))
-         (orders (arrange lst)))
+         (orders (permutations lst)))
     (filter (lambda (x)
               (and (right-order? x 'Peter-Get 'Peter-Set)
                    (right-order? x 'Paul-Get 'Paul-Set)

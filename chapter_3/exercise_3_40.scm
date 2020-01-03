@@ -2,24 +2,7 @@
 
 ;; P212 - [练习 3.40]
 
-(define (remove item lst)
-  (filter (lambda (x) (not (eq? x item)))
-          lst))
-
-(define (accumulate op initial sequence)
-  (if (null? sequence)
-      initial
-      (op (car sequence)
-          (accumulate op initial (cdr sequence)))))
-
-(define (arrange lst)      
-  (if (null? lst)
-      (list '())
-      (accumulate append '()
-                  (map (lambda (x)
-                         (map (lambda (sub) (append (list x) sub)) 
-                              (arrange (remove x lst))))
-                       lst))))
+(require "ch3support.scm")
 
 (define (element-of-set? x set)
   (cond ((null? set) false)
@@ -67,7 +50,7 @@
 
 (define (gen-orders)
   (let* ((lst (list 'p1-get-1 'p1-get-2 'p1-set 'p2-get-1 'p2-get-2 'p2-get-3 'p2-set))
-         (orders (arrange lst)))
+         (orders (permutations lst)))
     (filter (lambda (x)
               (and (right-order? x 'p1-get-1 'p1-get-2)
                    (right-order? x 'p1-get-2 'p1-set)

@@ -2,6 +2,7 @@
 
 (provide prime? gcd)
 (provide rand-update)
+(provide permutations)
 
 ;; P33 - 1.2.6 实例： 素数检测, [寻找因子]
 (define (square x) (* x x))
@@ -31,3 +32,27 @@
 (define (rand-update x)
   (let ((a 48271) (b 19851020) (m 2147483647))
     (modulo (+ (* a x) b) m)))
+
+
+;; P82 - [嵌套映射]
+(define (flatmap proc seq)
+  (accumulate append null (map proc seq)))
+
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))))
+
+(define (remove item lst)
+  (filter (lambda (x) (not (eq? x item)))
+          lst))
+
+(define (permutations s)
+  (if (null? s)
+      (list null)
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (permutations (remove x s))))
+               s)))
+
