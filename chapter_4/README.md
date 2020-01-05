@@ -75,6 +75,7 @@
 	* P292 - [练习 4.44, 八皇后问题](./exercise_4_44.scm)
 	* P292 - [自然语言的语法分析](./parsing_natural_language.scm)
 	* P295 - [练习 4.45](./exercise_4_45.md)
+	* P295 - [练习 4.46](./exercise_4_46.md)
 
 
 	
