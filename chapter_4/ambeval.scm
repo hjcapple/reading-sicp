@@ -52,6 +52,7 @@
         ((cond? exp) (analyze (cond->if exp)))
         ((let? exp) (analyze (let->combination exp))) ;**
         ((amb? exp) (analyze-amb exp))                ;**
+        ((ramb? exp) (analyze-ramb exp))
         ((application? exp) (analyze-application exp))
         (else
          (error "Unknown expression type -- ANALYZE" exp))))
@@ -214,6 +215,33 @@
 
 (define (analyze-amb exp)
   (let ((cprocs (map analyze (amb-choices exp))))
+    (lambda (env succeed fail)
+      (define (try-next choices)
+        (if (null? choices)
+            (fail)
+            ((car choices) env
+                           succeed
+                           (lambda ()
+                             (try-next (cdr choices))))))
+      (try-next cprocs))))
+
+(define (insert-list lst item n)
+  (if (= n 0)
+      (cons item lst)
+      (cons (car lst) (insert-list (cdr lst) item (- n 1)))))
+
+(define (shuffle lst)
+  (if (null? lst)
+      lst
+      (let ((n (random (length lst))))
+        (insert-list (shuffle (cdr lst)) (car lst) n))))
+
+;; 练习 4.50
+(define (ramb? exp) (tagged-list? exp 'ramb))
+(define (ramb-choices exp) (shuffle (cdr exp)))
+
+(define (analyze-ramb exp)
+  (let ((cprocs (map analyze (ramb-choices exp))))
     (lambda (env succeed fail)
       (define (try-next choices)
         (if (null? choices)
