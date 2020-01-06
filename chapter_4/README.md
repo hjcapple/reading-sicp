@@ -79,6 +79,10 @@
 	* P295 - [练习 4.47](./exercise_4_47.md)
 	* P296 - [练习 4.48](./exercise_4_48.md)
 	* P296 - [练习 4.49](./exercise_4_49.md)
+* P296 - 4.3.3 实现 amb 求值器
+	* [continuation-passing style](./cps.md)
+
+
 
 
 

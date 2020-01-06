@@ -2,7 +2,7 @@
 
 此题涉及自指概念，跟 Y combinator 也有点关系。可进一步阅读刘未鹏的文章
 
-* [康托尔、哥德尔、图灵——永恒的金色对角线](./http://mindhacks.cn/2006/10/15/cantor-godel-turing-an-eternal-golden-diagonal/)
+* [康托尔、哥德尔、图灵——永恒的金色对角线](http://mindhacks.cn/2006/10/15/cantor-godel-turing-an-eternal-golden-diagonal/)
 
 ### a)
 
