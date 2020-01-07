@@ -83,6 +83,7 @@
 	* [continuation-passing style](./cps.md)
 	* P303 - [练习 4.50](./exercise_4_50.md)
 	* P303 - [练习 4.51](./exercise_4_51.md)
+	* P304 - [练习 4.52](./exercise_4_52.md)
 
 
 

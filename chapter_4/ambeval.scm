@@ -48,6 +48,7 @@
         ((permanent-assignment? exp) (analyze-permanent-assignment exp))
         ((definition? exp) (analyze-definition exp))
         ((if? exp) (analyze-if exp))
+        ((if-fail? exp) (analyze-if-fail exp))
         ((lambda? exp) (analyze-lambda exp))
         ((begin? exp) (analyze-sequence (begin-actions exp)))
         ((cond? exp) (analyze (cond->if exp)))
@@ -175,6 +176,17 @@
                (set-variable-value! var val env)
                (succeed 'ok fail2))
              fail))))
+
+;; 练习 4.52
+(define (if-fail? exp) (tagged-list? exp 'if-fail))
+(define (analyze-if-fail exp)
+  (let ((try-proc (analyze (cadr exp)))
+        (fail-proc (analyze (caddr exp))))
+    (lambda (env succeed fail)
+      (try-proc env
+                succeed
+                (lambda ()
+                  (fail-proc env succeed fail))))))
 
 ;;;Procedure applications
 
