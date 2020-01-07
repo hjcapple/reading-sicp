@@ -654,6 +654,13 @@
                (or (same ?job-1 ?job-2)
                    (can-do-job ?job-1 ?job-2))))
     
+    ;; 练习 4.58
+    (rule (big-shot ?person ?division)
+          (and (job ?person (?division . ?job-type))
+               (or (not (supervisor ?person ?boss))
+                   (and (supervisor ?person ?boss)
+                        (not (job ?boss (?division . ?boss-job-type)))))))
+    
     (rule (lives-near ?person-1 ?person-2)
           (and (address ?person-1 (?town . ?rest-1))
                (address ?person-2 (?town . ?rest-2))
