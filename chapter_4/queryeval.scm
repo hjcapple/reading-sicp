@@ -643,12 +643,16 @@
     
     (can-do-job (computer wizard) (computer programmer))
     (can-do-job (computer wizard) (computer technician))
+    (can-do-job (computer programmer) (computer programmer trainee))
+    (can-do-job (administration secretary) (administration big wheel))
     
-    (can-do-job (computer programmer)
-                (computer programmer trainee))
-    
-    (can-do-job (administration secretary)
-                (administration big wheel))
+    ;; 练习 4.57
+    (rule (can-replace ?person-1 ?person-2)
+          (and (job ?person-1 ?job-1)
+               (job ?person-2 ?job-2)
+               (not (same ?person-1 ?person-2))
+               (or (same ?job-1 ?job-2)
+                   (can-do-job ?job-1 ?job-2))))
     
     (rule (lives-near ?person-1 ?person-2)
           (and (address ?person-1 (?town . ?rest-1))
