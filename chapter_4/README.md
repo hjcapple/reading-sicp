@@ -6,6 +6,7 @@
 * [Analyzing Evaluator](./analyzingmceval.scm), 4.1.7 小节
 * [Lazy Evaluator](./lazyeval.scm), 4.2 节
 * [Amb Evaluator](./ambeval.scm), 4.3 节
+* [Query Evaluator](./queryeval.scm), 4.4 节
 
 ### 4.1 元循环求值器
 
