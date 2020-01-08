@@ -661,6 +661,18 @@
                    (and (supervisor ?person ?boss)
                         (not (job ?boss (?division . ?boss-job-type)))))))
     
+    ;; 练习 4.59
+    (meeting accounting (Monday 9am))
+    (meeting administration (Monday 10am))
+    (meeting computer (Wednesday 3pm))
+    (meeting administration (Friday 1pm))
+    (meeting whole-company (Wednesday 4pm))
+    
+    (rule (meeting-time ?person ?day-and-time)
+          (or (meeting whole-company ?day-and-time)
+              (and (job ?person (?division . ?type))
+                   (meeting ?division ?day-and-time))))
+    
     (rule (lives-near ?person-1 ?person-2)
           (and (address ?person-1 (?town . ?rest-1))
                (address ?person-2 (?town . ?rest-2))
