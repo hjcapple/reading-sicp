@@ -99,7 +99,7 @@
 	* P312 - [练习 4.60](./exercise_4_60.md)
 	* P313 - [将逻辑看做程序](./logic_as_programs.scm)
 	* P314 - [练习 4.61](./exercise_4_61.scm)
-
+	* P314 - [练习 4.62](./exercise_4_62.scm)
 
 
 
