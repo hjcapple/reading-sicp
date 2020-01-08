@@ -17,6 +17,8 @@
 
 ;;;SECTION 4.4.4.1
 ;;;The Driver Loop and Instantiation
+(#%provide initialize-data-base easy-qeval)
+
 
 (define user-initial-environment (scheme-report-environment 5))
 (define (stream-car stream) (car stream))
@@ -77,6 +79,20 @@
     (if qproc
         (qproc (contents query) frame-stream)
         (simple-query query frame-stream))))
+
+(define (easy-qeval qstr)
+  (let ((q (query-syntax-process qstr)))
+    (newline)
+    (display output-prompt)
+    (display-stream
+      (stream-map
+        (lambda (frame)
+          (instantiate q
+                       frame
+                       (lambda (v f)
+                         (contract-question-mark v))))
+        (qeval q (singleton-stream '()))))
+    (newline)))
 
 ;;;Simple queries
 
@@ -492,10 +508,9 @@
                    (stream-map proc (stream-cdr s)))))
 
 (define (stream-for-each proc s)
-  (if (stream-null? s)
-      'done
-      (begin (proc (stream-car s))
-        (stream-for-each proc (stream-cdr s)))))
+  (cond ((not (stream-null? s))
+         (proc (stream-car s))
+         (stream-for-each proc (stream-cdr s)))))
 
 (define (display-stream s)
   (stream-for-each display-line s))

@@ -26,7 +26,7 @@
 
 查询结果
 
-```
+``` Scheme
 (and (lives-near (Aull DeWitt) (Reasoner Louis)) 
      (lisp-value 
        (lambda (s1 s2) (string<=? (symbol->string s1) (symbol->string s2))) 
