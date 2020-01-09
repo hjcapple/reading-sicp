@@ -18,7 +18,7 @@
 查询 `(reverse (1 2 3) ?x)`，结果为
 
 ``` Scheme
-Query results:
+;; Query results:
 (reverse (1 2 3) (3 2 1))
 ```
 
@@ -40,7 +40,7 @@ Query results:
 查询 `(reverse ?x (1 2 3))`，结果为
 
 ``` Scheme
-Query results:
+;; Query results:
 (reverse (3 2 1) (1 2 3))
 ```                   
 
