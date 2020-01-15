@@ -35,7 +35,7 @@
 
 这个 `new-conjoin` 实现，跟原始的 `conjoin` 还是有区别的。处理不了 `lisp-value` 和 `not` 语句。
 
-比如 [练习 4.56](./exercise_4_56.md) 的查询，`new-conjoin` 实现下，结果会出错。
+比如 [练习 4.56](./exercise_4_56.md) 的查询，在 `new-conjoin` 实现下，结果会出错。
 
 ``` Scheme
 (and (salary (Bitdiddle Ben) ?ben-salary)
@@ -47,6 +47,5 @@
      (job ?boss ?boss-job))     
 ```
 
-原因见正文 P322 页，与 not 有关的问题。
-
+原因见正文 P322 页，与 not 有关的问题。可以参考 [练习 4.77](./exercise_4_77.md) 的代码，对 `lisp-value` 和 `not` 特殊处理，修正这个问题。
 
