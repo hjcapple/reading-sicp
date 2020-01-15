@@ -154,6 +154,21 @@
 
 ;;(put 'lisp-value 'qeval lisp-value)
 
+
+;; 练习 4.75
+(define (uniquely-asserted operands frame-stream)
+  (define (stream-unique? s)
+    (and (not (stream-null? s))
+         (stream-null? (stream-cdr s))))
+  
+  (stream-flatmap
+    (lambda (frame)
+      (let ((s (qeval (car operands) (singleton-stream frame))))
+        (if (stream-unique? s)
+            s
+            the-empty-stream)))
+    frame-stream))
+
 (define (execute exp)
   (apply (eval (predicate exp) user-initial-environment)
          (args exp)))
@@ -602,6 +617,7 @@
   (put 'not 'qeval negate)
   (put 'lisp-value 'qeval lisp-value)
   (put 'always-true 'qeval always-true)
+  (put 'unique 'qeval uniquely-asserted)
   (deal-out rules-and-assertions '() '()))
 
 ;; Do following to reinit the data base from microshaft-data-base
