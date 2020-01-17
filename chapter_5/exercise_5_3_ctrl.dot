@@ -1,0 +1,28 @@
+digraph G {
+    
+    nodestart [shape=plaintext, label="start"]
+    nodedone [shape=plaintext, label="sqrt-done"]
+    
+    button0 [shape=rect, label="guess←1.0"]
+    button1 [shape=rect, label="tmp←guess^2"]
+    button2 [shape=rect, label="tmp←tmp-x"]
+    button3 [shape=rect, label="tmp←-tmp"]
+    button4 [shape=rect, label="tmp←x/guess"]
+    button5 [shape=rect, label="tmp←guess+tmp"]
+    button6 [shape=rect, label="guess←tmp/2"]
+    
+    test1 [shape=diamond label="test1 <"]
+    test2 [shape=diamond label="test2 <"]
+    
+    nodestart -> button0 -> button1 -> button2 -> test1
+    
+    test1 -> button3 [label="true"]
+    test1 -> test2 [label="false"]
+    button3 -> test2
+    
+    test2 -> nodedone [label="true"]
+    test2 -> button4 -> button5 -> button6
+    button6 -> button1
+}
+
+

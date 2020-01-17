@@ -1,0 +1,51 @@
+digraph G {
+    
+    guess [shape=rect]
+    tmp [shape=rect]
+    x [shape=rect]
+
+    // (assign guess (const 1.0))
+    const_1 [shape=triangle, label="1.0"]
+    const_1 -> guess [label="guess←1.0", color=blue]
+    
+    // (assign tmp (op *) (reg guess) (reg guess))
+    op_1 [shape=invtrapezium, label="*"]
+    guess, guess -> op_1
+    op_1 -> tmp [label="tmp←guess^2", color=blue]
+    
+    //  (assign tmp (op -) (reg tmp) (reg x))
+    op_2 [shape=invtrapezium, label="-"]
+    tmp, x -> op_2
+    op_2 -> tmp [label="tmp←tmp-x", color=blue]
+  
+    // (test (op <) (reg tmp) (const 0))
+    test_1 [shape=circle label="test1 <"]
+    const_2 [shape=triangle, label="0"]
+    tmp, const_2 -> test_1
+    
+    // (assign tmp (op -) (reg tmp))
+    op_3 [shape=invtrapezium, label="-"]
+    tmp -> op_3
+    op_3 -> tmp [label="tmp←-tmp", color=blue]
+    
+    // (test (op <) (reg tmp) (const 0.001))
+    test_2 [shape=circle label="test2 <"]
+    const_3 [shape=triangle, label="0.001"]
+    tmp, const_3 -> test_2
+    
+    // (assign tmp (op /) (reg x) (reg guess))
+    op_4 [shape=invtrapezium, label="/"]
+    x, guess -> op_4
+    op_4 -> tmp [label="tmp←x/guess", color=blue]
+    
+    //  (assign tmp (op +) (reg guess) (reg tmp))
+    op_5 [shape=invtrapezium, label="+"]
+    guess, tmp -> op_5
+    op_5 -> tmp [label="tmp←guess+tmp", color=blue]
+    
+    // (assign guess (op /) (reg tmp) (const 2))
+    op_6 [shape=invtrapezium, label="+"]
+    const_4 [shape=triangle, label="2"]
+    tmp, const_4 -> op_6
+    op_6 -> guess [label="", color=blue]
+}
