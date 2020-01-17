@@ -8,7 +8,7 @@
 * [第2章 构造数据现象](./chapter_2/README.md)
 * [第3章 模块化、对象和状态](./chapter_3/README.md)
 * [第4章 元语言抽象](./chapter_4/README.md)
-* 第5章 寄存器机器里的计算
+* [第5章 寄存器机器里的计算](./chapter_5/README.md)
 
 -------
 
