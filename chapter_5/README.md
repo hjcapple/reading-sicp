@@ -1,5 +1,9 @@
 ## 第5章 寄存器机器里的计算
 
+### 各模拟器
+
+* [Register-Machine Simulator](./ch5-regsim.scm), 4.2 节
+
 ### 5.1 寄存器机器的设计
 
 * P346 - [练习 5.1](./exercise_5_1.md)
@@ -11,3 +15,7 @@
 * P354 - 5.1.4 采用堆栈实现递归
 	* P357 - [练习 5.4](./exercise_5_4.md)
 
+### 5.2 一个寄存器机器模拟器
+
+* P360 - [gcd-machine](./gcd-machine.scm)
+* P360 - [练习 5.7](./exercise_5_7.scm)
