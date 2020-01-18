@@ -10,7 +10,7 @@ test-n
   (branch (label fact-done))
   (assign product (op *) (reg counter) (reg product))
   (assign counter (op +) (reg counter) (const 1))
-  (goto test-n)
+  (goto (label test-n))
   
 fact-done)
 ```
