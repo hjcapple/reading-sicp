@@ -23,3 +23,8 @@
 
 * P360 - [gcd-machine](./gcd-machine.scm)
 * P360 - [练习 5.7](./exercise_5_7.scm)
+* P360 - 5.2.1 机器模型
+* P364 - 5.2.2 汇编程序
+	* P366 - [练习 5.8](./exercise_5_8.md)
+
+

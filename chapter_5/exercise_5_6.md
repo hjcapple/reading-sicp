@@ -2,7 +2,7 @@
 
 在 afterfib-n-1 中，`(restore continue)` 和 `(save continue)` 可以去掉。
 
-```
+``` Scheme
 afterfib-n-1
   (restore n)
   (restore continue) ;; 可以去掉
