@@ -16,6 +16,7 @@
 	* P356 - [递归的阶乘机器](./fact-machine.scm)
 	* P357 - [递归的斐波那契机器](./fib-machine.scm)
 	* P357 - [练习 5.4](./exercise_5_4.md)
+	* P358 - [练习 5.5](./exercise_5_5.md)
 
 ### 5.2 一个寄存器机器模拟器
 
