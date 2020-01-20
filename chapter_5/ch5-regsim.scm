@@ -14,7 +14,8 @@
 ;;; Also, comment in/out the print-stack-statistics op in make-new-machine
 ;;; To find this stack code below, look for comments with **
 
-(#%provide make-machine set-register-contents! start get-register-contents)
+(#%require "ch5support.scm")
+(#%provide (all-defined))
 
 (define (make-machine register-names ops controller-text)
   (let ((machine (make-new-machine)))
@@ -26,7 +27,8 @@
      (assemble controller-text machine))
     machine))
 
-(define (make-register name)
+(redefineable make-register)
+(redefine (make-register name)
   (let ((contents '*unassigned*))
     (define (dispatch message)
       (cond ((eq? message 'get) contents)
@@ -108,7 +110,8 @@
 ;             (error "Unknown request -- STACK" message))))
 ;    dispatch))
 
-(define (make-new-machine)
+(redefineable make-new-machine)
+(redefine (make-new-machine)
   (let ((pc (make-register 'pc))
         (flag (make-register 'flag))
         (stack (make-stack))
@@ -191,7 +194,8 @@
                                              insts)
                                        labels)))))))
 
-(define (update-insts! insts labels machine)
+(redefineable update-insts!)
+(redefine (update-insts! insts labels machine)
   (let ((pc (get-register machine 'pc))
         (flag (get-register machine 'flag))
         (stack (machine 'stack))
@@ -407,4 +411,4 @@
       (eq? (car exp) tag)
       false))
 
-'(REGISTER SIMULATOR LOADED)
+;'(REGISTER SIMULATOR LOADED)
