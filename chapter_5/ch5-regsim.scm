@@ -231,8 +231,9 @@
         (error "Undefined label -- ASSEMBLE" label-name))))
 
 
-(define (make-execution-procedure inst labels machine
-                                  pc flag stack ops)
+(redefineable make-execution-procedure)
+(redefine (make-execution-procedure inst labels machine
+                                    pc flag stack ops)
   (cond ((eq? (car inst) 'assign)
          (make-assign inst machine labels ops pc))
         ((eq? (car inst) 'test)
