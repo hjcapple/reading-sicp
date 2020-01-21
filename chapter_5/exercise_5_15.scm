@@ -5,26 +5,26 @@
 (#%require "ch5support.scm")
 (#%require "ch5-regsim.scm")
 
-;; 在机器内部增加 execute-number 计数器，并添加指令
-;; (perform (op print-execute-number))
+;; 在机器内部增加 instruction-number 计数器，并添加指令
+;; (perform (op print-instruction-number))
 
 (redefine (make-new-machine)
   (let ((pc (make-register 'pc))
         (flag (make-register 'flag))
         (stack (make-stack))
         (the-instruction-sequence '())
-        (execute-number 0))
+        (instruction-number 0))
     (let ((the-ops
             (list (list 'initialize-stack
                         (lambda () (stack 'initialize)))
                   (list 'print-stack-statistics
                         (lambda () (stack 'print-statistics)))
-                  (list 'print-execute-number
+                  (list 'print-instruction-number
                         (lambda () 
-                          (display "execute-number: ")
-                          (display execute-number)
+                          (display "instruction-number: ")
+                          (display instruction-number)
                           (newline)
-                          (set! execute-number 0)))))
+                          (set! instruction-number 0)))))
           (register-table
             (list (list 'pc pc) (list 'flag flag))))
       (define (allocate-register name)
@@ -44,7 +44,7 @@
           (if (null? insts)
               'done
               (begin
-                (set! execute-number (+ execute-number 1))
+                (set! instruction-number (+ instruction-number 1))
                 ((instruction-execution-proc (car insts)))
                 (execute)))))
       (define (dispatch message)
@@ -89,7 +89,7 @@
       (assign val (const 1))                  ; base case: 1! = 1
       (goto (reg continue))                   ; return to caller
       fact-done
-      (perform (op print-execute-number))
+      (perform (op print-instruction-number))
       )))
 
 (set-register-contents! fact-machine 'n 10)

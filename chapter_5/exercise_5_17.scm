@@ -1,13 +1,21 @@
 #lang sicp
 
-;; P373 - [练习 5.16]
+;; P373 - [练习 5.17]
 
 (#%require "ch5support.scm")
 (#%require "ch5-regsim.scm")
 
-;; 添加 trace-on 标记，并增加 'trace-on 和 'trace-off 消息
+(define (make-machine register-names ops controller-text)
+  (let ((machine (make-new-machine)))
+    (for-each (lambda (register-name)
+                ((machine 'allocate-register) register-name))
+              register-names)
+    ((machine 'install-operations) ops)    
+    ((machine 'install-instruction-sequence)
+     (assemble controller-text machine))
+    machine))
 
-(redefine (make-new-machine)
+(define (make-new-machine)
   (let ((pc (make-register 'pc))
         (flag (make-register 'flag))
         (stack (make-stack))
@@ -45,8 +53,15 @@
               'done
               (begin
                 (cond (trace-on
-                        (display (instruction-text (car insts)))
-                        (newline)))
+                        (if (null? (instruction-label (car insts)))
+                            (begin
+                              (display (instruction-text (car insts)))
+                              (newline))
+                            (begin
+                              (display (instruction-label (car insts)))
+                              (newline)
+                              (display (instruction-text (car insts)))
+                              (newline)))))
                 (set! instruction-number (+ instruction-number 1))
                 ((instruction-execution-proc (car insts)))
                 (execute)))))
@@ -66,6 +81,59 @@
               ((eq? message 'trace-off) (set! trace-on false))
               (else (error "Unknown request -- MACHINE" message))))
       dispatch)))
+
+(define (assemble controller-text machine)
+  (extract-labels controller-text
+                  (lambda (insts labels)
+                    (update-insts! insts labels machine)
+                    insts)))
+
+(define (extract-labels text receive)
+  (if (null? text)
+      (receive '() '())
+      (extract-labels 
+        (cdr text)
+        (lambda (insts labels)
+          (let ((next-inst (car text)))
+            (if (symbol? next-inst)
+                (begin
+                  (set-instruction-label! (car insts) next-inst)
+                  (receive insts
+                           (cons (make-label-entry next-inst insts) labels)))
+                (receive (cons (make-instruction next-inst) insts)
+                         labels)))))))
+
+(define (update-insts! insts labels machine)
+  (let ((pc (get-register machine 'pc))
+        (flag (get-register machine 'flag))
+        (stack (machine 'stack))
+        (ops (machine 'operations)))
+    (for-each
+      (lambda (inst)
+        (set-instruction-execution-proc! 
+          inst
+          (make-execution-procedure
+            (instruction-text inst) labels machine
+            pc flag stack ops)))
+      insts)))
+
+(define (make-instruction text)
+  (list text '() '()))
+
+(define (instruction-text inst)
+  (car inst))
+
+(define (instruction-execution-proc inst)
+  (cadr inst))
+
+(define (set-instruction-execution-proc! inst proc)
+  (set-car! (cdr inst) proc))
+
+(define (instruction-label inst)
+  (caddr inst))
+
+(define (set-instruction-label! inst label)
+  (set-car! (cddr inst) label))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define fact-machine
