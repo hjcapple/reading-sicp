@@ -5,6 +5,8 @@
 (#%require "ch5support.scm")
 (#%require "ch5-regsim.scm")
 
+;; make-instruction 中，添加 label。并且在 extract-labels 过程中设置 label。
+
 (define (make-machine register-names ops controller-text)
   (let ((machine (make-new-machine)))
     (for-each (lambda (register-name)
