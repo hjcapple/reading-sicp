@@ -38,3 +38,4 @@
 	* P373 - [练习 5.16](./exercise_5_16.scm)
 	* P373 - [练习 5.17](./exercise_5_17.scm)
 	* P373 - [练习 5.18](./exercise_5_18.scm)
+	* P373 - [练习 5.19](./exercise_5_19.scm)
