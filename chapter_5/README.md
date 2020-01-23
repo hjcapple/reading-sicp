@@ -1,8 +1,9 @@
 ## 第5章 寄存器机器里的计算
 
-### 各模拟器
+### 模拟器及求值器
 
-* [Register-Machine Simulator](./ch5-regsim.scm), 4.2 节
+* [Register-Machine Simulator](./ch5-regsim.scm), 5.2 节
+* [Explicit-Control Evaluator](./ch5-eceval.scm), 5.4 节
 
 ### 5.1 寄存器机器的设计
 
