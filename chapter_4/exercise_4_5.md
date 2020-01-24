@@ -71,7 +71,7 @@
               (if (true? predicate-val)
                   (if (eq? '=> (cadr first))
                       (apply (eval (caddr first) env) (list predicate-val))
-                      (eval (cadr first) env))
+                      (eval-sequence (cond-actions first) env))
                   (eval-cond-clauses rest env)))))))
 
 (define (eval-cond exp env)
