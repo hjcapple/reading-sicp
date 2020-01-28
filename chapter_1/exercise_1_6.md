@@ -2,8 +2,8 @@
 
 ``` Scheme
 (define (new-if predicate then-caluse else-clause)
-    (cond (predicate then-caluse)
-    (else else-clause)
+  (cond (predicate then-caluse)
+        (else else-clause)))
 ```
 
 上述定义中，`predicate`，`then-caluse`, `else-clause` 都是 `new-if` 的参数。
@@ -12,10 +12,10 @@
 
 ``` Scheme
 (define (sqrt-iter guess x)
-    (new-if (good-enough? guess x)
-            guess
-            (sqrt-iter (improve guess x)
-                        x)))
+  (new-if (good-enough? guess x)
+          guess
+          (sqrt-iter (improve guess x)
+                     x)))
 ```
 
 不管 `good-enough?` 返回值如何，参数 `(sqrt-iter (improve guess x) x))` 都必须首先求值。这个求值又会再次触发 `new-if`，于是它的参数 `sqrt-iter` 又会再次需要求值。
@@ -28,10 +28,7 @@
 
 -------
 
-而在正则序下，`(sqrt-iter (improve guess x) x))` 不会被求值，有两个可能。
+而在正则序下，`(sqrt-iter (improve guess x) x))` 不会被求值。`sqrt-iter` 会每次展开一层，会先判断 `good-enough?`，再求值不同分支。
 
-1. sqrt-iter 会每次展开一层，这种情况下，会先判断 `good-enough?`，再求值不同分支。这种情况下，程序运行正常。
-2. sqrt-iter 需要首先完全展开。这时因为 sqrt-iter 并不能完全被展开，于是也不会停止。
-
-我猜测在正则序下，是会出现第 1 种情况。这样 new-if 表现就跟原来的 if 一样。但我并不能确定。
+在正则序下 `new-if` 表现就跟原来的 `if` 一样，程序运行正常。
 
