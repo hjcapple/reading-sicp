@@ -1,9 +1,11 @@
 ## 第5章 寄存器机器里的计算
 
-### 模拟器及求值器
+### 模拟器、求值器、编译器
 
 * [Register-Machine Simulator](./ch5-regsim.scm), 5.2 节
 * [Explicit-Control Evaluator](./ch5-eceval.scm), 5.4 节
+* [Compiler](./ch5-compiler.scm), 5.5 节
+* [Explicit-Control Evaluator, 运行编译后的代码](./ch5-eceval-compiler.scm), 5.5.7 小节
 
 ### 5.1 寄存器机器的设计
 
@@ -62,4 +64,9 @@
 	* P396 - [练习 5.27](./exercise_5_27.md)
 	* P396 - [练习 5.28](./exercise_5_28.md)
 	* P396 - [练习 5.29](./exercise_5_29.md)
+	* P396 - 练习 5.30 TODO
+
+### 5.5 编译
+
+* P399 - 5.5.1 编译器的结构
 
