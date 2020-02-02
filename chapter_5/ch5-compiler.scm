@@ -14,12 +14,14 @@
 ;;;;Then you can compile Scheme programs as shown in section 5.5.5
 
 ;;**implementation-dependent loading of syntax procedures
+(#%require "ch5support.scm")
 (#%require "ch5-syntax.scm")			;section 4.1.2 syntax procedures
-(#%provide compile statements)
+(#%provide (all-defined) (all-from-except "ch5-syntax.scm" tagged-list?))
 
 ;;;SECTION 5.5.1
 
-(define (compile exp target linkage)
+(redefineable compile)
+(redefine (compile exp target linkage)
   (cond ((self-evaluating? exp)
          (compile-self-evaluating exp target linkage))
         ((quoted? exp) (compile-quoted exp target linkage))
