@@ -2,6 +2,8 @@
 
 ;; P424 - [练习 5.41]
 
+(#%provide find-variable)
+
 (define (find-variable var env)
   (define (position-in-frame var frame position)
     (if (null? frame)
@@ -21,7 +23,9 @@
   (loop var env 0))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
-(find-variable 'c '((y z) (a b c d e) (x y))) ; (1 2)
-(find-variable 'x '((y z) (a b c d e) (x y))) ; (2 0)
-(find-variable 'w '((y z) (a b c d e) (x y))) ; not-found
-
+(#%require (only racket module*))
+(module* main #f
+  (find-variable 'c '((y z) (a b c d e) (x y))) ; (1 2)
+  (find-variable 'x '((y z) (a b c d e) (x y))) ; (2 0)
+  (find-variable 'w '((y z) (a b c d e) (x y))) ; not-found
+)  

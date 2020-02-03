@@ -1,10 +1,9 @@
 #lang sicp
 
-;; P424 - [练习 5.40]
-
-;; 主要修改 compile-lambda-body，扩展编译时环境。compile 过程也添加了 env 参数，传递下去。
+;; P424 - [练习 5.42]
 
 (#%require "ch5-compiler.scm")
+(#%require "exercise_5_41.scm") ; for find-variable
 
 (define (empty-compile-time-env) '())
 (define (extend-compile-time-environment formals env) (cons formals env))
@@ -32,27 +31,37 @@
         (else
          (error "Unknown expression type -- COMPILE" exp))))
 
+;; 使用了 (op the-global-environment) 来获取全局环境
 (define (compile-variable exp target linkage env)
-  (end-with-linkage linkage
-   (make-instruction-sequence '(env) (list target)
-    `((assign ,target
-              (op lookup-variable-value)
-              (const ,exp)
-              (reg env))))))
+  (let ((address (find-variable exp env)))
+    (if (eq? address 'not-found)
+        (end-with-linkage linkage
+          (make-instruction-sequence '(env) (list target 'env)
+            `((assign env (op the-global-environment))
+              (assign ,target (op lookup-variable-value) (const ,exp) (reg env)))))
+        
+        (end-with-linkage linkage
+          (make-instruction-sequence '(env) (list target)
+            `((assign ,target (op lexical-address-lookup) (const ,address) (reg env))))))))
 
 (define (compile-assignment exp target linkage env)
   (let ((var (assignment-variable exp))
-        (get-value-code
-         (compile (assignment-value exp) 'val 'next env)))
-    (end-with-linkage linkage
-     (preserving '(env)
-      get-value-code
-      (make-instruction-sequence '(env val) (list target)
-       `((perform (op set-variable-value!)
-                  (const ,var)
-                  (reg val)
-                  (reg env))
-         (assign ,target (const ok))))))))
+        (get-value-code (compile (assignment-value exp) 'val 'next env)))
+    (let ((address (find-variable exp env)))
+      (if (eq? address 'not-found)
+          (end-with-linkage linkage
+            (preserving '(env)
+              get-value-code
+              (make-instruction-sequence '(env val) (list target 'env)
+                `((assign env (op the-global-environment))
+                  (perform (op set-variable-value!) (const ,var) (reg val) (reg env))
+                  (assign ,target (const ok))))))
+          (end-with-linkage linkage
+            (preserving '(env)
+              get-value-code
+              (make-instruction-sequence '(env val) (list target)
+                `((perform (op lexical-address-set!) (const ,address) (reg val) (reg env))
+                  (assign ,target (const ok))))))))))
 
 (define (compile-definition exp target linkage env)
   (let ((var (definition-variable exp))
@@ -117,7 +126,6 @@
         (compile-lambda-body exp proc-entry env))
        after-lambda))))
 
-;; 主要是这里，需要扩展编译时环境
 (define (compile-lambda-body exp proc-entry env)
   (let ((formals (lambda-parameters exp)))
     (append-instruction-sequences
@@ -147,11 +155,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (compile
-  '(begin
-     (define (factorial n)
-       (if (= n 1)
-           1
-           (* (factorial (- n 1)) n))))
+  '((lambda (x y)
+      (lambda (a b c d e)
+        ((lambda (y z) (* x y z))
+         (* a b x)
+         (+ c d x))))
+    3
+    4)
   'val
   'next
   (empty-compile-time-env))

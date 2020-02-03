@@ -85,3 +85,4 @@
 	* P424 - [练习 5.39](./exercise_5_39.scm)
 	* P424 - [练习 5.40](./exercise_5_40.scm)
 	* P424 - [练习 5.41](./exercise_5_41.scm)
+	* P424 - [练习 5.42](./exercise_5_42.scm)
