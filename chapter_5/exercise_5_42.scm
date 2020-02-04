@@ -25,7 +25,7 @@
                            target
                            linkage
                            env))
-        ((cond? exp) (compile (cond->if exp) target linkage))
+        ((cond? exp) (compile (cond->if exp) target linkage env))
         ((application? exp)
          (compile-application exp target linkage env))
         (else
@@ -47,7 +47,7 @@
 (define (compile-assignment exp target linkage env)
   (let ((var (assignment-variable exp))
         (get-value-code (compile (assignment-value exp) 'val 'next env)))
-    (let ((address (find-variable exp env)))
+    (let ((address (find-variable var env)))
       (if (eq? address 'not-found)
           (end-with-linkage linkage
             (preserving '(env)
