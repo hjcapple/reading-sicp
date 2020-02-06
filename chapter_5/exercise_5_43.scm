@@ -2,8 +2,10 @@
 
 ;; P424 - [练习 5.43]
 
+(#%require "ch5support.scm")
 (#%require "ch5-compiler.scm")
 (#%require "exercise_5_41.scm") ; for find-variable
+(#%provide (all-defined) (all-from "ch5-compiler.scm"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; P259 - [练习 4.6]
@@ -56,7 +58,7 @@
 (define (empty-compile-time-env) '())
 (define (extend-compile-time-environment formals env) (cons formals env))
 
-(define (compile exp target linkage env)
+(redefine (compile exp target linkage env)
   (cond ((self-evaluating? exp)
          (compile-self-evaluating exp target linkage))
         ((quoted? exp) (compile-quoted exp target linkage))
@@ -203,15 +205,18 @@
       (compile-procedure-call target linkage)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(compile
-  '(define (factorial n)
-     (define (iter product counter)
-       (if (> counter n)
-           product
-           (iter (* counter product)
-                 (+ counter 1))))
-     (iter 1))
-  'val
-  'next
-  (empty-compile-time-env))
+(#%require (only racket module*))
+(module* main #f
+  (compile
+    '(define (factorial n)
+       (define (iter product counter)
+         (if (> counter n)
+             product
+             (iter (* counter product)
+                   (+ counter 1))))
+       (iter 1))
+    'val
+    'next
+    (empty-compile-time-env))
+)
 
