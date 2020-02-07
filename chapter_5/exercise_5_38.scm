@@ -68,12 +68,12 @@
 
 (define (compile-open-coded-rest-args proc operands target linkage)
   (if (null? (cdr operands))
-      (preserving '(arg1)
+      (preserving '(arg1 continue)
         (compile (car operands) 'arg2 'next)
         (end-with-linkage linkage
           (make-instruction-sequence '(arg1 arg2) (list target)
             `((assign ,target (op ,proc) (reg arg1) (reg arg2))))))
-      (preserving '(env)
+      (preserving '(env continue)
         (preserving '(arg1)
           (compile (car operands) 'arg2 'next)
           (make-instruction-sequence '(arg1 arg2) '(arg1)

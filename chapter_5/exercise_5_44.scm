@@ -7,6 +7,7 @@
 (#%require "ch5support.scm")    ; for redefine
 (#%require "exercise_5_41.scm") ; for find-variable
 (#%require "exercise_5_43.scm")
+(#%provide (all-defined) statements compile)
 
 ;; P421 - [练习 5.38]
 (define (open-code? exp env)
@@ -24,12 +25,12 @@
 
 (define (compile-open-coded-rest-args proc operands target linkage env)
   (if (null? (cdr operands))
-      (preserving '(arg1)
+      (preserving '(arg1 continue)
         (compile (car operands) 'arg2 'next env)
         (end-with-linkage linkage
           (make-instruction-sequence '(arg1 arg2) (list target)
             `((assign ,target (op ,proc) (reg arg1) (reg arg2))))))
-      (preserving '(env)
+      (preserving '(env continue)
         (preserving '(arg1)
           (compile (car operands) 'arg2 'next env)
           (make-instruction-sequence '(arg1 arg2) '(arg1)
@@ -63,17 +64,20 @@
          (error "Unknown expression type -- COMPILE" exp))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(compile
-  '(begin
-     (+ 1 2 3 4)
-     (* x (f x) y (+ 1 2)))
-  'val
-  'next
-  (empty-compile-time-env))
+(#%require (only racket module*))
+(module* main #f
+  (compile
+    '(begin
+       (+ 1 2 3 4)
+       (* x (f x) y (+ 1 2)))
+    'val
+    'next
+    (empty-compile-time-env))
 
-(compile
-  '(lambda (+ * a b x y)
-     (+ (* a x) (* b y)))
-  'val
-  'next
-  (empty-compile-time-env))
+  (compile
+    '(lambda (+ * a b x y)
+       (+ (* a x) (* b y)))
+    'val
+    'next
+    (empty-compile-time-env))
+)

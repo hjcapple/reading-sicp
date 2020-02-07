@@ -27,6 +27,7 @@
 ;;;;;;;;
 
 (#%require "ch5-compiler.scm")
+(#%require "exercise_5_39.scm") ; for lexical-address
 (#%require "ch5-regsim.scm")
 (#%require "ch5-eceval-support.scm")
 
@@ -136,11 +137,18 @@
    (list 'compiled-procedure? compiled-procedure?)
    (list 'compiled-procedure-entry compiled-procedure-entry)
    (list 'compiled-procedure-env compiled-procedure-env)
+   
+   (list 'lexical-address-lookup lexical-address-lookup)
+   (list 'lexical-address-set! lexical-address-set!)
+   (list '+ +)
+   (list '* *)
+   (list '- -)
+   (list '= =)
    ))
 
 (define eceval
   (make-machine
-   '(exp env val proc argl continue unev
+   '(exp env val proc arg1 arg2 argl continue unev
 	 compapp			;*for compiled to call interpreted
 	 )
    eceval-operations

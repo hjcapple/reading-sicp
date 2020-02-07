@@ -31,13 +31,13 @@
         (else
          (error "Unknown expression type -- COMPILE" exp))))
 
-;; 使用了 (op the-global-environment) 来获取全局环境
+;; 使用了 (op get-global-environment) 来获取全局环境
 (define (compile-variable exp target linkage env)
   (let ((address (find-variable exp env)))
     (if (eq? address 'not-found)
         (end-with-linkage linkage
           (make-instruction-sequence '(env) (list target 'env)
-            `((assign env (op the-global-environment))
+            `((assign env (op get-global-environment))
               (assign ,target (op lookup-variable-value) (const ,exp) (reg env)))))
         
         (end-with-linkage linkage
@@ -53,7 +53,7 @@
             (preserving '(env)
               get-value-code
               (make-instruction-sequence '(env val) (list target 'env)
-                `((assign env (op the-global-environment))
+                `((assign env (op get-global-environment))
                   (perform (op set-variable-value!) (const ,var) (reg val) (reg env))
                   (assign ,target (const ok))))))
           (end-with-linkage linkage

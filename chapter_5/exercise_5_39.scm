@@ -3,6 +3,7 @@
 ;; P424 - [练习 5.39]
 
 (#%require "ch5-eceval-support.scm")
+(#%provide lexical-address-lookup lexical-address-set!)
 
 (define (env-frame-values env offset)
   (if (= offset 0)
