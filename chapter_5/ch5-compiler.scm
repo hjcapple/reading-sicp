@@ -18,6 +18,18 @@
 (#%require "ch5-syntax.scm")			;section 4.1.2 syntax procedures
 (#%provide (all-defined) (all-from-except "ch5-syntax.scm" tagged-list?))
 
+
+(define (let? exp) (tagged-list? exp 'let))
+
+(define (let->combination exp)
+  (define (let-body exp) (cddr exp))
+  (define (let-vars exp) (map car (cadr exp)))
+  (define (let-exps exp) (map cadr (cadr exp)))
+  
+  (cons (make-lambda (let-vars exp) 
+                     (let-body exp)) 
+        (let-exps exp)))
+
 ;;;SECTION 5.5.1
 
 (redefineable compile)
@@ -38,6 +50,7 @@
                            target
                            linkage))
         ((cond? exp) (compile (cond->if exp) target linkage))
+        ((let? exp) (compile (let->combination exp) target linkage))
         ((application? exp)
          (compile-application exp target linkage))
         (else
