@@ -91,6 +91,7 @@
 * P425 - [5.5.7 编译代码与求值器的互连](./eceval-compiler-example.scm)
 	* P428 - [练习 5.45](./exercise_5_45.md)
 	* P429 - [练习 5.46](./exercise_5_46.md)
+	* P429 - [练习 5.47](./exercise_5_47.md)
 
 
 
