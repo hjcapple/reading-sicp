@@ -3,3 +3,7 @@
 *.zo
 *.scm~
 .DS_Store
+xcuserdata
+*.xcworkspace
+*.o
+

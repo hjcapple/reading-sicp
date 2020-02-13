@@ -95,4 +95,7 @@
 	* P429 - [练习 5.48](./exercise_5_48.md)
 	* P429 - [练习 5.49](./exercise_5_49.scm)
 	* P429 - [练习 5.50](./exercise_5_50.scm)
+	* P430 - [练习 5.51, C 编写的 Scheme 求值器](./exercise_5_51/README.md)
+
+
 
