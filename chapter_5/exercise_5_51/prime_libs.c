@@ -138,6 +138,11 @@ static void prime_display(Reg *result, Reg *args) {
     makeVoid(result);
 }
 
+static void prime_displayln(Reg *result, Reg *args) {
+    displayln(car(result, args));
+    makeVoid(result);
+}
+
 static void prime_newline(Reg *result, Reg *args) {
     newline();
     makeVoid(result);
@@ -372,6 +377,7 @@ static struct PrimitiveProc primitive_procedures[] = {
     {"pair?", prime_is_pair},
     {"display", prime_display},
     {"newline", prime_newline},
+    {"displayln", prime_displayln},
     {"read", prime_read},
     {"apply", prime_apply},
     {"error", prime_error},

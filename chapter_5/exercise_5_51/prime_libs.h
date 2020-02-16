@@ -12,10 +12,6 @@ struct PrimitiveProc {
 struct PrimitiveProc *get_primitive_procedures(int *size);
 void display_primitive(Primitive proc);
 
-Scheme *scheme_alloc(void);
-void scheme_free(Scheme *s);
-void set_display_primitive_hander(Scheme *S, DisplayPrimitive handler);
-
 int length(Reg *list);
 void reverse(Reg *result, Reg *list);
 void append(Reg *result, Reg *list0, Reg *list1);

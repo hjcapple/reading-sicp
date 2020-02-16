@@ -307,6 +307,8 @@ Scheme *scheme_alloc() {
 
     Value *val = Scheme_AllocValue(s, &s->nullValue);
     val->type = ValueType_Null;
+
+    s->evalReg = NULL;
     return s;
 }
 

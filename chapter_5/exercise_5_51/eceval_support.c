@@ -2,6 +2,7 @@
 
 #include "eceval_support.h"
 #include "prime_libs.h"
+#include <stdarg.h>
 #include <string.h>
 
 int is_true(Reg *x) {
@@ -130,38 +131,6 @@ void define_variable(Reg *var, Reg *val, Reg *env) {
     reg_free(vals);
 }
 
-static Reg *primitive_procedure_names(Reg *result) {
-    Scheme *S = get_scheme(result);
-    Reg *car = reg_alloc(S);
-    null(result);
-
-    int size = 0;
-    int i = 0;
-    struct PrimitiveProc *procs = get_primitive_procedures(&size);
-    for (i = 0; i < size; i++) {
-        symbol(car, procs[i].symbol);
-        cons(result, car, result);
-    }
-    reg_free(car);
-    return result;
-}
-
-static Reg *primitive_procedure_objects(Reg *result) {
-    Scheme *S = get_scheme(result);
-    Reg *car = reg_alloc(S);
-    null(result);
-
-    int size = 0;
-    int i = 0;
-    struct PrimitiveProc *procs = get_primitive_procedures(&size);
-    for (i = 0; i < size; i++) {
-        primitive(car, procs[i].proc);
-        cons(result, car, result);
-    }
-    reg_free(car);
-    return result;
-}
-
 void lookup_variable_value(Reg *result, Reg *var, Reg *env) {
     Scheme *S = get_scheme(env);
     Reg *frame = reg_alloc(S);
@@ -239,7 +208,13 @@ void setup_environment(Reg *env) {
     Reg *args[3];
     reg_alloc_array(S, args);
 
-    extend_environment(env, primitive_procedure_names(args[0]), primitive_procedure_objects(args[1]), null(args[2]));
+    extend_environment(env, null(args[0]), null(args[1]), null(args[2]));
+    int i = 0;
+    int size = 0;
+    struct PrimitiveProc *procs = get_primitive_procedures(&size);
+    for (i = 0; i < size; i++) {
+        define_variable(symbol(args[0], procs[i].symbol), primitive(args[1], procs[i].proc), env);
+    }
 
     define_variable(symbol(args[0], "true"), boolean(args[1], 1), env);
     define_variable(symbol(args[0], "false"), boolean(args[1], 0), env);
@@ -269,4 +244,40 @@ int is_last_operand(Reg *ops) {
 
 int is_no_more_exps(Reg *seq) {
     return is_null(seq);
+}
+
+void make_compiled_procedure(Reg *result, Reg *entry, Reg *env) {
+    Scheme *S = get_scheme(result);
+    Reg *tmp = reg_alloc(S);
+    null(tmp);
+    cons(tmp, env, tmp);
+    cons(tmp, entry, tmp);
+    cons(result, symbol(result, "compiled-procedure"), tmp);
+    reg_free(tmp);
+}
+
+void compiled_procedure_entry(Reg *result, Reg *proc) {
+    cadr(result, proc);
+}
+
+void compiled_procedure_env(Reg *result, Reg *proc) {
+    caddr(result, proc);
+}
+
+Reg *symbol_list(Reg *result, int reg_count, ...) {
+    Scheme *S = get_scheme(result);
+    Reg *tmp = reg_alloc(S);
+
+    null(result);
+    va_list args;
+    va_start(args, reg_count);
+    int i = 0;
+    for (i = 0; i < reg_count; i++) {
+        const char *str = va_arg(args, const char *);
+        cons(result, symbol(tmp, str), result);
+    }
+    va_end(args);
+    reg_free(tmp);
+    reverse(result, result);
+    return result;
 }

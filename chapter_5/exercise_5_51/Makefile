@@ -6,7 +6,7 @@ obj = scheme_runtime.o eceval_support.o eceval.o prime_libs.o scheme.o syntax.o
 $(program): $(obj)
 	$(cc) $(opt) -o $(program) $(obj)
 
-scheme.o: scheme.c eceval.h eceval_support.h prime_libs.h scheme_libs.h
+scheme.o: scheme.c eceval.h eceval_support.h prime_libs.h scheme_libs.h scheme_runtime.h
 	$(cc) -c $(opt) scheme.c
 
 eceval_support.o: eceval_support.c eceval_support.h scheme_runtime.h prime_libs.h

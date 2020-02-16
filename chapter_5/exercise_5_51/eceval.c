@@ -109,14 +109,12 @@ eval_dispatch:
         eval_or(val, exp, env);
         goto *label_get(continue_);
     }
-    if (is_tagged_list(exp, "cond")) {
-        // cond_to_if(exp, exp);
-        meta_syntax(exp, "meta-syntax-cond->if", exp, env);
+    if (is_cond(exp)) {
+        cond_to_if(exp, exp);
         goto eval_dispatch;
     }
-    if (is_tagged_list(exp, "let")) {
-        // let_to_combination(exp, exp);
-        meta_syntax(exp, "meta-syntax-let->combination", exp, env);
+    if (is_let(exp)) {
+        let_to_combination(exp, exp);
         goto eval_dispatch;
     }
     if (is_tagged_list(exp, "let*")) {

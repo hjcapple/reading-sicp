@@ -30,4 +30,9 @@ int is_last_operand(Reg *ops);
 
 int is_no_more_exps(Reg *seq);
 
+void make_compiled_procedure(Reg *result, Reg *entry, Reg *env);
+void compiled_procedure_entry(Reg *result, Reg *proc);
+void compiled_procedure_env(Reg *result, Reg *proc);
+Reg *symbol_list(Reg *result, int reg_count, ...);
+
 #endif

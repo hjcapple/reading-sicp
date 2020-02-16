@@ -6,48 +6,6 @@
 static const char *scheme_libs =
 
 StdLib(
-       // 用于实现 cond 语法
-       (define (meta-syntax-cond->if exp)
-         (define (make-if predicate consequent alternative)
-           (list (quote if) predicate consequent alternative))
-         (define (sequence->exp seq)
-           (if (null? seq)
-               seq
-               (if (null? (cdr seq))
-                   (car seq)
-                   (make-begin seq))))
-         (define (make-begin seq) (cons (quote begin) seq))
-         (define (cond-clauses exp) (cdr exp))
-         (define (cond-else-clause? clause) (eq? (cond-predicate clause) (quote else)))
-         (define (cond-predicate clause) (car clause))
-         (define (cond-actions clause) (cdr clause))
-         (define (expand-clauses clauses)
-           (if (null? clauses)
-               (quote false)
-               (let ((first (car clauses))
-                     (rest (cdr clauses)))
-                 (if (cond-else-clause? first)
-                     (if (null? rest)
-                         (sequence->exp (cond-actions first))
-                         (error "ELSE clause isn't last -- COND->IF"
-                                clauses))
-                     (make-if (cond-predicate first)
-                              (sequence->exp (cond-actions first))
-                              (expand-clauses rest))))))
-         
-         (expand-clauses (cond-clauses exp)))
-       
-       // 用于实现 let 语法
-       (define (meta-syntax-let->combination exp)
-         (define (let-body exp) (cddr exp))
-         (define (let-vars exp) (map car (cadr exp)))
-         (define (let-exps exp) (map cadr (cadr exp)))
-         (define (make-lambda parameters body)
-           (cons (quote lambda) (cons parameters body)))
-         (cons (make-lambda (let-vars exp) 
-                            (let-body exp)) 
-               (let-exps exp)))
-       
        // 用于实现 let*
        (define (meta-syntax-let*->nested-lets exp)
          (define (make-let vars body)
@@ -67,10 +25,6 @@ StdLib(
        (define (abs x)
          (cond ((< x 0) (- x))
                (else x)))
-       
-       (define (displayln x)
-         (display x)
-         (newline))
        
        (define (length items)
          (if (null? items)
