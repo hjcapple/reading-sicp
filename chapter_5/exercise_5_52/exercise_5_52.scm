@@ -1,6 +1,6 @@
 #lang sicp
 
-;; P429 - [练习 5.50]
+;; P430 - [练习 5.52]
 
 (#%require "compiler.scm")
 

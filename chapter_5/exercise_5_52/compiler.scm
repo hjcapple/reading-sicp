@@ -1,5 +1,7 @@
 #lang sicp
 
+;; P430 - [练习 5.52]
+
 (#%require "../ch5-syntax.scm")			;section 4.1.2 syntax procedures
 (#%provide compile statements)
 
