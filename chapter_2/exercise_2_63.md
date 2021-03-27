@@ -82,9 +82,11 @@
 
 假设树中节点数目为 N。
 
-`tree->list-1` 中每遍历一个节点，调用 1 次 append 和 1 次 cons，总调用了 N 次 append 和 cons。单个 cons 的时间复杂度为 O(1)，但 append 随着列表长度增大而增大，时间为 O(N)，而又调用了 N 次 append。于是 `tree->list-1` 的时间复杂度为 O(N ^ 2)。
+`tree->list-1` 中每遍历一个节点，调用 1 次 append 和 1 次 cons，总调用了 N 次 append 和 cons。单个 cons 的时间复杂度为 O(1)，而 append 随着列表长度增大而增大，这样似乎 `tree->list-1` 的时间复杂度为 O(N ^ 2)。
+
+但是注意到，每次 append 都是左右子树，而平衡树左右子树的节点并非线性增长，而是每次的节点都被砍了一半。于是 tree->list-1 的复杂度应该是 O(N * logN)。
 
 `tree->list-2` 中遍历一个节点，调用了 1 次 cons, 总调用了 N 次 cons。cons 的时间复杂度为 O(1), 于是 `tree->list-2` 的时间复杂度为 O(N)。
 
-结论是，`tree->list-1` 的时间复杂度为 O(N ^ 2)，`tree->list-2` 的时间复杂度为 O(N)。`tree->list-2` 执行时间增长慢一些。
+结论是，`tree->list-1` 的时间复杂度为 O(N * logN)，`tree->list-2` 的时间复杂度为 O(N)。`tree->list-2` 执行时间增长慢一些。
 
