@@ -47,14 +47,29 @@
         (j (cadr pair)))
     (+ (* 2 i) (* 3 j) (* 5 i j))))
 
-(define filter-integers
+; i 或者 j 可以被 2，3 或者 5 整除
+(define filter-integers-b
   (stream-filter (lambda (x)
                    (or (= (remainder x 2) 0)
                        (= (remainder x 3) 0)
                        (= (remainder x 5) 0)))
                  integers))
 
-(define b-pairs (weighted-pairs filter-integers filter-integers weight-b))
+(define b-pairs (weighted-pairs filter-integers-b filter-integers-b weight-b))
+
+; c)
+; 根据 https://www.math.pku.edu.cn/teachers/qiuzy/books/sicp/errata.htm 中勘误
+; 中文书中 b 问中的， i 或者 j 可以被 2，3 或者 5 整除 有误。应该修正i 和 j 都不能被 2, 3, 5 整除
+
+; i 和 j 都不能被 2, 3, 5 整除
+(define filter-integers-c
+  (stream-filter (lambda (x)
+                   (and (not (= (remainder x 2) 0))
+                        (not (= (remainder x 3) 0))
+                        (not (= (remainder x 5) 0))))
+                 integers))
+
+(define c-pairs (weighted-pairs  filter-integers-c  filter-integers-c weight-b))
 
 (module* main #f
   (displayln "a-pairs")
@@ -62,4 +77,7 @@
   
   (displayln "b-pairs")
   (display-stream-n b-pairs 30)
+
+  (displayln "c-pairs")
+  (display-stream-n c-pairs 30)
 )
