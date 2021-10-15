@@ -25,9 +25,9 @@ b ← bp + aq
 
 <img src="http://latex.codecogs.com/svg.latex?T_{pq}^{2}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]^{2} = \left[ \begin{array}{cc}(p+q)^{2}+q^{2} & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]" />
 
-将上述最右边看成是新的 <img src="http://latex.codecogs.com/svg.latex?T_{p’q’}"/> 变换。有
+将上述最右边看成是新的 <img src="http://latex.codecogs.com/svg.latex?T_{p'q'}"/> 变换。有
 
-<img src="http://latex.codecogs.com/svg.latex?T_{p’q’}=\left[ \begin{array}{cc}p' + q' & q' \\q' & p' \\\end{array} \right ]=T_{pq}^{2}=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]"/>
+<img src="http://latex.codecogs.com/svg.latex?T_{p'q'}=\left[ \begin{array}{cc}p' + q' & q' \\q' & p' \\\end{array} \right ]=T_{pq}^{2}=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]"/>
 
 对比之后，得到结果
 
