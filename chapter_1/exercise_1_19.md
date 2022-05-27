@@ -2,7 +2,10 @@
 
 这道题其实是，斐波那契的矩阵形式的变种。斐波那契的矩阵形式为：
 
-$${\left[ \begin{array}{cc}1 & 1 \\1 & 0 \\\end{array} \right ]^{n}} = {\left[ \begin{array}{cc}F_{n+1} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]} = {\left[ \begin{array}{cc}F_{n-1} + F_{n} & F_{n} \\F_{n} &  F_{n-1}\\\end{array} \right ]}$$
+$$\begin{bmatrix} 1 & 1 \\
+1 & 0 \end{bmatrix}^{n}= \begin{bmatrix}F_{n+1} & F_{n} \\
+F_{n} &  F_{n-1}\end{bmatrix}= \begin{bmatrix}F_{n-1} + F_{n} & F_{n} \\
+F_{n} &  F_{n-1}\end{bmatrix}$$
 
 ------
 
@@ -15,19 +18,29 @@ b ← bp + aq
 
 其实可以写成
 
-$$\left[ \begin{array}{cc}a' \\b' \end{array} \right ] = \left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]\left[ \begin{array}{cc}a \\b \end{array} \right ]=\left[ \begin{array}{cc}bq + aq + ap \\bp + aq \end{array} \right ]$$
+$$\begin{bmatrix}a' \\
+b' \end{bmatrix} = \begin{bmatrix}p + q & q \\
+q & p \end{bmatrix}\begin{bmatrix}a \\
+b \end{bmatrix}=\begin{bmatrix}bq + aq + ap \\
+bp + aq \end{bmatrix}$$
 
 这里的 $T_{pq}$，矩阵形式就为
 
-$$T_{pq}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]$$
+$$T_{pq}=\begin{bmatrix}p + q & q \\
+q & p \end{bmatrix}$$
 
 于是
 
-$$T_{pq}^{2}=\left[ \begin{array}{cc}p + q & q \\q & p \\\end{array} \right ]^{2} = \left[ \begin{array}{cc}(p+q)^{2}+q^{2} & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]$$
+$$T_{pq}^{2}=\begin{bmatrix}p + q & q \\
+q & p \end{bmatrix}^{2} = \begin{bmatrix}(p+q)^{2}+q^{2} & 2pq + q^{2} \\
+2pq + q^{2} & p^{2} + q^{2} \end{bmatrix}=\begin{bmatrix}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\
+2pq + q^{2} & p^{2} + q^{2} \end{bmatrix}$$
 
 将上述最右边看成是新的 $T_{p'q'}$ 变换。有
 
-$$T_{p'q'}=\left[ \begin{array}{cc}p' + q' & q' \\q' & p' \\\end{array} \right ]=T_{pq}^{2}=\left[ \begin{array}{cc}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\2pq + q^{2} & p^{2} + q^{2} \\\end{array} \right ]$$
+$$T_{p'q'}=\begin{bmatrix}p' + q' & q' \\
+q' & p' \end{bmatrix}=T_{pq}^{2}=\begin{bmatrix}(p^{2} + q^{2})+(2pq + q^{2}) & 2pq + q^{2} \\
+2pq + q^{2} & p^{2} + q^{2} \end{bmatrix}$$
 
 对比之后，得到结果
 

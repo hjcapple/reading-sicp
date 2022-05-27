@@ -2,15 +2,19 @@
 
 假设区间 A、B 所有数字都为正，他们可以表示为
 
-$$\begin{aligned}&a \pm w_{a} \\& b \pm w_{b}\end{aligned}$$
+$$\begin{aligned}&a \pm w_{a} \\
+& b \pm w_{b}\end{aligned}$$
 
 其中 A, B 的误差为
 
-$$\begin{aligned}& P_{ a}=\frac{w_{a}}{a}\\& P_{b}=\frac{w_{b}}{b}\\\end{aligned}$$
+$$\begin{aligned}& P_{ a}=\frac{w_{a}}{a} \\
+& P_{b}=\frac{w_{b}}{b} \\
+\end{aligned}$$
 
 注意上面算误差，没有乘以 100 变成百分比，这样容易算一些。A B 两区间相乘得到
 
-$$\begin{aligned}C=AB&=[(a-w_{a})(b-w_{b}), (a+w_{a})(b+w_{b})]\\&= [(ab+w_{a}w_{b})-(aw_{b}+bw_{a}),(ab+w_{a}w_{b})+(aw_{b}+bw_{a})]\end{aligned}$$
+$$\begin{aligned}C=AB&=[(a-w_{a})(b-w_{b}), (a+w_{a})(b+w_{b})] \\
+&= [(ab+w_{a}w_{b})-(aw_{b}+bw_{a}),(ab+w_{a}w_{b})+(aw_{b}+bw_{a})]\end{aligned}$$
 
 因而区间 A、B 相乘的结果 C，可以表示为
 
