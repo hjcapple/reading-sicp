@@ -34,7 +34,7 @@ $$\begin{align}1+\frac{1}{\gamma}=1+\frac{2}{1-\sqrt{5}}=\frac{1-\sqrt{5}+2}{1-\
 
 于是
 
-<img src="http://latex.codecogs.com/svg.latex?Fib(n)=\frac{\phi^{n-1}(1+\frac{1}{\phi})-\gamma^{n-1}(1+\frac{1}{\gamma})}{\sqrt{5}}=\frac{\phi^{n-1}\phi-\gamma^{n-1}\gamma}{\sqrt{5}}=\frac{\phi^{n}-\gamma^{n}}{\sqrt{5}} "/>
+$$Fib(n)=\frac{\phi^{n-1}(1+\frac{1}{\phi})-\gamma^{n-1}(1+\frac{1}{\gamma})}{\sqrt{5}}=\frac{\phi^{n-1}\phi-\gamma^{n-1}\gamma}{\sqrt{5}}=\frac{\phi^{n}-\gamma^{n}}{\sqrt{5}}$$
 
 可知递归情况也成立。原命题得证。
 

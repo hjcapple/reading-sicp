@@ -6,11 +6,11 @@
 
 如果 p 为素数，当 a < p 时，有
 
-<img src="http://latex.codecogs.com/svg.latex?a^{p}\equiv%20a\pmod%20p" />
+$$a^{p}\equiv a\pmod p$$
 
 变换一下公式
 
-<img src="http://latex.codecogs.com/svg.latex?a^{p-1}\equiv%201\pmod%20p" />
+$$a^{p-1}\equiv 1\pmod p$$
 
 ### Miller-Rabin 测试
 
@@ -20,17 +20,17 @@
 
 假设 x 是 1 取模的平方根（先不管 trivial 或者 nontrivial), 就有
 
-<img src="http://latex.codecogs.com/svg.latex?x%20^%20{2}%20\equiv%201\pmod%20p"/>
+$$x^{2}\equiv 1\pmod p$$
 
 上面公式可以转为
 
-<img src="http://latex.codecogs.com/svg.latex?x%20^%20{2}%20-%201%20\equiv%20(x%20+%201)(x%20-%201)\equiv%200\pmod%20p"/>
+$$x ^ {2} - 1 \equiv (x + 1)(x - 1)\equiv 0\pmod p$$
 
 于是一定包含两个解。
 
-<img src="http://latex.codecogs.com/svg.latex?x%20\equiv%201\pmod%20p"/>
+$$x \equiv 1\pmod p$$
 
-<img src="http://latex.codecogs.com/svg.latex?x%20\equiv%20-1\pmod%20p"/>
+$$x \equiv -1\pmod p$$
 
 上面推导没有应用到 p 的性质。不管 p 是是素数还是合数，这两个解都一定会成立。于是这两个解，没有什么了不起的，不能用来区分 p 的性质。换句话说这两个解是 trivial 的。
 
@@ -38,11 +38,11 @@
 
 而 -1 在模运算中，跟 p - 1 等价(想象时钟 12 点时，向后拨动 -1 时，就变成 11 点了)。因此在 [0, p) 的范围内，平凡解(trivial) 就是 1 和 p - 1。非平凡解(nontrivial) 就是除了这两个解之外的其它解。
 
-当 p 为素数时，因为 p 已经不可拆分。<img src="http://latex.codecogs.com/svg.latex?(x%20+%201)(x%20-%201)\equiv%200\pmod%20p"/> 只有两个平凡解。但当 p 为合数时，还可以有其它解。比如当 p 为 8，就有
+当 p 为素数时，因为 p 已经不可拆分。$(x + 1)(x - 1)\equiv 0\pmod p$ 只有两个平凡解。但当 p 为合数时，还可以有其它解。比如当 p 为 8，就有
 
-<img src="http://latex.codecogs.com/svg.latex?3^{2}%20\equiv%201\pmod%208"/>
+$$3^{2} \equiv 1\pmod 8$$
 
-<img src="http://latex.codecogs.com/svg.latex?5^{2}%20\equiv%201\pmod%208"/>
+$$5^{2} \equiv 1\pmod 8$$
 
 3 和 5 就是非平凡解。
 
@@ -50,11 +50,11 @@
 
 Miller-Rabin 检查除了应用费马小定理的变形公式
 
-<img src="http://latex.codecogs.com/svg.latex?a^{p-1}\equiv%201\pmod%20p" />
+$$a^{p-1}\equiv 1\pmod p$$
 
 还应用了上述结论，添加了额外的一个检查。假如 p 是素数，那么上面方程
 
-<img src="http://latex.codecogs.com/svg.latex?x%20^%20{2}%20\equiv%201\pmod%20p"/>
+$$x ^ {2} \equiv 1\pmod p$$
 
 一定没有非平凡解(nontrivial)。假如 [0, p) 的范围内，除了 1 和 p - 1 外，还有其它解，那么 p 就是合数。
 

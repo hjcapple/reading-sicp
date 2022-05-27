@@ -1,16 +1,16 @@
 ## P47 - [练习 1.37, 连分数]
 
-将连分数的截断公式记为
+将连分数的截断公式记为 
 
-<img src="http://latex.codecogs.com/svg.latex?f(i,%20k)%20=%20\frac{N_{i}}{D_{i}+\frac{N_{i+1}}{...+\frac{N_{k}}{D_{k}}}}"/>
+$$f(i, k) = \frac{N_{i}}{D_{i}+\frac{N_{i+1}}{...+\frac{N_{k}}{D_{k}}}}$$
 
 于是就有
 
-<img src="http://latex.codecogs.com/svg.latex?\begin{aligned}&f(1,%20k)=\frac{N_{1}}{D_{1}+\frac{N_{2}}{...+\frac{N_{k}}{D_{k}}}}=\frac{N_{1}}{D_{1}+f(2,%20k)}\\&f(2,%20k)=\frac{N_{2}}{D_{2}+\frac{N_{3}}{...+\frac{N_{k}}{D_{k}}}}=\frac{N_{2}}{D_{2}+f(3,%20k)}%20\\&...%20\\&f(k,%20k)=\frac{N_{k}}{D_{k}}\end{aligned}"/>
+$$\begin{aligned}&f(1, k)=\frac{N_{1}}{D_{1}+\frac{N_{2}}{...+\frac{N_{k}}{D_{k}}}}=\frac{N_{1}}{D_{1}+f(2, k)}\\&f(2, k)=\frac{N_{2}}{D_{2}+\frac{N_{3}}{...+\frac{N_{k}}{D_{k}}}}=\frac{N_{2}}{D_{2}+f(3, k)} \\&... \\&f(k, k)=\frac{N_{k}}{D_{k}}\end{aligned}$$
 
 也就是有递归公式：
 
-<img src="http://latex.codecogs.com/svg.latex?\begin{aligned}&f(i,%20k)=\frac{N_{i}}{D_{i}+f(i%20+%201,%20k)}\\&f(k,%20k)=\frac{N_{k}}{D_{k}}\end{aligned}"/>
+$$\begin{aligned}&f(i, k)=\frac{N_{i}}{D_{i}+f(i + 1, k)}\\&f(k, k)=\frac{N_{k}}{D_{k}}\end{aligned}$$
 
 
 要得到迭代版本，可以将顺序反过来。依次计算序列
@@ -60,7 +60,7 @@ f(k, k) -> f(k - 1, k) -> f(k - 2, k) ... f(1, k)
 
 见 [练习 1.13](./exercise_1_13.md)
 
-<img src="http://latex.codecogs.com/svg.latex?\frac{1}{\phi}=\frac{2}{1+\sqrt{5}}=\phi-1"/> 的精确值为
+$\frac{1}{\phi}=\frac{2}{1+\sqrt{5}}=\phi-1$ 的精确值为
 
 ```
 0.61803398874989

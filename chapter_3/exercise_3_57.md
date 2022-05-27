@@ -94,7 +94,7 @@ A(n + 1) = A(n) + A(n - 1) + 1
 
 可知递归情况也成立。原式得到证明。
 
-见 [练习 1.13 的证明](../chapter_1/exercise_1_13.md), `Fib(n)` 是最接近 <img src="http://latex.codecogs.com/svg.latex?\frac{\phi^{n}}{\sqrt{5}}"/> 整数。也就是 n 的指数增长。
+见 [练习 1.13 的证明](../chapter_1/exercise_1_13.md), `Fib(n)` 是最接近 $\frac{\phi^{n}}{\sqrt{5}}$ 整数。也就是 n 的指数增长。
 
 于是在没有记忆过程情况下，计算第 n 个斐波拉契数字所需要的加法。
 

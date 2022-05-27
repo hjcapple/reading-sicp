@@ -2,15 +2,15 @@
 
 黄金分割率 φ 的值为
 
-<img src="http://latex.codecogs.com/svg.latex?\phi=\frac{1+\sqrt{5}}{2}"/>
+$$\phi=\frac{1+\sqrt{5}}{2}$$
 
 满足方程：
 
-<img src="http://latex.codecogs.com/svg.latex?\phi^{2}=\phi+1"/>
+$$\phi^{2}=\phi+1$$
 
 变换之后，为
 
-<img src="http://latex.codecogs.com/svg.latex?\phi=1+\frac{1}{\phi}"/>
+$$\phi=1+\frac{1}{\phi}$$
 
 根据不动点的定义, φ 就为方程 `f(x) = 1 + 1/x` 的不动点。
 
