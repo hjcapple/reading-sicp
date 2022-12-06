@@ -28,12 +28,13 @@
     (rule (end-in-grandson (?x . ?rest))
           (end-in-grandson ?rest))
     
-    (rule ((grandson) ?x ?y)
-          (grandson ?x ?y))
+    (rule ((great grandson) ?x ?y)
+        (and (son ?x ?z)
+            (grandson ?z ?y)))
     (rule ((great . ?rel) ?x ?y)
-          (and (end-in-grandson ?rel)
-               (son ?x ?z)
-               (?rel ?z ?y)))
+        (and (son ?x ?z)
+            (?rel ?z ?y)
+            (end-in-grandson ?rel)))
     ))
 
 (easy-qeval '((great grandson) ?g ?ggs))
@@ -45,13 +46,14 @@
 ;; ((great grandson) Adam Irad)
 
 (easy-qeval '((great great grandson) ?g ?ggs))
-;; ((great grandson) Mehujael Jubal)
-;; ((great grandson) Irad Lamech)
-;; ((great grandson) Mehujael Jabal)
-;; ((great grandson) Enoch Methushael)
-;; ((great grandson) Cain Mehujael)
-;; ((great grandson) Adam Irad)
+;; ((great great grandson) irad jubal)
+;; ((great great grandson) enoch lamech)
+;; ((great great grandson) irad jabal)
+;; ((great great grandson) cain methushael)
+;; ((great great grandson) adam mehujael)
 
-;(easy-qeval '(?relationship Adam Irad))
-;; 无穷循环
+(easy-qeval '(?relationship Adam Irad))
+;; ((great grandson) adam irad)
 
+(easy-qeval '(?relationship Adam Jabal))
+;; ((great great great great great grandson) adam jabal)
