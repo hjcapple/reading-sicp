@@ -46,14 +46,14 @@
 ;; ((great grandson) Adam Irad)
 
 (easy-qeval '((great great grandson) ?g ?ggs))
-;; ((great great grandson) irad jubal)
-;; ((great great grandson) enoch lamech)
-;; ((great great grandson) irad jabal)
-;; ((great great grandson) cain methushael)
-;; ((great great grandson) adam mehujael)
+;; ((great great grandson) Irad Jubal)
+;; ((great great grandson) Enoch Lamech)
+;; ((great great grandson) Irad Jabal)
+;; ((great great grandson) Cain Methushael)
+;; ((great great grandson) Adam Mehujael)
 
 (easy-qeval '(?relationship Adam Irad))
-;; ((great grandson) adam irad)
+;; ((great grandson) Adam Irad)
 
 (easy-qeval '(?relationship Adam Jabal))
-;; ((great great great great great grandson) adam jabal)
+;; ((great great great great great grandson) Adam Jabal)
