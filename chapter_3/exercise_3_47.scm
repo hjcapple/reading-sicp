@@ -44,8 +44,9 @@
                        (the-semaphore 'acquire)))))  ; retry
             ((eq? m 'release)
              (if (test-and-set! cell)
-                 (the-semaphore 'release))
-             (set! n (+ n 1))
-             (clear! cell))))
+                 (the-semaphore 'release)
+                 (begin
+                   (set! n (+ n 1))
+                   (clear! cell))))))
     the-semaphore))
 
